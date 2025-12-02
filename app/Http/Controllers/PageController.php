@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function service1(){
-        return view('pages.index');
+    public function index(){
+        return view('pages.service');
     }
 }
