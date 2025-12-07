@@ -7,5 +7,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'home']);
 
 Route::prefix('service')->group(function(){
-    Route::get('/service1',[PageController::class,'index']);
+    Route::get('/service1',[PageController::class,'index'])->name('home');
 });

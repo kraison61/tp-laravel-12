@@ -35,8 +35,8 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Home <span class="caret"></span></a>
-                            <ul class="dropdown-menu multi-level">
+                            <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown" role="button">หน้าหลัก<span class="caret"></span></a>
+                            <!-- <ul class="dropdown-menu multi-level">
                                 <li><a href="index-main.html">Main</a></li>
                                 <li><a href="index-design.html">Design</a></li>
                                 <li><a href="index-interiors.html">Interiors</a></li>
@@ -46,10 +46,10 @@
                                 <li><a href="index-company.html">Company</a></li>
                                 <li><a href="index-young.html">Young</a></li>
                                 <li><a href="index.html">Intro</a></li>
-                            </ul>
+                            </ul> -->
                         </li>
                         <li class="dropdown mega-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pages <span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">บริการ<span class="caret"></span></a>
                             <div class="mega-menu dropdown-menu multi-level row bg-menu">
                                 <div class="col">
                                     <ul class="fa-ul no-icons text-s">
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col">
                                     <ul class="fa-ul no-icons text-s">
-                                        <li><a href="gallery.html">Photo & video</a></li>
+                                        <li><a href="gallery.html">รูป & วิดิโอ</a></li>
                                         <li><a href="services-1.html">Services one</a></li>
                                         <li><a href="services-2.html">Services two</a></li>
                                         <li><a href="services-3.html">Services three</a></li>
