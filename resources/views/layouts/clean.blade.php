@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../HTWF/scripts/flexslider/flexslider.css">
     <link rel="stylesheet" href="../HTWF/scripts/magnific-popup.css">
     <link rel="stylesheet" href="../HTWF/scripts/php/contact-form.css">
-    <link rel="icon" href="../images/favicon.png">
+    <!-- <link rel="icon" href="../images/favicon.ico"> -->
     <link rel="stylesheet" href="../skin.css"> --}}
 
 {{-- ถ้าไฟล์อยู่ใน public/HTWF/ --}}
@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="{{ asset('HTWF/scripts/flexslider/flexslider.css') }}">
 <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
-<link rel="icon" href="{{ asset('images/favicon.png') }}">
+<link rel="icon" href="{{ asset('images/favicon.ico') }}">
 <link rel="stylesheet" href="{{ asset('skin.css') }}">
 
 

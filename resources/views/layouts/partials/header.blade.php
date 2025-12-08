@@ -1,3 +1,5 @@
+
+
 <header class="fixed-top scroll-change" data-menu-anima="fade-in">
     <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
         <div class="navbar-mini scroll-hide">
@@ -54,11 +56,15 @@
                             <div class="mega-menu dropdown-menu multi-level row bg-menu">
                                 <div class="col">
                                     <ul class="fa-ul no-icons text-s">
-                                        <li><a href="about-us-1.html">About us one</a></li>
+                                        <!-- <li><a href="about-us-1.html">About us one</a></li>
                                         <li><a href="about-us-2.html">About us two</a></li>
                                         <li><a href="about-us-3.html">About us three</a></li>
                                         <li><a href="about-us-4.html">About us four</a></li>
-                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="pricing.html">Pricing</a></li> -->
+                                        @foreach($headerServices as $service)
+                                            <li><a href="about-us-1.html">{{ Str::limit($service->kw_title, 12, '...') }}</a></li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                                 <div class="col">
