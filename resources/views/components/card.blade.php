@@ -2,6 +2,6 @@
     <ol class="breadcrumb b white">
         <li><a href="/">Home</a></li>
         <li><a href="#">Pages</a></li>
-        <li class="active">{{ $slot }}</li>
+        <li class="active">{{ $title }}</li>
     </ol>
 </div>

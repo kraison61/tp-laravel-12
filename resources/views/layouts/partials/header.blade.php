@@ -27,8 +27,9 @@
                     <button type="button" class="navbar-toggle">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">
-                        <img class="logo-default" src="../images/logo.png" alt="logo" />
+                    <a class="navbar-brand" href="index.html" style="height:110px">
+                        {{-- <img class="logo-default" src="../images/logo.png" alt="logo" /> --}}
+                        <img class="logo-default" src="../images/tp-logo.svg" alt="logo" />
                         <img class="logo-retina" src="../images/logo-retina.png" alt="logo" />
                     </a>
                 </div>

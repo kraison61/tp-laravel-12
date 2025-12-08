@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function index(){
-        return view('pages.service');
+        return view('pages.service',[
+            'title' => 'Service Page'
+        ]);
     }
 }

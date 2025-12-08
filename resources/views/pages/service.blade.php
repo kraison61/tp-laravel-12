@@ -13,7 +13,9 @@
                     <p>Services and skills of the Yellow Business and business company.</p>
                 </div>
             </div>
-            <x-breadcrumb />
+            <x-breadcrumb >
+                Services one
+            </x-breadcrumb>
         </div>
     </div>
 </div>
