@@ -38,95 +38,18 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown active">
-                            <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown" role="button">หน้าหลัก<span class="caret"></span></a>
-                            <!-- <ul class="dropdown-menu multi-level">
-                                <li><a href="index-main.html">Main</a></li>
-                                <li><a href="index-design.html">Design</a></li>
-                                <li><a href="index-interiors.html">Interiors</a></li>
-                                <li><a href="index-business.html">Business</a></li>
-                                <li><a href="index-construction.html">Construction</a></li>
-                                <li><a href="index-fullpage.html">Fullpage</a></li>
-                                <li><a href="index-company.html">Company</a></li>
-                                <li><a href="index-young.html">Young</a></li>
-                                <li><a href="index.html">Intro</a></li>
-                            </ul> -->
-                        </li>
-                        <li class="dropdown mega-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">บริการ<span class="caret"></span></a>
-                            <div class="mega-menu dropdown-menu multi-level row bg-menu">
-                                <div class="col">
-                                    <ul class="fa-ul no-icons text-s">
-                                        <!-- <li><a href="about-us-1.html">About us one</a></li>
-                                        <li><a href="about-us-2.html">About us two</a></li>
-                                        <li><a href="about-us-3.html">About us three</a></li>
-                                        <li><a href="about-us-4.html">About us four</a></li>
-                                        <li><a href="pricing.html">Pricing</a></li> -->
-                                        @foreach($headerServices as $service)
-                                            <li><a href="about-us-1.html">{{ Str::limit($service->kw_title, 12, '...') }}</a></li>
-                                        @endforeach
-
-                                    </ul>
-                                </div>
-                                <div class="col">
-                                    <ul class="fa-ul no-icons text-s">
-                                        <li><a href="certifications.html">Certifications</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="history.html">History</a></li>
-                                        <li><a href="team.html">Team</a></li>
-                                        <li><a href="team-2.html">Team two</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col">
-                                    <ul class="fa-ul no-icons text-s">
-                                        <li><a href="gallery.html">รูป & วิดิโอ</a></li>
-                                        <li><a href="services-1.html">Services one</a></li>
-                                        <li><a href="services-2.html">Services two</a></li>
-                                        <li><a href="services-3.html">Services three</a></li>
-                                        <li><a href="coming-soon.html">Coming soon</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col">
-                                    <ul class="fa-ul no-icons text-s">
-                                        <li><a href="contacts-1.html">Contacts one</a></li>
-                                        <li><a href="contacts-2.html">Contacts two</a></li>
-                                        <li><a href="contacts-3.html">Contacts three</a></li>
-                                        <li><a href="contacts-4.html">Contacts four</a></li>
-                                        <li><a href="404.html">404</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown" role="button">หน้าหลัก</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Portfolio <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ <span class="caret"></span></a>
                             <ul class="dropdown-menu multi-level">
-                                <li class="dropdown dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio one</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="portfolio-1-gutted-boxed.html">Gutted boxed</a></li>
-                                        <li><a href="portfolio-1-gutted-boxed-inverse.html">Gutted boxed inverse</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio two</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="portfolio-2-gutted-boxed.html">Gutted boxed</a></li>
-                                        <li><a href="portfolio-2-gutted-boxed-inverse.html">Gutted boxed inverse</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="portfolio-3.html">Portfolio three</a></li>
-                                <li><a href="portfolio-4.html">Portfolio four</a></li>
-                                <li><a href="portfolio-5.html">Portfolio five</a></li>
-                                <li class="dropdown dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Single item</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="portfolio-single-1.html">Portfolio single 1</a></li>
-                                        <li><a href="portfolio-single-2.html">Portfolio single 2</a></li>
-                                        <li><a href="portfolio-single-3.html">Portfolio single 3</a></li>
-                                        <li><a href="portfolio-single-4.html">Portfolio single 4</a></li>
-                                        <li><a href="portfolio-single-5.html">Portfolio single 5</a></li>
-                                    </ul>
-                                </li>
+                                @foreach($headerServices as $service)
+                                            <li><a href="about-us-1.html">{{ Str::limit($service->kw_title, 20, '...') }}</a></li>
+                                        @endforeach
                             </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ภาพ & วิดีโอ </a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Blog <span class="caret"></span></a>
