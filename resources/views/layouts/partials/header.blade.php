@@ -1,5 +1,3 @@
-
-
 <header class="fixed-top scroll-change" data-menu-anima="fade-in">
     <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
         <div class="navbar-mini scroll-hide">
@@ -9,7 +7,7 @@
                     <hr />
                     <span><i class="fa fa-envelope"></i>info@company.com</span>
                     <hr />
-                    <span>  <i class="fa fa-map-marker"></i>Collins Street 8007, USA</span>
+                    <span> <i class="fa fa-map-marker"></i>Collins Street 8007, USA</span>
                     <hr />
                     <span><i class="fa fa-calendar"></i>Mon - Sat: 8.00 - 19:00</span>
                 </div>
@@ -44,15 +42,15 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ <span class="caret"></span></a>
                             <ul class="dropdown-menu multi-level">
                                 @foreach($headerServices as $service)
-                                            <li><a href="about-us-1.html">{{ Str::limit($service->kw_title, 20, '...') }}</a></li>
-                                        @endforeach
+                                <li><a href="about-us-1.html">{{ Str::limit($service->title, 20, '...') }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ภาพ & วิดีโอ </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Blog <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บทความ <span class="caret"></span></a>
                             <ul class="dropdown-menu multi-level">
                                 <li><a href="blog-grid.html">Grid</a></li>
                                 <li><a href="blog-social.html">Social</a></li>
@@ -68,7 +66,7 @@
                             </ul>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Elements <span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ติดต่อเรา <span class="caret"></span></a>
                             <div class="mega-menu dropdown-menu multi-level row bg-menu">
                                 <div class="tab-box" data-tab-anima="fade-left">
                                     <ul class="nav nav-tabs">

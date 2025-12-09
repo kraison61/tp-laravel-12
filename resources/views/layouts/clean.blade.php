@@ -12,7 +12,7 @@
     <script src="../HTWF/scripts/jquery.min.js"></script>
     <link rel="stylesheet" href="../HTWF/scripts/bootstrap/css/bootstrap.css">
     <script src="../HTWF/scripts/script.js"></script>
-    {{-- <link rel="stylesheet" href="../HTWF/style.css">
+    <link rel="stylesheet" href="../HTWF/style.css">
     <link rel="stylesheet" href="../HTWF/css/content-box.css">
     <link rel="stylesheet" href="../HTWF/css/image-box.css">
     <link rel="stylesheet" href="../HTWF/css/animations.css">
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../HTWF/scripts/magnific-popup.css">
     <link rel="stylesheet" href="../HTWF/scripts/php/contact-form.css">
     <!-- <link rel="icon" href="../images/favicon.ico"> -->
-    <link rel="stylesheet" href="../skin.css"> --}}
+    <link rel="stylesheet" href="../skin.css">
 
 {{-- ถ้าไฟล์อยู่ใน public/HTWF/ --}}
 <link rel="stylesheet" href="{{ asset('HTWF/style.css') }}">
