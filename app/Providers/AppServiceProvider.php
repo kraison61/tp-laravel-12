@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             $services = Service::all();
             
             $view->with([
-                'headerServices' => $services,
+                'services' => $services,
             ]);
         });
     }
