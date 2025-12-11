@@ -11,4 +11,7 @@ class PageController extends Controller
             'title' => 'Service Page'
         ]);
     }
+    public function show($id){
+        return $id;
+    }
 }

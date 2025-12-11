@@ -1,0 +1,42 @@
+<div class="section-bg-image parallax-window" data-natural-height="650" data-natural-width="1920"
+    data-parallax="scroll" data-image-src="../images/bg-6.jpg">
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-9  col-sm-12">
+                <div class="row proporzional-row" data-anima="fade-top" data-time="700" data-timeline="asc"
+                    data-timeline-time="200">
+                    <div
+                        class="col-md-4 boxed-inverse boxed-border border-color white middle-content text-center anima">
+                        <h2 class="text-m text-normal no-margins">อำเภอบางกรวย</h2>
+                        <p>กำแพงกันดินความยาว 200 ม. </p>
+                        <hr class="space xs" />
+                        <a href="#" class="btn-text">Details</a>
+                    </div>
+                    <div
+                        class="col-md-4 boxed-inverse boxed-border border-color white middle-content text-center anima">
+                        <h2 class="text-m text-normal no-margins">อำเภอโนนดินแดง</h2>
+                        <p>รั้วก่อฉาบ ความยาว 1,500 ม. </p>
+                        <hr class="space xs" />
+                        <a href="#" class="btn-text">Details</a>
+                    </div>
+                    <div
+                        class="col-md-4 boxed-inverse boxed-border border-color white middle-content text-center anima">
+                        <h2 class="text-m text-normal no-margins">อำเภอสว่างแดนดิน</h2>
+                        <p>กำแพงกันดินความยาว 300 ม.</p>
+                        <hr class="space xs" />
+                        <a href="#" class="btn-text">Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 white">
+                <hr class="space visible-sm hidden-xs" />
+                <h2 class="text-color">การดำเนินการ</h2>
+                <h2>การให้บริการที่กำลังดำเนินการอยู่</h2>
+                <hr class="space m" />
+                <p>
+                    พื้นที่งานก่อสร้างทั้งหมดที่บริษัท ธีรพงษ์เซอร์วิส กำลังดำเนินการอยู่ใน ณ ขณะนี้ ทั้งในเขตกรุงเทพฯ ปริมณฑล และจังหวัดต่าง ๆ 
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
