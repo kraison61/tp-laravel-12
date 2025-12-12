@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="{{ asset('HTWF/scripts/flexslider/flexslider.css') }}">
 <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
-<link rel="icon" href="{{ asset('images/favicon.ico') }}">
+<link rel="icon" href="{{ asset('images/favicon.png') }}">
 <link rel="stylesheet" href="{{ asset('skin.css') }}">
 
 

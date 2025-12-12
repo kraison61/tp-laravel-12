@@ -7,22 +7,22 @@
                     data-timeline-time="200">
                     <div
                         class="col-md-4 boxed-inverse boxed-border border-color white middle-content text-center anima">
-                        <h2 class="text-m text-normal no-margins">อำเภอบางกรวย</h2>
-                        <p>กำแพงกันดินความยาว 200 ม. </p>
+                        <h2 class="text-m text-normal no-margins">อ.บางกรวย</h2>
+                        <p>กำแพงกันดินความยาว 200 ม. งบประมาณ xxxxx.xx บาท </p>
                         <hr class="space xs" />
                         <a href="#" class="btn-text">Details</a>
                     </div>
                     <div
                         class="col-md-4 boxed-inverse boxed-border border-color white middle-content text-center anima">
-                        <h2 class="text-m text-normal no-margins">อำเภอโนนดินแดง</h2>
-                        <p>รั้วก่อฉาบ ความยาว 1,500 ม. </p>
+                        <h2 class="text-m text-normal no-margins">อ.โนนดินแดง</h2>
+                        <p>รั้วก่อฉาบ ความยาว 1,500 ม. งบประมาณ xxxxx.xx บาท </p>
                         <hr class="space xs" />
                         <a href="#" class="btn-text">Details</a>
                     </div>
                     <div
                         class="col-md-4 boxed-inverse boxed-border border-color white middle-content text-center anima">
-                        <h2 class="text-m text-normal no-margins">อำเภอสว่างแดนดิน</h2>
-                        <p>กำแพงกันดินความยาว 300 ม.</p>
+                        <h2 class="text-m text-normal no-margins">อ.สว่างแดนดิน</h2>
+                        <p>กำแพงกันดินความยาว 300 ม. งบประมาณ xxxxx.xx บาท</p>
                         <hr class="space xs" />
                         <a href="#" class="btn-text">Details</a>
                     </div>
@@ -34,7 +34,7 @@
                 <h2>การให้บริการที่กำลังดำเนินการอยู่</h2>
                 <hr class="space m" />
                 <p>
-                    พื้นที่งานก่อสร้างทั้งหมดที่บริษัท ธีรพงษ์เซอร์วิส กำลังดำเนินการอยู่ใน ณ ขณะนี้ ทั้งในเขตกรุงเทพฯ ปริมณฑล และจังหวัดต่าง ๆ 
+                    พื้นที่งานก่อสร้างทั้งหมดที่บริษัท ธีรพงษ์เซอร์วิส กำลังดำเนินการอยู่ใน ณ ขณะนี้ ทั้งในเขตกรุงเทพฯ ปริมณฑล และจังหวัดต่าง ๆ
                 </p>
             </div>
         </div>

@@ -6,7 +6,7 @@
                     <span><i class="fa fa-phone"></i>062-718-8847</span>
                     <hr />
                     <span><i class="fa fa-envelope"></i>theeraphong.services@gmail.com</span>
-                    <hr />
+                    <br />
                     <span> <i class="fa fa-map-marker"></i>14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</span>
                     <hr />
                     <span><i class="fa fa-calendar"></i>Mon - Sat: 8.00 - 19:00</span>
@@ -35,11 +35,11 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown active">
+                        <li class="dropdown {{ request()->routeIs('home') ? 'active' :  '' }}">
                             <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown"
                                 role="button">หน้าหลัก</a>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown {{ request()->routeIs('service.index') ? 'active' :  '' }}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ <span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu multi-level">
