@@ -34,92 +34,92 @@
             <div class="flexslider advanced-slider slider" data-options="animation:fade">
                 <ul class="slides">
                     <!-- <li data-slider-anima="fade-left" data-time="1000">
-                                                                        <div class="section-slide">
-                                                                            <div class="bg-cover" style="background-image:url('../images/bg-5.jpg')">
-                                                                            </div>
-                                                                            <div class="container">
-                                                                                <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs" src="../images/mk-1.png" alt="" />
-                                                                                <div class="container-middle">
-                                                                                    <div class="container-inner text-left">
-                                                                                        <hr class="space m visible-sm" />
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-6 anima">
-                                                                                                <h1 class="text-l text-normal text-m-xs">Architecture is a visual art and the buildings speak for themselves</h1>
-                                                                                                <p class="text-s-xs">
-                                                                                                    I enjoy art and museums but also churches, anything that gives me insight into the history and soul of the place I'm in.
-                                                                                                    I can also be a beach bum - I like to laze in the shade of a palm tree with a good book or float in a warm sea at sundown.
-                                                                                                </p>
-                                                                                                <hr class="space s" />
-                                                                                                <a href="#" class="btn btn-lg"><i class="fa fa-gears"></i> Services</a><span class="space"></span>
-                                                                                                <a href="#" class="btn btn-lg btn-border"><i class="fa fa-folder-open"></i> Projects</a>
-                                                                                            </div>
-                                                                                            <div class="col-md-6">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <hr class="space visible-sm" />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li data-slider-anima="fade-left" data-time="1000">
-                                                                        <div class="section-slide">
-                                                                            <div class="bg-cover" style="background-image:url('../images/bg-5.jpg')">
-                                                                            </div>
-                                                                            <div class="container">
-                                                                                <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs" src="../images/mk-1.png" alt="" />
-                                                                                <div class="container-middle">
-                                                                                    <div class="container-inner text-left">
-                                                                                        <hr class="space m visible-sm" />
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-6 anima">
-                                                                                                <h1 class="text-l text-normal text-m-xs">Architecture is a visual art and the buildings speak for themselves</h1>
-                                                                                                <p class="text-s-xs">
-                                                                                                    I enjoy art and museums but also churches, anything that gives me insight into the history and soul of the place I'm in.
-                                                                                                    I can also be a beach bum - I like to laze in the shade of a palm tree with a good book or float in a warm sea at sundown.
-                                                                                                </p>
-                                                                                                <hr class="space s" />
-                                                                                                <a href="#" class="btn btn-lg"><i class="fa fa-gears"></i> Services</a><span class="space"></span>
-                                                                                                <a href="#" class="btn btn-lg btn-border"><i class="fa fa-folder-open"></i> Projects</a>
-                                                                                            </div>
-                                                                                            <div class="col-md-6">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <hr class="space visible-sm" />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li data-slider-anima="fade-left" data-time="1000">
-                                                                        <div class="section-slide">
-                                                                            <div class="bg-cover" style="background-image:url('../images/bg-5.jpg')">
-                                                                            </div>
-                                                                            <div class="container">
-                                                                                <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs" src="../images/mk-1.png" alt="" />
-                                                                                <div class="container-middle">
-                                                                                    <div class="container-inner text-left">
-                                                                                        <hr class="space m visible-sm" />
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-6 anima">
-                                                                                                <h1 class="text-l text-normal text-m-xs">Architecture is a visual art and the buildings speak for themselves</h1>
-                                                                                                <p class="text-s-xs">
-                                                                                                    I enjoy art and museums but also churches, anything that gives me insight into the history and soul of the place I'm in.
-                                                                                                    I can also be a beach bum - I like to laze in the shade of a palm tree with a good book or float in a warm sea at sundown.
-                                                                                                </p>
-                                                                                                <hr class="space s" />
-                                                                                                <a href="#" class="btn btn-lg"><i class="fa fa-gears"></i> Services</a><span class="space"></span>
-                                                                                                <a href="#" class="btn btn-lg btn-border"><i class="fa fa-folder-open"></i> Projects</a>
-                                                                                            </div>
-                                                                                            <div class="col-md-6">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <hr class="space visible-sm" />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li> -->
+                                                                                                                                                                        <div class="section-slide">
+                                                                                                                                                                            <div class="bg-cover" style="background-image:url('../images/bg-5.jpg')">
+                                                                                                                                                                            </div>
+                                                                                                                                                                            <div class="container">
+                                                                                                                                                                                <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs" src="../images/mk-1.png" alt="" />
+                                                                                                                                                                                <div class="container-middle">
+                                                                                                                                                                                    <div class="container-inner text-left">
+                                                                                                                                                                                        <hr class="space m visible-sm" />
+                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                            <div class="col-md-6 anima">
+                                                                                                                                                                                                <h1 class="text-l text-normal text-m-xs">Architecture is a visual art and the buildings speak for themselves</h1>
+                                                                                                                                                                                                <p class="text-s-xs">
+                                                                                                                                                                                                    I enjoy art and museums but also churches, anything that gives me insight into the history and soul of the place I'm in.
+                                                                                                                                                                                                    I can also be a beach bum - I like to laze in the shade of a palm tree with a good book or float in a warm sea at sundown.
+                                                                                                                                                                                                </p>
+                                                                                                                                                                                                <hr class="space s" />
+                                                                                                                                                                                                <a href="#" class="btn btn-lg"><i class="fa fa-gears"></i> Services</a><span class="space"></span>
+                                                                                                                                                                                                <a href="#" class="btn btn-lg btn-border"><i class="fa fa-folder-open"></i> Projects</a>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="col-md-6">
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <hr class="space visible-sm" />
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                            </div>
+                                                                                                                                                                        </div>
+                                                                                                                                                                        </li>
+                                                                                                                                                                        <li data-slider-anima="fade-left" data-time="1000">
+                                                                                                                                                                            <div class="section-slide">
+                                                                                                                                                                                <div class="bg-cover" style="background-image:url('../images/bg-5.jpg')">
+                                                                                                                                                                                </div>
+                                                                                                                                                                                <div class="container">
+                                                                                                                                                                                    <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs" src="../images/mk-1.png" alt="" />
+                                                                                                                                                                                    <div class="container-middle">
+                                                                                                                                                                                        <div class="container-inner text-left">
+                                                                                                                                                                                            <hr class="space m visible-sm" />
+                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                <div class="col-md-6 anima">
+                                                                                                                                                                                                    <h1 class="text-l text-normal text-m-xs">Architecture is a visual art and the buildings speak for themselves</h1>
+                                                                                                                                                                                                    <p class="text-s-xs">
+                                                                                                                                                                                                        I enjoy art and museums but also churches, anything that gives me insight into the history and soul of the place I'm in.
+                                                                                                                                                                                                        I can also be a beach bum - I like to laze in the shade of a palm tree with a good book or float in a warm sea at sundown.
+                                                                                                                                                                                                    </p>
+                                                                                                                                                                                                    <hr class="space s" />
+                                                                                                                                                                                                    <a href="#" class="btn btn-lg"><i class="fa fa-gears"></i> Services</a><span class="space"></span>
+                                                                                                                                                                                                    <a href="#" class="btn btn-lg btn-border"><i class="fa fa-folder-open"></i> Projects</a>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                                <div class="col-md-6">
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <hr class="space visible-sm" />
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                            </div>
+                                                                                                                                                                        </li>
+                                                                                                                                                                        <li data-slider-anima="fade-left" data-time="1000">
+                                                                                                                                                                            <div class="section-slide">
+                                                                                                                                                                                <div class="bg-cover" style="background-image:url('../images/bg-5.jpg')">
+                                                                                                                                                                                </div>
+                                                                                                                                                                                <div class="container">
+                                                                                                                                                                                    <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs" src="../images/mk-1.png" alt="" />
+                                                                                                                                                                                    <div class="container-middle">
+                                                                                                                                                                                        <div class="container-inner text-left">
+                                                                                                                                                                                            <hr class="space m visible-sm" />
+                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                <div class="col-md-6 anima">
+                                                                                                                                                                                                    <h1 class="text-l text-normal text-m-xs">Architecture is a visual art and the buildings speak for themselves</h1>
+                                                                                                                                                                                                    <p class="text-s-xs">
+                                                                                                                                                                                                        I enjoy art and museums but also churches, anything that gives me insight into the history and soul of the place I'm in.
+                                                                                                                                                                                                        I can also be a beach bum - I like to laze in the shade of a palm tree with a good book or float in a warm sea at sundown.
+                                                                                                                                                                                                    </p>
+                                                                                                                                                                                                    <hr class="space s" />
+                                                                                                                                                                                                    <a href="#" class="btn btn-lg"><i class="fa fa-gears"></i> Services</a><span class="space"></span>
+                                                                                                                                                                                                    <a href="#" class="btn btn-lg btn-border"><i class="fa fa-folder-open"></i> Projects</a>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                                <div class="col-md-6">
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <hr class="space visible-sm" />
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                            </div>
+                                                                                                                                                                        </li> -->
                     @foreach ($headContent as $item)
                         <li data-slider-anima="fade-left" data-time="1000">
                             <div class="section-slide">
@@ -234,7 +234,7 @@
                     <div class="title-base text-left">
                         <hr />
                         <h2>งบประมาณการก่อสร้าง</h2>
-                        <p>ประสบการณ์</p>
+                        <p>Proven experience</p>
                     </div>
                     <p>
                         เราชี้แจงงบประมาณการก่อสร้างอย่างโปร่งใสและตรงไปตรงมา
@@ -282,7 +282,7 @@
                     <div class="title-base text-left">
                         <hr />
                         <h2>ให้คำปรึกษาโดยผู้เชี่ยวชาญ</h2>
-                        <p>ประสบการณ์</p>
+                        <p>Proven experience</p>
                     </div>
                     <p>
                         ด้วยประสบการณ์กว่า 15 ปี เราพร้อมให้คำปรึกษาและช่วยคุณวางแผนงานก่อสร้างอย่างมั่นใจ
@@ -342,211 +342,43 @@
                     </div>
                 </div>
                 <div class="maso-box row">
-                    @foreach ($services as $item )
-                    <div data-sort="0" class="maso-item col-md-3 cat1">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-4.jpg" alt="" />
-                                <p>{{ $item->img_1 }}</p>
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">{{ Str::limit($item->category->name,20) }}</a></h2>
-                                <p>April 2018</p>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach ($services as $service)
+                        <x-card :service="$service" />
+                        @if ($loop->iteration == 12)
+                            @break
+                        @endif
                     @endforeach
-                    {{-- <div data-sort="0" class="maso-item col-md-3 cat1">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-4.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Modern bathroom</a></h2>
-                                <p>April 2018</p>
-                            </div>
-                        </div>
-                    </div> --}}
-                    {{-- <div data-sort="0" class="maso-item col-md-3  cat2 cat3 cat5">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-5.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Tech building</a></h2>
-                                <p>Janaury 2018</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-sort="0" class="maso-item col-md-3 cat2 cat4 cat5">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-6.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Lighting rooms</a></h2>
-                                <p>Janauray 2018</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-sort="0" class="maso-item col-md-3  cat2 cat3 cat4 cat5">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-11.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Interior garden</a></h2>
-                                <p>February 2018</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-sort="0" class="maso-item col-md-3 cat2 cat3">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-8.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Vertical garden</a></h2>
-                                <p>June 2018</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-sort="0" class="maso-item col-md-3 cat2 cat3 cat4 cat5">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-9.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Big tower</a></h2>
-                                <p>July 2018</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-sort="0" class="maso-item col-md-3  cat2 cat3 cat4 cat5">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-12.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Wood apartments</a></h2>
-                                <p>July 2018</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-sort="0" class="maso-item col-md-3 cat2 cat3 cat4 cat5">
-                        <div class="img-box adv-img adv-img-down-text boxed-inverse grayscale">
-                            <a class="img-box img-scale-up lightbox i-center" href="#">
-                                <div class="caption">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <img src="../images/gallery/image-7.jpg" alt="" />
-                            </a>
-                            <div class="caption-bottom">
-                                <h2><a href="#">Tiny homes</a></h2>
-                                <p>August 2018</p>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="clear"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="section-bg-image parallax-window" data-natural-height="1080" data-natural-width="1920"
-        data-parallax="scroll" data-image-src="../images/hd-4.jpg">
-        <div class="container content">
-            <div class="row proporzional-row">
-                <div class="col-md-3 boxed-inverse boxed-border white middle-content text-left">
-                    <p>Auctor orci proin consequat magna natoque mattis nostra eiusmod esse lunga laboriosam luctus pulvinar
-                        tenetur fugito similique.</p>
-                </div>
-                <div class="col-md-3  col-sm-12">
-                    <a class="img-box lightbox" href="../images/image-1.jpg" data-lightbox-anima="fade-right">
-                        <img src="../images/image-1.jpg" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 boxed white middle-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et
-                        dolore magna aliqua.</p>
-                </div>
-                <div class="col-md-3 boxed-inverse middle-content text-left">
-                    <h4>Services</h4>
-                    <h2 class="text-color">Awesome</h2>
-                    <p class="no-margins">Lorem ipsum dolor sit amet consectetur adipo.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-map box-middle-container row-19 box-transparent">
-        <div class="google-map" data-coords="40.741895,-73.989308" data-zoom="15" data-marker-pos="col-md-6-right"
-            data-skin="gray" data-marker="http://templates.framework-y.com/yellowbusiness/images/marker-map.png"></div>
-        <div class="overlaybox overlaybox-side">
-            <div class="container content">
-                <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6 overlaybox-inner box-middle">
-                        <h2 class="text-color text-normal">Contact.</h2>
-                        <h2 class="text-normal">Collins Street<br />8007, San Francisco<br />United states</h2>
-                        <hr class="space m" />
-                        <p class="text-normal">
-                            1-800-405-377<br />info@company.com<br />Mon - Sat: 8.00 - 19:00
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-empty">
+
+    <div class="section-bg-color">
         <div class="container content">
             <div class="row vertical-row">
                 <div class="col-md-4 col-sm-12">
                     <div class="title-base text-left">
                         <hr />
-                        <h2>Contact us now</h2>
+                        <h2>ติดต่อเรา</h2>
                         <p>Get in touch</p>
                     </div>
                     <p class="text-color">
-                        Aercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit
-                        in voluptate velit esse cillum dolore.
+                        หากต้องการคำปรึกษา หรือหาผุู้รับเหมาที่มีประสบการณ์ และความรับผิดในงาน ไม่ทิ้งงาน
+                        อย่าลังเลที่จะติดต่อมาหาเรา เราพร้อมที่จะให้คำแนะนำให้คำปรึกษา
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et
-                        dolore magna aliqua.
-                        Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        สามารถติดต่อเราได้ที่ข้อมูลที่ให้มา หรือว่าสแกนคิวอาร์โค้ด (QR-Code) เพื่อเพิ่มเพื่อนในไลน์
+                        สำหรับส่งรูปถ่าย วิดีโอ หรืออืน ๆ ประกอบ
                     </p>
                     <hr class="space s" />
                     <div class="row vertical-row">
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <img src="../images/sign-3.png" alt="" />
-                        </div>
-                        <div class="col-md-6">
-                            <h1 class="text-s text-normal no-margins">Mark Ferdinand</h1>
+                        </div> --}}
+                        <div class="col-md-12">
+                            <h1 class="text-m text-bold no-margins">Mr.Theeraphong Sarsuk</h1>
+                            <h2 class="text-m text-normal no-margins">ช่างรัก</h2>
                             <h4 class="text-xs">Founder</h4>
                         </div>
                     </div>
@@ -555,19 +387,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <ul class="fa-ul text-light">
-                                <li><i class="fa-li fa fa-map-marker"></i> 184 Main Collins Street, 8007</li>
-                                <li><i class="fa-li fa fa-calendar "></i> Mon - Sat 8.00 - 18.00</li>
+                                <li>Line ID : <a href="https://line.me/ti/p/h9SHumuTEB">0627188847</li>
+                                <li>
+                                    <img src="{{ asset('images/lineid.webp') }}" style="width:50%;" />
+                                </li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <ul class="fa-ul text-light">
-                                <li><i class="fa-li fa fa-envelope-o"></i> info@company.com</li>
-                                <li><i class="fa-li fa fa-phone "></i> +1 322-55889664 or +1 55889665</li>
+                                <li><i class="fa-li fa fa-map-marker"></i> 14 ต.บางกร่าง อ.บางกรวย จ.นนทบุรี 11000</li>
+                                <li><i class="fa-li fa fa-calendar "></i> 24 ชม.</li>
+                                <li><i class="fa-li fa fa-envelope-o"></i> theeraphong.services@gmail.com</li>
+                                <li><i class="fa-li fa fa-phone "></i> 062-718-8847 หรือ 087-700-7463</li>
                             </ul>
                         </div>
                     </div>
                     <hr class="space m" />
-                    <form action="http://www.framework-y.com/scripts/php/contact-form.php" class="form-box form-ajax"
+                    {{-- <form action="http://www.framework-y.com/scripts/php/contact-form.php" class="form-box form-ajax"
                         method="post" data-email="federico@pixor.it">
                         <div class="row">
                             <div class="col-md-6">
@@ -594,12 +430,12 @@
                         <div class="error-box">
                             <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
     </div>
-    <div class="section-bg-color">
+    {{-- <div class="section-bg-color">
         <div class="container content">
             <div class="row">
                 <div class="col-md-8 col-sm-12">
@@ -696,8 +532,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="section-empty">
+    </div> --}}
+    {{-- <div class="section-empty">
         <div class="container content">
             <div class="flexslider carousel outer-navs png-over text-center"
                 data-options="numItems:6,minWidth:100,itemMargin:30,controlNav:false,directionNav:true">
@@ -755,6 +591,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
 @endsection

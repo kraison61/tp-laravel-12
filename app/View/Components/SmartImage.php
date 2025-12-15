@@ -6,18 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Card extends Component
+class SmartImage extends Component
 {
     /**
      * Create a new component instance.
      */
-    
-    public $service;
 
-    public function __construct($service)
+
+    public function __construct()
     {
         //
-        $this->service=$service;
         
     }
 
@@ -26,6 +24,6 @@ class Card extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.card');
+        return view('components.smart-image');
     }
 }

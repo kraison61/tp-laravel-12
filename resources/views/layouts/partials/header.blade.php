@@ -35,13 +35,13 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown {{ request()->routeIs('home') ? 'active' :  '' }}">
+                        <li class="dropdown {{ request()->routeIs('home') ? 'active' : '' }}">
                             <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown"
                                 role="button">หน้าหลัก</a>
                         </li>
-                        <li class="dropdown {{ request()->routeIs('service.index') ? 'active' :  '' }}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ <span
-                                    class="caret"></span></a>
+                        <li class="dropdown {{ request()->routeIs('service.index') ? 'active' : '' }}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu multi-level">
                                 @foreach ($services as $item)
                                     <li>
