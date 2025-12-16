@@ -1,5 +1,5 @@
 <?php
-    $count = $service->count();
+    $count = $services->count();
     $leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
 
     $columnLeft = $services->take($leftCount);

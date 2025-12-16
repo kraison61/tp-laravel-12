@@ -45,8 +45,11 @@
                             <ul class="dropdown-menu multi-level">
                                 @foreach ($services as $item)
                                     <li>
-                                        <a href="about-us-1.html">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                        <a href="/service/{{ $item->id}}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                     </li>
+                                    @if($loop->iteration>7)
+                                        @break
+                                    @endif
                                 @endforeach
                             </ul>
                         </li>

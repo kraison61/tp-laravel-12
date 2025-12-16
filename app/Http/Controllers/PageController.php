@@ -12,7 +12,9 @@ class PageController extends Controller
         ]);
     }
     public function show($id){
+        // $service = Service::findOrFail($id);
         $service = Service::findOrFail($id);
         return view('pages.service',['service'=>$service]);
+        
     }
 }
