@@ -1,65 +1,74 @@
+<?php
+    $count = $service->count();
+    $leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
+
+    $columnLeft = $services->take($leftCount);
+    $columnRight = $services->skip($leftCount);
+?>
 <footer class="footer-base">
     <div class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-center text-left">
-                    <img width="120" src="../images/logo.png" alt="" />
+                    <img width="120" src="{{ asset('images/img-tp-logo.png') }}" alt="" />
                     <hr class="space m" />
-                    <p class="text-s">Collins Street West 8007, San Fransico, United States.</p>
+                    <p class="text-s">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</p>
                     <div class="tag-row text-s">
-                        <span>support@company.com</span>
-                        <span>+02 3205550678</span>
+                        <span>theeraphong.services@gmail.com</span>
+                        <span>062-718-8847</span>
                     </div>
                     <hr class="space m" />
                     <div class="btn-group social-group btn-group-icons">
-                        <a target="_blank" href="#" data-social="share-facebook">
+                        <a target="_blank" href="https://www.facebook.com/TheeraphongRetainingwall" data-social="share-facebook">
                             <i class="fa fa-facebook text-xs circle"></i>
                         </a>
-                        <a target="_blank" href="#" data-social="share-twitter">
-                            <i class="fa fa-twitter text-xs circle"></i>
-                        </a>
-                        <a target="_blank" href="#" data-social="share-google">
-                            <i class="fa fa-google-plus text-xs circle"></i>
-                        </a>
-                        <a target="_blank" href="#" data-social="share-linkedin">
-                            <i class="fa fa-linkedin text-xs circle"></i>
+                        <a target="_blank" href="https://www.youtube.com/@ธีรพงษ์รับเหมา" data-social="share-twitter">
+                            <i class="fa fa-youtube text-xs circle"></i>
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4 footer-left text-left">
+                <div class="col-md-8 footer-left text-left">
                     <div class="row">
-                        <div class="col-md-6 text-s">
-                            <h3>Menu</h3>
+                        <div class="col-md-4 text-s">
+                            <h3>เมนู</h3>
                             <a href="#">Home</a><br />
-                            <a href="#">Contacts</a><br />
-                            <a href="#">Future projects</a><br />
-                            <a href="#">Locations</a><br />
-                            <a href="#">Latest news</a><br />
+                            <a href="#">บริการ</a><br />
+                            <a href="#">ภาพ & วิดีโอ</a><br />
+                            <a href="#">บทความ</a><br />
+                            <a href="#">ติดต่อเรา</a><br />
 
                         </div>
-                        <div class="col-md-6 text-s">
-                            <h3>Pages</h3>
-                            <a href="#">Support</a><br />
-                            <a href="#">Terms of services</a><br />
-                            <a href="#">RSS Feeds</a><br />
-                            <a href="#">Partnerships</a><br />
-                            <a href="#">Latest news</a><br />
+                        <div class="col-md-8 text-s">
+                            <h3>บริการ</h3>
+                            <div class="row">
+
+                                {{-- คอลัมน์ซ้าย (6/12) --}}
+                                <div class="col-md-6 col-12 column-left">
+                                    @foreach ($columnLeft as $service)
+                                        <div class="service-item mb-3">
+                                            <a href="#"> {{ $service->category->name ?? 'บริการ' }}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                {{-- คอลัมน์ขวา (6/12) --}}
+                                <div class="col-md-6 col-12 column-right">
+                                    @foreach ($columnRight as $service)
+                                        <div class="service-item mb-3">
+                                            <a href="#"> {{ $service->category->name ?? 'บริการ' }}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 footer-left text-left">
-                    <h3>You can trust us</h3>
-                    <p class="text-s">
-                        Utenim ad minim veniam quis nostrud exercitation ullamco lorem ipsum dolor sit ametullamco lorem ipsum dolor sit ametullamco lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmo.
-                    </p>
-                    <hr class="space xs" />
-                    <img src="../images/cards-icon.png" alt="" />
                 </div>
             </div>
         </div>
         <div class="row copy-row">
             <div class="col-md-12 copy-text">
-                © 2018 Yellow Business - Multipurpose & Construction Template Handmade by <a href="http://schiocco.io/">schiocco.io</a>
+                © 2025 theeraphongservices Co.,Ltd. | บริษัท ธีรพงษ์เซอร์วิส จำกัด
             </div>
         </div>
     </div>

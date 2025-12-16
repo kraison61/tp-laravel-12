@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -12,6 +12,7 @@ class PageController extends Controller
         ]);
     }
     public function show($id){
-        return $id;
+        $service = Service::findOrFail($id);
+        return view('pages.service',['service'=>$service]);
     }
 }
