@@ -1,7 +1,7 @@
 
-@extends('layouts.app');
+@extends('layouts.app')
 
-@section('title',$service->title);
+@section('title',$service->title)
 
 @section('content')
 <div class="header-base">
@@ -24,7 +24,7 @@
         <div class="row vertical-row">
             <div class="col-md-5">
                 <!-- <img src="../images/mk-8.png" alt="" /> -->
-                <img src="{{ asset($service->img_1) }}" alt="" />
+                <img class="rounded" src="{{ asset($service->img_1) }}" alt="" />
             </div>
             <div class="col-md-7">
                 <div class="title-base text-left">
@@ -36,7 +36,7 @@
                     {!! $service->content_1 !!}
                 </p>
                 <hr class="space s" />
-                <div class="row vertical-row">
+                {{-- <div class="row vertical-row">
                     <div class="col-md-9">
                         <table class="grid-table border-table text-left">
                             <tbody>
@@ -60,7 +60,7 @@
                     <div class="col-md-3">
                         <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Informations</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <hr class="space" />
@@ -75,7 +75,7 @@
                     {!! $service->content_2 !!}
                 </p>
                 <hr class="space s" />
-                <div class="row vertical-row">
+                {{-- <div class="row vertical-row">
                     <div class="col-md-9">
                         <table class="grid-table border-table text-left">
                             <tbody>
@@ -99,7 +99,7 @@
                     <div class="col-md-3">
                         <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Contact us</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-md-5 text-right">
                 <!-- <img src="../images/mk-9.png" alt="" /> -->
