@@ -1,3 +1,11 @@
+<?php
+$count = $services->count();
+$leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
+
+$columnLeft = $services->take($leftCount);
+$columnRight = $services->skip($leftCount);
+?>
+
 <header class="fixed-top scroll-change" data-menu-anima="fade-in">
     <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
         <div class="navbar-mini scroll-hide">
@@ -6,10 +14,11 @@
                     <span><i class="fa fa-phone"></i>062-718-8847</span>
                     <hr />
                     <span><i class="fa fa-envelope"></i>theeraphong.services@gmail.com</span>
-                    <br />
-                    <span> <i class="fa fa-map-marker"></i>14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</span>
                     <hr />
                     <span><i class="fa fa-calendar"></i>Mon - Sat: 8.00 - 19:00</span>
+                    <br />
+                    <span> <i class="fa fa-map-marker"></i>14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</span>
+
                 </div>
                 <div class="nav navbar-nav navbar-right">
                     <div class="minisocial-group">
@@ -42,16 +51,40 @@
                         <li class="dropdown {{ request()->routeIs('service.index') ? 'active' : '' }}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ
                                 <span class="caret"></span></a>
-                            <ul class="dropdown-menu multi-level">
+                            {{-- <ul class="dropdown-menu multi-level">
                                 @foreach ($services as $item)
                                     <li>
                                         <a href="/service/{{ $item->id}}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                     </li>
-                                    @if($loop->iteration>7)
+                                    @if ($loop->iteration > 7)
                                         @break
                                     @endif
                                 @endforeach
-                            </ul>
+                            </ul> --}}
+
+
+
+                            <div class="mega-menu dropdown-menu multi-level row bg-menu">
+                                <div class="col">
+                                    <ul class="fa-ul no-icons text-s">
+                                        @foreach ($columnLeft as $item)
+                                            <li>
+                                                <a href="/service/{{ $item->id }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <ul class="fa-ul no-icons text-s">
+                                        @foreach ($columnRight as $item)
+                                            <li>
+                                                <a href="/service/{{ $item->id }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ภาพ & วิดีโอ
