@@ -15,4 +15,5 @@ class PageController extends Controller
         $service = Service::findOrFail($id);
         return view('pages.service',['service'=>$service]);
     }
+
 }

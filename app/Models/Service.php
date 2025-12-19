@@ -29,4 +29,8 @@ class Service extends Model
     // id คือ PK ในตาราง service_categories
     return $this->belongsTo(ServiceCategory::class,'service_category_id', 'id');
     }
+    public function images()
+    {
+        return $this->hasMany(ImageUploads::class,'service_id','id');
+    }
 }
