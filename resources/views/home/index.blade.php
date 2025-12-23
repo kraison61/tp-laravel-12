@@ -82,7 +82,7 @@
             <div class="flexslider carousel outer-navs"
                 data-options="minWidth:200,itemMargin:30,numItems:4,controlNav:false">
                 <ul class="slides">
-                    @foreach ($services as $item)
+                    @foreach ($allServices as $item)
                         <li>
                             <a href="{{ route('service.show', $item->category->slug) }}" class="text-decoration-none">
                                 <div class="advs-box advs-box-top-icon boxed-inverse" data-anima="rotate-20"
@@ -247,11 +247,10 @@
                     </div>
                 </div>
                 <div class="maso-box row">
-                    @foreach ($services as $service)
+                    @foreach ($allServices->take(12) as $service)
+                    <!-- <a href="/services/{{ $service->id }}"> -->
                         <x-card :service="$service" />
-                        @if ($loop->iteration == 12)
-                            @break
-                        @endif
+                    <!-- </a> -->
                     @endforeach
                     <div class="clear"></div>
                 </div>

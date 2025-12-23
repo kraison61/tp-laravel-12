@@ -1,9 +1,9 @@
 <?php
-    $count = $services->count();
+    $count = $allServices->count();
     $leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
 
-    $columnLeft = $services->take($leftCount);
-    $columnRight = $services->skip($leftCount);
+    $columnLeft = $allServices->take($leftCount);
+    $columnRight = $allServices->skip($leftCount);
 ?>
 <footer class="footer-base">
     <div class="content">

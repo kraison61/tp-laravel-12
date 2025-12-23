@@ -1,9 +1,9 @@
 <?php
-$count = $services->count();
+$count = $allServices->count();
 $leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
 
-$columnLeft = $services->take($leftCount);
-$columnRight = $services->skip($leftCount);
+$columnLeft = $allServices->take($leftCount);
+$columnRight = $allServices->skip($leftCount);
 ?>
 
 <header class="fixed-top scroll-change" data-menu-anima="fade-in">
@@ -69,7 +69,7 @@ $columnRight = $services->skip($leftCount);
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnLeft as $item)
                                             <li>
-                                                <a href="/service/{{ $item->id }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                                <a href="/services/{{ $item->id }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                             </li>
                                         @endforeach
                                     </ul>

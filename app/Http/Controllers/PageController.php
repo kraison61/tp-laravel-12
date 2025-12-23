@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,9 +12,10 @@ class PageController extends Controller
             'title' => 'Service Page'
         ]);
     }
-    public function show($id){
-        $service = Service::findOrFail($id);
-        return view('pages.service',['service'=>$service]);
+    public function show(ServiceCategory $slug){
+        // $service = Service::findOrFail($service);
+        dd($slug->slug);
+        return view('pages.service',['service'=>$slug]);
     }
 
 }

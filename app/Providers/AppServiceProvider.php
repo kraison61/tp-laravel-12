@@ -24,10 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         View::composer('*', function ($view) {
-            $services = Service::all();
+            $allServices = Service::all();
             
             $view->with([
-                'services' => $services,
+                'allServices' => $allServices,
             ]);
         });
     }
