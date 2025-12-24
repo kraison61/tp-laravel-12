@@ -14,4 +14,4 @@ Route::prefix('images')->group(function(){
 });
 
 //services
-Route::get('/{service:slug}',[PageController::class,'show'])->name('service.show');
+Route::get('/{serviceCategory}',[PageController::class,'show'])->name('service.show');

@@ -12,9 +12,10 @@ class PageController extends Controller
             'title' => 'Service Page'
         ]);
     }
-    public function show(ServiceCategory $slug){
+    public function show(ServiceCategory $serviceCategory){
+        $services = $serviceCategory->services;
         // $service = Service::findOrFail($service);
-        dd($slug->slug);
+        dd($services);
         return view('pages.service',['service'=>$slug]);
     }
 

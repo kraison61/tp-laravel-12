@@ -8,7 +8,11 @@ class ServiceCategory extends Model
 {
     //
     protected $fillable = ['name','slug'];
+
     function services(){
         return $this->hasMany(Service::class);
+    }
+    public function getRouteKeyName(){
+        return 'slug';
     }
 }
