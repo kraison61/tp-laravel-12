@@ -24,13 +24,10 @@ class Service extends Model
 
     public function category()
     {
-    // ระบุว่า relation นี้เป็น belongsTo
-    // service_id คือ FK ในตาราง services
-    // id คือ PK ในตาราง service_categories
     return $this->belongsTo(ServiceCategory::class,'service_category_id', 'id');
     }
     public function images()
     {
-        return $this->hasMany(ImageUploads::class,'service_id','id');
+        return $this->hasMany(ImageUpload::class,'service_id','id');
     }
 }
