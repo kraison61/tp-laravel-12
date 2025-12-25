@@ -10,4 +10,7 @@ class ImageUpload extends Model
     {
         return $this->belongsTo(ServiceCategory::class, 'service_id');
     }
+    public function service(){
+        return $this->belongsTo(Service::class);
+    }
 }

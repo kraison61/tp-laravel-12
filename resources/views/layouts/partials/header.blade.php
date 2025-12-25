@@ -51,25 +51,12 @@ $columnRight = $allServices->skip($leftCount);
                         <li class="dropdown {{ request()->routeIs('service.index') ? 'active' : '' }}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ
                                 <span class="caret"></span></a>
-                            {{-- <ul class="dropdown-menu multi-level">
-                                @foreach ($services as $item)
-                                    <li>
-                                        <a href="/service/{{ $item->id}}">{{ Str::limit($item->category->name, 20, '...') }}</a>
-                                    </li>
-                                    @if ($loop->iteration > 7)
-                                        @break
-                                    @endif
-                                @endforeach
-                            </ul> --}}
-
-
-
                             <div class="mega-menu dropdown-menu multi-level row bg-menu">
                                 <div class="col">
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnLeft as $item)
                                             <li>
-                                                <a href="/services/{{ $item->id }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                                <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -78,7 +65,7 @@ $columnRight = $allServices->skip($leftCount);
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnRight as $item)
                                             <li>
-                                                <a href="/service/{{ $item->id }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                                <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                             </li>
                                         @endforeach
                                     </ul>

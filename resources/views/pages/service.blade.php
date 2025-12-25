@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+{{-- @section('title',$service->title) --}}
 @section('title',$service->title)
 
 @section('content')
@@ -13,7 +14,7 @@
                 </div>
             </div>
             <x-breadcrumb >
-                {{ $service->category->name }}
+                {{ $service->name }}
             </x-breadcrumb>
         </div>
     </div>
@@ -23,19 +24,19 @@
         <div class="row vertical-row">
             <div class="col-md-5">
                 <!-- <img src="../images/mk-8.png" alt="" /> -->
-                <img class="rounded" src="{{ asset($service->img_1) }}" alt="" />
+                <img class="rounded" src="{{ asset($service->services->first()->img_1) }}" alt="" />
             </div>
             <div class="col-md-7">
                 <div class="title-base text-left">
                     <hr />
-                    <h2>{{ $service->top_1 }}</h2>
+                    <h2>{{ $service->services->first()->top_1 }}</h2>
                     <p>Super solutions</p>
                 </div>
                 <p>
-                    {!! $service->content_1 !!}
+                    {!! $service->services->first()->content_1 !!}
                 </p>
                 <hr class="space s" />
-                
+
             </div>
         </div>
         <hr class="space" />
@@ -43,17 +44,42 @@
             <div class="col-md-7">
                 <div class="title-base text-left">
                     <hr />
-                    <h2>{{ $service->top_2 }}</h2>
+                    <h2>{{ $service->services->first()->top_2 }}</h2>
                     <p>Cheap prices</p>
                 </div>
                 <p>
-                    {!! $service->content_2 !!}
+                    {!! $service->services->first()->content_2 !!}
                 </p>
                 <hr class="space s" />
             </div>
             <div class="col-md-5 text-right">
                 <!-- <img src="../images/mk-9.png" alt="" /> -->
-                <img src="{{ asset($service->img_2) }}" alt="" />
+                <img src="{{ asset($service->services->first()->img_2) }}" alt="" />
+            </div>
+        </div>
+        <div class="row vertical-row">
+            <div class="col-md-9">
+                <table class="grid-table border-table text-left">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4 class="text-color text-m">Small areas</h4>
+                                <h5>From $1.000</h5>
+                            </td>
+                            <td>
+                                <h4 class="text-color text-m">Medium areas</h4>
+                                <h5>From $2.000</h5>
+                            </td>
+                            <td>
+                                <h4 class="text-color text-m">Large areas</h4>
+                                <h5>From $10.000</h5>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Informations</a>
             </div>
         </div>
         <hr class="space" />

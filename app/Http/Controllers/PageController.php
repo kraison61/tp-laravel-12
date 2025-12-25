@@ -14,12 +14,11 @@ class PageController extends Controller
             'title' => 'Service Page'
         ]);
     }
-    public function show(ServiceCategory $serviceCategory)
+    public function show($slug)
     {
-        // $service = Service::whereHas('category', function ($query) use ($serviceCategory) {
-        //     $query->where('slug', $serviceCategory);
-        // })->firstOrFail();
-        dd($serviceCategory->id);
+        $service = ServiceCategory::where('slug', $slug)
+            ->with(['services.images'])
+            ->firstOrFail();
         return view('pages.service', compact('service'));
     }
 }
