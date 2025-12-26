@@ -69,7 +69,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav over ms-minimal inner maso-filters">
                         <li class="current-active active"><a data-filter="maso-item">All</a></li>
-                        @foreach ($services as $item)
+                        @foreach ($allServices as $item)
                         <li><a
                                 data-filter="{{ $item->service_category_id }}">{{ Str::limit($item->category->name, 10, '...') }}
                             </a>

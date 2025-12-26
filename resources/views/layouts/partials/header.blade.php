@@ -74,7 +74,7 @@ $columnRight = $allServices->skip($leftCount);
 
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">ภาพ & วิดีโอ
+                            <a href="{{ route('image.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button">ภาพ & วิดีโอ
                             </a>
                         </li>
                         <li class="dropdown">
