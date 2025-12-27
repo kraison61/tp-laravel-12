@@ -2,34 +2,18 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use App\Models\ImageUpload;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $serviceId = $request->service_id;
-        $perPage   = 9;
-
-        $query = ImageUpload::query();
-
-        if ($serviceId) {
-            $query->where('service_id', $serviceId);
-        }
-
-        $query->orderBy('id', 'desc');
-
-        $images = $query->paginate($perPage);
-
-        return response()->json([
-            'data' => $images->items(),
-            'current_page' => $images->currentPage(),
-            'last_page' => $images->lastPage(),
-            'has_more' => $images->hasMorePages(),
-        ]);
+        return view('pages.image');
     }
+
     public function show(){
-        return "Show Image Page" ;
+        return "Show Image Page";
     }
 }

@@ -8,29 +8,23 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    public function index(Request $request)
+    public function getImages(Request $request)
     {
-        $serviceId = $request->service_id;
-        $perPage   = 9; // จำนวนรูปต่อครั้ง (เหมาะกับ masonry)
+        // 1. รับค่าจาก Query String
+        $serviceId = $request->query('service_id');
 
+        // 2. สร้าง Query
         $query = ImageUpload::query();
 
-        // filter ตาม service_id (ถ้ามี)
-        if ($serviceId) {
+        // 3. ถ้าค่าไม่ใช่ 'all' ให้ทำการ Filter ตาม service_id
+        if ($serviceId && $serviceId !== 'all') {
             $query->where('service_id', $serviceId);
         }
 
-        // เรียงรูปใหม่ก่อน
-        $query->orderBy('id', 'desc');
+        // 4. ใช้ paginate เพื่อแบ่งหน้า (ส่งทีละ 9 รูปตามที่ Template ออกแบบไว้)
+        // ข้อมูลที่ส่งกลับไปจะเป็น JSON ที่มีโครงสร้าง data, next_page_url ฯลฯ อัตโนมัติ
+        $images = $query->orderBy('id', 'desc')->paginate(9);
 
-        // paginate
-        $images = $query->paginate($perPage);
-
-        return response()->json([
-            'data' => $images->items(),
-            'current_page' => $images->currentPage(),
-            'last_page' => $images->lastPage(),
-            'has_more' => $images->hasMorePages(),
-        ]);
+        return response()->json($images);
     }
 }

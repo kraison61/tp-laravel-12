@@ -45,6 +45,23 @@
     @yield('child-content');
 
 
+    <link rel="stylesheet" href="../HTWF/scripts/font-awesome/css/font-awesome.css">
+    <script async src="../HTWF/scripts/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../HTWF/scripts/imagesloaded.min.js"></script>
+    <script src="../HTWF/scripts/parallax.min.js"></script>
+    <script src="../HTWF/scripts/flexslider/jquery.flexslider-min.js"></script>
+    <script async src="../HTWF/scripts/isotope.min.js"></script>
+    <script async src="../HTWF/scripts/php/contact-form.js"></script>
+    <script async src="../HTWF/scripts/jquery.progress-counter.js"></script>
+    <script async src="../HTWF/scripts/jquery.tab-accordion.js"></script>
+    <script async src="../HTWF/scripts/bootstrap/js/bootstrap.popover.min.js"></script>
+    <script async src="../HTWF/scripts/jquery.magnific-popup.min.js"></script>
+    <script src="../HTWF/scripts/social.stream.min.js"></script>
+    <script src="../HTWF/scripts/jquery.slimscroll.min.js"></script>
+    <script src="../HTWF/scripts/google.maps.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="../HTWF/scripts/smooth.scroll.min.js"></script>
+    @stack('scripts')
 </body>
 
 </html>
