@@ -11,9 +11,11 @@ Route::get('/contact-us', [HomeController::class,'contact'])->name('contact');
 
 Route::prefix('images')->group(function(){
     Route::get('/image',[ImageController::class,'index'])->name('image.index');
-    // Route::get('/{id}',[ImageController::class,'show'])->name('image.show');
+    Route::get('/{id}',[ImageController::class,'show'])->name('image.show');
 });
 
 //services
 Route::get('/{slug}',[PageController::class,'show'])->name('service.show');
+
+
 

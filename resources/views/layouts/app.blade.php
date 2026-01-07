@@ -3,9 +3,8 @@
     @section('child-title')
         @yield('title')
     @endsection
-    @section('child-description')
-        @yield('description')
-    @endsection
+
+   @section('child-description', $__env->yieldContent('description'))
 
     @section('child-content')
         @include('layouts.partials.header')

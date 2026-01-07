@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title',$service->services->first()->title)
-@section('description',$service->services->first()->description)
+@section('description',trim($service->services->first()->description))
 
 @section('content')
 <div class="header-base">
