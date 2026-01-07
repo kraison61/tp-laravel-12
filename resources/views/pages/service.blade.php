@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title',$service->title)
+@section('title',$service->services->first()->title)
+@section('description',$service->services->first()->description)
 
 @section('content')
 <div class="header-base">
@@ -8,8 +9,8 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="title-base text-left">
-                    <h1>{{ $service->h1 }}</h1>
-                    <p>{{ $service->description }}</p>
+                    <h1>{{ $service->services->first()->title }}</h1>
+                    <p>{{ $service->services->first()->description }}</p>
                 </div>
             </div>
             <x-breadcrumb >

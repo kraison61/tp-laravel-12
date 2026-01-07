@@ -8,8 +8,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
-    <meta name="description" content="Multipurpose HTML template.">
+    <title>@yield('child-title','Default Title')</title>
+    <meta name="description" content=@yield('child-description','Default Description') >
     <script src="../HTWF/scripts/jquery.min.js"></script>
     <link rel="stylesheet" href="../HTWF/scripts/bootstrap/css/bootstrap.css">
     <script src="../HTWF/scripts/script.js"></script>
