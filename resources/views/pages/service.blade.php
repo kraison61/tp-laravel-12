@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-{{-- @section('title',$service->title) --}}
 @section('title',$service->title)
 
 @section('content')
