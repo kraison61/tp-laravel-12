@@ -10,9 +10,9 @@ class ImageController extends Controller
 {
     public function index()
     {
-        $images = ImageUpload::simplePaginate(12);
-        // $images = ImageUpload::all();
+        $images = ImageUpload::paginate(12);
         return view('images.index',['images' => $images]);
+        // dd($images);
     }
 
     public function show($id){
