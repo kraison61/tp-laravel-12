@@ -311,5 +311,5 @@
             </div>
         </div>
     </div>
-    <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
+
 @endsection

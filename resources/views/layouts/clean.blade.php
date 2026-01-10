@@ -45,7 +45,7 @@
 
     @yield('child-content');
 
-
+    <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
     <link rel="stylesheet" href="../HTWF/scripts/font-awesome/css/font-awesome.css">
     <script async src="../HTWF/scripts/bootstrap/js/bootstrap.min.js"></script>
     <script src="../HTWF/scripts/imagesloaded.min.js"></script>
@@ -62,7 +62,7 @@
     <script src="../HTWF/scripts/google.maps.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="../HTWF/scripts/smooth.scroll.min.js"></script>
-    @stack('scripts')
+    <script src="{{ asset('js/gallery-load-more.js')}}"></script>
 </body>
 
 </html>
