@@ -14,6 +14,7 @@ class ImageGallery extends Component
     public function __construct()
     {
         //
+        $this->images = $images
     }
 
     /**
