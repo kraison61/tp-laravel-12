@@ -1,73 +1,192 @@
-let loadMoreBtn = document.getElementById("loadMore");
+// ✅ รอให้ DOM และ jQuery พร้อม
+$(document).ready(function() {
+    console.log("🚀 Gallery Load More Script Ready!");
 
-loadMoreBtn.addEventListener("click", function (e) {
-    e.preventDefault(); // ป้องกันไม่ให้ปุ่ม Refresh หน้าเว็บ
+    let loadMoreBtn = document.getElementById("loadMore");
 
-    // 1. หา ID ของรูปสุดท้ายที่แสดงอยู่ในปัจจุบัน
-    let imagesInGallery = document.querySelectorAll("#gallery img");
-    let lastImage = imagesInGallery[imagesInGallery.length - 1];
+    if (!loadMoreBtn) {
+        console.error("❌ ไม่พบปุ่ม Load More!");
+        return;
+    }
 
-    
-    
-    // ถ้าไม่มีรูปเลย ให้หยุดการทำงาน
-    if (!lastImage) return;
+    console.log("✅ พบปุ่ม Load More แล้ว");
 
-    let lastId = lastImage.getAttribute("data-id");
+    let isLoading = false;
 
-    console.log("--- เริ่มการโหลดข้อมูล ---");
-    console.log("ส่ง Request ด้วย ID ล่าสุด:", lastId);
+    loadMoreBtn.addEventListener("click", function(e) {
+        e.preventDefault();
 
-    // แสดงสถานะว่ากำลังโหลด (Optional)
-    loadMoreBtn.innerText = "Loading...";
+        if (isLoading) {
+            console.log("⏳ กำลังโหลดอยู่...");
+            return;
+        }
 
-    // 2. ส่ง request ไปหา Laravel Controller
-    fetch(`/images/load-more?last_id=${lastId}`)
-        .then((res) => res.json())
-        .then((data) => {
-            
-            // 3. ตรวจสอบว่ามีข้อมูลส่งกลับมาไหม
-            if (data.length === 0) {
-                loadMoreBtn.innerText = "No More Images"; // เปลี่ยนข้อความปุ่ม
-                loadMoreBtn.style.pointerEvents = "none"; // ปิดการกดปุ่ม
-                return;
-            }
+        isLoading = true;
+        console.log("🖱️ คลิก Load More!");
 
-            // 4. อ้างอิงพื้นที่ที่จะนำรูปไปวาง (Container)
-            let gallery = document.querySelector("#gallery");
+        // 1. หา ID ของรูปสุดท้าย
+        let imagesInGallery = document.querySelectorAll("#gallery img[data-id]");
+        console.log("📸 จำนวนรูปปัจจุบัน:", imagesInGallery.length);
 
-            // 5. วนลูปข้อมูล JSON ที่ได้มาจาก Laravel
-            data.forEach((image) => {
-                // สร้างกล่องใส่รูป (div.maso-item)
-                let item = document.createElement("div");
-                item.className = `maso-item col-md-4 ${image.class}`;
-                item.setAttribute("data-sort", "1");
+        let lastImage = imagesInGallery[imagesInGallery.length - 1];
 
-                // สร้างลิงก์ครอบรูป (a.img-box)
-                let link = document.createElement("a");
-                link.className = "img-box";
-                link.href = image.img_url;
-                link.setAttribute("data-lightbox-anima", "fade-top");
+        if (!lastImage) {
+            console.error("❌ ไม่พบรูปในแกลเลอรี");
+            isLoading = false;
+            return;
+        }
 
-                // สร้างตัวรูปภาพ (img)
-                let img = document.createElement("img");
-                img.src = image.img_url;
-                img.alt = "";
-                img.setAttribute("data-id", image.id); // สำคัญมาก! เก็บ ID ไว้ใช้อ้างอิงรอบถัดไป
+        let lastId = lastImage.getAttribute("data-id");
+        console.log("🔢 ID รูปล่าสุด:", lastId);
 
-                // 6. ประกอบชิ้นส่วนเข้าด้วยกัน
-                link.appendChild(img);
-                item.appendChild(link);
-                
-                // นำไปวางต่อท้ายรูปเดิมใน Gallery
-                // ใช้ insertBefore เพื่อให้ตัว 'clear' div อยู่ท้ายสุดเสมอ (ถ้ามี)
-                gallery.appendChild(item);
+        // แสดงสถานะกำลังโหลด
+        loadMoreBtn.innerHTML = 'Loading... <i class="fa fa-spinner fa-spin"></i>';
+        loadMoreBtn.disabled = true;
+
+        // 2. ส่ง Request
+        let url = `/images/load-more?last_id=${lastId}`;
+        console.log("🌐 กำลังส่ง Request:", url);
+
+        fetch(url)
+            .then(res => {
+                console.log("📡 Response Status:", res.status);
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                return res.json();
+            })
+            .then(data => {
+                console.log("📦 ได้รับข้อมูล:", data);
+                console.log("📊 จำนวนรูป:", data.length);
+
+                if (data.length === 0) {
+                    console.log("✋ ไม่มีรูปเพิ่มแล้ว");
+                    loadMoreBtn.innerHTML = 'No More Images';
+                    loadMoreBtn.style.pointerEvents = "none";
+                    isLoading = false;
+                    return;
+                }
+
+                let gallery = document.querySelector("#gallery");
+                let $gallery = $('.maso-box');
+
+                let newElements = [];
+                let imagesToLoad = [];
+
+                // สร้าง Elements
+                data.forEach((image, idx) => {
+                    console.log(`🏗️ [${idx + 1}] สร้าง element สำหรับ ID ${image.id}`);
+
+                    let item = document.createElement("div");
+                    item.className = `maso-item col-md-4 ${image.class}`;
+                    item.setAttribute("data-sort", "1");
+                    item.style.opacity = "0";
+
+                    let link = document.createElement("a");
+                    link.className = "img-box lightbox";
+                    link.href = image.img_url;
+                    link.setAttribute("data-lightbox-anima", "fade-top");
+
+                    let img = document.createElement("img");
+                    img.alt = "";
+                    img.setAttribute("data-id", image.id);
+
+                    link.appendChild(img);
+                    item.appendChild(link);
+
+                    newElements.push(item);
+                    imagesToLoad.push({
+                        img: img,
+                        url: image.img_url,
+                        id: image.id,
+                        element: item,
+                        index: idx
+                    });
+                });
+
+                // เพิ่มเข้า DOM
+                console.log("➕ เพิ่ม elements เข้า DOM");
+                newElements.forEach(el => gallery.appendChild(el));
+
+                // โหลดรูป
+                let loadedCount = 0;
+                let totalImages = imagesToLoad.length;
+
+                imagesToLoad.forEach((imgData) => {
+                    imgData.img.onload = function() {
+                        loadedCount++;
+                        console.log(`✅ [${loadedCount}/${totalImages}] รูป ID ${imgData.id} โหลดเสร็จ`);
+
+                        // แสดงรูป
+                        imgData.element.style.opacity = "1";
+                        imgData.element.style.transition = "opacity 0.4s ease";
+
+                        // เมื่อโหลดครบทั้งหมด
+                        if (loadedCount === totalImages) {
+                            console.log("🎉 โหลดรูปครบทั้งหมดแล้ว!");
+
+                            setTimeout(() => {
+                                refreshIsotopeLayout($gallery, newElements);
+
+                                // คืนค่าปุ่ม
+                                loadMoreBtn.innerHTML = 'Load More <i class="fa fa-arrow-down"></i>';
+                                loadMoreBtn.disabled = false;
+                                isLoading = false;
+
+                                console.log("🔄 พร้อมโหลดรอบถัดไป");
+                            }, 300);
+                        }
+                    };
+
+                    imgData.img.onerror = function() {
+                        console.error(`❌ โหลดรูป ID ${imgData.id} ไม่สำเร็จ:`, imgData.url);
+                        loadedCount++;
+
+                        if (loadedCount === totalImages) {
+                            setTimeout(() => {
+                                refreshIsotopeLayout($gallery, newElements);
+                                loadMoreBtn.innerHTML = 'Load More <i class="fa fa-arrow-down"></i>';
+                                loadMoreBtn.disabled = false;
+                                isLoading = false;
+                            }, 300);
+                        }
+                    };
+
+                    // เริ่มโหลดรูป
+                    console.log(`🔽 เริ่มโหลด: ${imgData.url}`);
+                    imgData.img.src = imgData.url;
+                });
+            })
+            .catch(err => {
+                console.error("💥 Error:", err);
+                loadMoreBtn.innerHTML = 'Error, try again <i class="fa fa-exclamation-triangle"></i>';
+                loadMoreBtn.disabled = false;
+                isLoading = false;
             });
-
-            // คืนค่าปุ่มให้กลับมาเป็นปกติ
-            loadMoreBtn.innerHTML = 'Load More <i class="fa fa-arrow-down"></i>';
-        })
-        .catch(err => {
-            console.error("Error:", err);
-            loadMoreBtn.innerText = "Error, try again";
-        });
+    });
 });
+
+// ฟังก์ชันจัด Layout ด้วย Isotope
+function refreshIsotopeLayout($gallery, newElements) {
+    console.log("📐 เริ่มจัด Isotope Layout...");
+
+    // ตรวจสอบว่ามี Isotope หรือไม่
+    if (typeof $.fn.isotope === 'undefined') {
+        console.error("❌ Isotope ไม่พร้อมใช้งาน");
+        return;
+    }
+
+    let $newElements = $(newElements);
+
+    // ✅ วิธีที่ถูกต้อง: ใช้ imagesLoaded ก่อน append
+    $newElements.imagesLoaded(function() {
+        console.log("   → รูปใหม่โหลดเสร็จทั้งหมด");
+
+        // Append elements ใหม่
+        $gallery.append($newElements).isotope('appended', $newElements);
+
+        // Layout ใหม่
+        setTimeout(() => {
+            $gallery.isotope('layout');
+            console.log("✨ Isotope Layout เสร็จสิ้น");
+        }, 100);
+    });
+}

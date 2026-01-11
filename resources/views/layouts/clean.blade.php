@@ -10,21 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('child-title','Default Title')</title>
     <meta name="description" content="{{ trim($__env->yieldContent('child-description', 'Service-Theeraphong')) }}">
-    <script src="../HTWF/scripts/jquery.min.js"></script>
-    <link rel="stylesheet" href="../HTWF/scripts/bootstrap/css/bootstrap.css">
-    <script src="../HTWF/scripts/script.js"></script>
-    <link rel="stylesheet" href="../HTWF/style.css">
-    <link rel="stylesheet" href="../HTWF/css/content-box.css">
-    <link rel="stylesheet" href="../HTWF/css/image-box.css">
-    <link rel="stylesheet" href="../HTWF/css/animations.css">
-    <link rel="stylesheet" href="../HTWF/css/components.css">
-    <link rel="stylesheet" href="../HTWF/scripts/flexslider/flexslider.css">
-    <link rel="stylesheet" href="../HTWF/scripts/magnific-popup.css">
-    <link rel="stylesheet" href="../HTWF/scripts/php/contact-form.css">
-    <!-- <link rel="icon" href="../images/favicon.ico"> -->
-    <link rel="stylesheet" href="../skin.css">
 
-    {{-- ถ้าไฟล์อยู่ใน public/HTWF/ --}}
+    <!-- jQuery ต้องโหลดก่อนสุด -->
+    <script src="{{ asset('HTWF/scripts/jquery.min.js') }}"></script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ asset('HTWF/scripts/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/style.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/css/content-box.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/css/image-box.css') }}">
@@ -33,36 +24,41 @@
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/flexslider/flexslider.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
+    <link rel="stylesheet" href="{{ asset('HTWF/scripts/font-awesome/css/font-awesome.css') }}">
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('skin.css') }}">
-
-
-
 </head>
 
 <body>
     <div id="preloader"></div>
 
-    @yield('child-content');
+    @yield('child-content')
 
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
-    <link rel="stylesheet" href="../HTWF/scripts/font-awesome/css/font-awesome.css">
-    <script async src="../HTWF/scripts/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../HTWF/scripts/imagesloaded.min.js"></script>
-    <script src="../HTWF/scripts/parallax.min.js"></script>
-    <script src="../HTWF/scripts/flexslider/jquery.flexslider-min.js"></script>
-    <script async src="../HTWF/scripts/isotope.min.js"></script>
-    <script async src="../HTWF/scripts/php/contact-form.js"></script>
-    <script async src="../HTWF/scripts/jquery.progress-counter.js"></script>
-    <script async src="../HTWF/scripts/jquery.tab-accordion.js"></script>
-    <script async src="../HTWF/scripts/bootstrap/js/bootstrap.popover.min.js"></script>
-    <script async src="../HTWF/scripts/jquery.magnific-popup.min.js"></script>
-    <script src="../HTWF/scripts/social.stream.min.js"></script>
-    <script src="../HTWF/scripts/jquery.slimscroll.min.js"></script>
-    <script src="../HTWF/scripts/google.maps.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="../HTWF/scripts/smooth.scroll.min.js"></script>
-    <script src="{{ asset('js/gallery-load-more.js')}}"></script>
+
+    <!-- ✅ Scripts โหลดตามลำดับ (ลบ async ออกหมด) -->
+    <script src="{{ asset('HTWF/scripts/script.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/imagesloaded.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/parallax.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/flexslider/jquery.flexslider-min.js') }}"></script>
+
+    <!-- ✅ Isotope ต้องโหลดก่อน gallery-load-more.js -->
+    <script src="{{ asset('HTWF/scripts/isotope.min.js') }}"></script>
+
+    <script src="{{ asset('HTWF/scripts/php/contact-form.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/jquery.progress-counter.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/jquery.tab-accordion.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/bootstrap/js/bootstrap.popover.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/social.stream.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/smooth.scroll.min.js') }}"></script>
+
+    <!-- ✅ Custom Gallery Script โหลดท้ายสุด -->
+    <script src="{{ asset('js/gallery-load-more.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
