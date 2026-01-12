@@ -80,16 +80,11 @@
                     </div>
                 </div>
                 <div class="maso-box row" id="gallery" data-lightbox-anima="fade-top">
-                    @foreach ($images as $image)
-                        <div data-sort="1" class="maso-item col-md-4 cat1 cat2 cat4">
-                            <a class="img-box" href="{{ asset($image->img_url) }}" data-lightbox-anima="fade-top">
-                                <img src="{{ asset($image->img_url) }}" alt="" data-id="{{ $image->id }}" />
-                            </a>
-                        </div>
-                    @endforeach
+                    @include('layouts.partials._items', ['images' => $images])
 
                     <div class="clear"></div>
                 </div>
+
                 <div class="list-nav">
                     <a href="#" id="loadMore" class="btn-sm btn load-more-maso">Load More <i
                             class="fa fa-arrow-down"></i></a>
