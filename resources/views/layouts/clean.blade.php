@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('child-title','Default Title')</title>
     <meta name="description" content="{{ trim($__env->yieldContent('child-description', 'Service-Theeraphong')) }}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- jQuery ต้องโหลดก่อนสุด -->
     <script src="{{ asset('HTWF/scripts/jquery.min.js') }}"></script>
 

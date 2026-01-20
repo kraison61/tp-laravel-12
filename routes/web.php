@@ -12,7 +12,6 @@ Route::get('/contact-us', [HomeController::class,'contact'])->name('contact');
 Route::prefix('images')->group(function(){
     Route::get('/image',[ImageController::class,'index'])->name('image.index');
     Route::get('/load-more', [ImageController::class, 'loadMore'])->name('image.load-more');
-    // Route::get('/{id}',[ImageController::class,'show'])->name('image.show');
 
 });
 

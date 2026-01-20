@@ -10,42 +10,14 @@ class ImageController extends Controller
 {
     public function index()
     {
-        $images = ImageUpload::orderBy('id','desc')
-            ->limit(9)
-            ->get();
+        $images = ImageUpload::latest()->paginate(10);
         return view('images.index', ['images' => $images]);
     }
-    // public function loadMore(Request $request)
-    // {
-    //     $lastId = $request->last_id;
-
-    //     // ดึงข้อมูลที่ id น้อยกว่ารูปล่าสุดที่แสดง
-    //     $images = ImageUpload::where('id', '<', $lastId)
-    //         ->orderBy('id', 'desc')
-    //         ->limit(3)
-    //         ->get();
-
-    //     $data = $images->map(function ($image) {
-    //         return [
-    //             'id'      => $image->id,
-    //             'img_url' => asset($image->img_url), // ✅ URL เต็ม
-    //             'class'   => $image->class ?? 'cat1 cat2 cat4',
-    //         ];
-    //     });
-    //     return response()->json($data);
-    // }
-
-    public function loadMore(Request $request)
-{
-    $lastId = $request->last_id;
-
-    $images = ImageUpload::where('id', '<', $lastId)
-        ->orderBy('id', 'desc')
-        ->limit(9)
-        ->get();
-
-    return view('layouts.partials._items', compact('images'))->render();
-}
-
-
+    public function loadMore(Request $request){
+        $images=ImageUpload::latest()->paginate(9);
+         return response()->json([
+            'html' => view('images.partials.image-list', compact('images'))->render(),
+            'next_page' => $images->nextPageUrl(),
+        ]);
+    }
 }
