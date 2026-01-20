@@ -1,0 +1,7 @@
+.custom-box > .custom-item {
+    /* padding: 5px; */
+    /* visibility: hidden; */
+    padding:7.5px;
+    max-width: 100%;
+    height: auto;
+}
