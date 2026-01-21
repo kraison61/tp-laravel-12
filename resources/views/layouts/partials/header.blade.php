@@ -55,18 +55,18 @@ $columnRight = $allServices->skip($leftCount);
                                 <div class="col">
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnLeft as $item)
-                                            <li>
-                                                <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
-                                            </li>
+                                        <li>
+                                            <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </div>
                                 <div class="col">
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnRight as $item)
-                                            <li>
-                                                <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
-                                            </li>
+                                        <li>
+                                            <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -92,6 +92,16 @@ $columnRight = $allServices->skip($leftCount);
                             <button type="button" class="btn btn-default btn-search">
                                 <span class="fa fa-search"></span>
                             </button>
+                            @guest
+                            <button type="button" class="btn btn-primary">
+                                Login
+                            </button>
+                            @else
+                            <button type="button" class="btn btn-primary">
+                                Logout
+                            </button>
+                            @endguest
+
                         </div>
                     </div>
                 </div>

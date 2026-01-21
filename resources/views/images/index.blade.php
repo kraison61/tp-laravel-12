@@ -67,7 +67,7 @@
                         <ul class="nav navbar-nav over ms-minimal inner maso-filters">
                             <li class="current-active active"><a data-filter="maso-item">All</a></li>
                             @foreach ($allServices as $item)
-                                <li><a href="{{ $item->category->id }}">{{ $item->category->name }}</a></li>
+                                <li><a href="images/{{ $item->category->id }}">{{ $item->category->name }}</a></li>
                             @endforeach
                             <li><a class="maso-order" data-sort="asc"><i class="fa fa-arrow-down"></i></a></li>
                         </ul>
