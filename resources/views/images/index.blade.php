@@ -1,25 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Image-TheeraphongServices')
+@section('title', 'Image Gallery')
 
 @section('content')
-
-    <div class="header-base">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="title-base text-left">
-                        <h1>Multimedia gallery</h1>
-                        <p>When words become unclear, I shall focus with photographs. When images become inadequate, I shall
-                            be content with silence.</p>
-                    </div>
+<div class="header-base">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>Multimedia gallery</h1>
+                    <p>When words become unclear, I shall focus with photographs. When images become inadequate, I shall be content with silence.</p>
                 </div>
-                <x-breadcrumb>
-                    ภาพ & วิดีโอ
-                </x-breadcrumb>
             </div>
+            <x-breadcrumb>รูปภาพ & วิดีโอ</x-breadcrumb>
         </div>
     </div>
+</div>
     <div class="section-empty">
         <div class="container content">
             <div class="flexslider carousel gallery white visible-dir-nav nav-inner"
@@ -71,53 +67,26 @@
                         <ul class="nav navbar-nav over ms-minimal inner maso-filters">
                             <li class="current-active active"><a data-filter="maso-item">All</a></li>
                             @foreach ($allServices as $item)
-                                <li>
-                                    <a>{{ Str::limit($item->category->name, 10, '...') }}</a>
-                                </li>
+                                <li><a href="{{ $item->category->id }}">{{ $item->category->name }}</a></li>
                             @endforeach
                             <li><a class="maso-order" data-sort="asc"><i class="fa fa-arrow-down"></i></a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="maso-box row" id="image-container" data-lightbox-anima="fade-top">
-                    @include('layouts.partials._items', ['images' => $images])
-
+                <div class="maso-box row" data-lightbox-anima="fade-top">
+                    @foreach ($images as $item)
+                        <div class="maso-item col-md-4">
+                            <a class="img-box" href="{{ asset($item->img_url) }}" data-lightbox-anima="fade-top">
+                                <img src="{{ asset($item->img_url) }}" alt="" />
+                            </a>
+                        </div>
+                    @endforeach
                     <div class="clear"></div>
                 </div>
-
-                <div class="list-nav">
-                    <a href="#" id="loader" class="btn-sm btn load-more-maso">Load More <i
-                            class="fa fa-arrow-down"></i></a>
+                <div class="list-nav d-flex justify-content-center">
+                    {{ $images->links() }}
                 </div>
             </div>
         </div>
     </div>
-    <script>
-let nextPageUrl = "{{ $images->nextPageUrl() }}";
-let loading = false;
-
-window.addEventListener('scroll', () => {
-    if (loading || !nextPageUrl) return;
-
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-        loadMore();
-    }
-});
-
-function loadMore() {
-    loading = true;
-    document.getElementById('loader').style.display = 'block';
-
-    fetch(nextPageUrl)
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('image-container')
-                .insertAdjacentHTML('beforeend', data.html);
-
-            nextPageUrl = data.next_page;
-            loading = false;
-            document.getElementById('loader').style.display = 'none';
-        });
-}
-</script>
 @endsection
