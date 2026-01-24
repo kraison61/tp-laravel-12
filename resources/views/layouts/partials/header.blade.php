@@ -92,7 +92,7 @@ $columnRight = $allServices->skip($leftCount);
                             <button type="button" class="btn btn-default btn-search">
                                 <span class="fa fa-search"></span>
                             </button>
-                            @guest
+                            <!-- @guest
                             <button type="button" class="btn btn-primary">
                                 Login
                             </button>
@@ -100,7 +100,7 @@ $columnRight = $allServices->skip($leftCount);
                             <button type="button" class="btn btn-primary">
                                 Logout
                             </button>
-                            @endguest
+                            @endguest -->
 
                         </div>
                     </div>

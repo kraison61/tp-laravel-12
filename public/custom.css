@@ -8,3 +8,8 @@
 .service-category-list{
     padding: 2rem;
 }
+.ratio-16-9 {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+}

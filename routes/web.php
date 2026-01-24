@@ -4,6 +4,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,5 +21,12 @@ Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('gallery.index');
 });
 
-// 3. Route ที่เป็นตัวแปรแบบกว้างมากๆ ({slug}) "ต้องอยู่ล่างสุดเสมอ"
+
+
+Route::prefix('blog')->group(function(){
+    Route::get('/',[BlogController::class,'index'])->name('blog.index');
+});
+
+
+//  Route ที่เป็นตัวแปรแบบกว้างมากๆ ({slug}) "ต้องอยู่ล่างสุดเสมอ"
 Route::get('/{slug}', [PageController::class,'show'])->name('service.show');
