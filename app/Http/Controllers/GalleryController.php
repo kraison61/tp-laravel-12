@@ -38,7 +38,7 @@ class GalleryController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**

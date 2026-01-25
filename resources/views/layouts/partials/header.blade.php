@@ -78,7 +78,7 @@ $columnRight = $allServices->skip($leftCount);
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บทความ </a>
+                            <a href="{{ route('blog.index')}}" class="dropdown-toggle" data-toggle="dropdown" role="button">บทความ </a>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">ติดต่อเรา</a>

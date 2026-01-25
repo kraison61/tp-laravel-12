@@ -18,12 +18,16 @@
 </div>
     <div class="section-empty">
         <div class="container content">
-            <div class="flexslider carousel gallery white visible-dir-nav nav-inner"
-                data-options="minWidth:200,itemMargin:15,numItems:3,controlNav:true,directionNav:true">
+
+            {{-- <x-image-slide :images="$images" /> --}}
+
+
+
+            <div class="flexslider carousel gallery white visible-dir-nav nav-inner" data-options="minWidth:200,itemMargin:15,numItems:3,controlNav:true,directionNav:true">
                 <ul class="slides">
                     <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-8.jpg" alt="">
+                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="{{ asset('images/services/31dc2ae9-c13d-448c-ab45-96cbabab49bd.webp') }}" >
+                            <img src="{{ asset('images/services/31dc2ae9-c13d-448c-ab45-96cbabab49bd.webp') }}" alt="">
                         </a>
                     </li>
                     <li>
@@ -58,6 +62,8 @@
                     </li>
                 </ul>
             </div>
+
+
             <hr class="space" />
             <div class="maso-list gallery">
                 <div class="navbar navbar-inner">
@@ -77,7 +83,7 @@
                     @foreach ($images as $item)
                         <div class="maso-item col-md-4">
                             <a class="img-box" href="{{ asset($item->img_url) }}" data-lightbox-anima="fade-top">
-                                <img src="{{ asset($item->img_url) }}" alt="" />
+                                <img class="ratio-16-9" src="{{ asset($item->img_url) }}" alt="" />
                             </a>
                         </div>
                     @endforeach

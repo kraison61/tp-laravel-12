@@ -18,7 +18,7 @@
                 <div class="col-md-9 col-sm-12">
                     <div class="grid-list grid-layout grid-15">
                         <div class="grid-box row">
-                            
+
                             @foreach($images as $item)
                                 <div class="grid-item col-md-6">
                                 <div class="advs-box advs-box-top-icon-img niche-box-post boxed-inverse" data-anima="scale-rotate" data-trigger="hover">
@@ -28,7 +28,7 @@
                                         </div>
                                         <a class="block-comment" href="#">2 <i class="fa fa-comment-o"></i></a>
                                     </div>
-                                    <a class="img-box ratio-16-9" href="#"><img class="anima" src="{{ $item->image }}" alt="{{ $item->title }}" /></a>
+                                    <a class="img-box ratio-16-9" href="{{ route('blog.show',$item->id)}}"><img class="anima" src="{{ $item->image }}" alt="{{ $item->title }}" /></a>
                                     <div class="advs-box-content">
                                         <h2 class="text-m"><a href="#">{{ Str::limit($item->title, 30) }}</a></h2>
                                         <div class="tag-row">
@@ -36,14 +36,14 @@
                                             <span><i class="fa fa-pencil"></i><a href="#">Admin</a></span>
                                         </div>
                                         <p class="niche-box-content">
-                                            {{ Str::limit($item->description, 50) }}
+                                            {{ Str::limit($item->description, 45) }}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
 
-                            
+
                         </div>
                         <div class="list-nav">
                             <ul class="pagination pagination-grid" data-page-items="8" data-pagination-anima="show-scale"></ul>

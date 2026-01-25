@@ -54,12 +54,8 @@
     <script src="{{ asset('HTWF/scripts/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/social.stream.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('HTWF/scripts/smooth.scroll.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/smooth.scroll.min.js') }}"></script
 
-    <!-- ✅ Custom Gallery Script โหลดท้ายสุด -->
-    <script src="{{ asset('js/gallery-load-more.js') }}"></script>
-
-    @stack('scripts')
 </body>
 
 </html>
