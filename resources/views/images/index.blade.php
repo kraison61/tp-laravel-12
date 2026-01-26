@@ -19,50 +19,7 @@
     <div class="section-empty">
         <div class="container content">
 
-            {{-- <x-image-slide :images="$images" /> --}}
-
-
-
-            <div class="flexslider carousel gallery white visible-dir-nav nav-inner" data-options="minWidth:200,itemMargin:15,numItems:3,controlNav:true,directionNav:true">
-                <ul class="slides">
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="{{ asset('images/services/31dc2ae9-c13d-448c-ab45-96cbabab49bd.webp') }}" >
-                            <img src="{{ asset('images/services/31dc2ae9-c13d-448c-ab45-96cbabab49bd.webp') }}" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-3.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-4.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-5.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-6.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-7.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="img-box lightbox" data-lightbox-anima="fade-top" href="../images/gallery/image-1.jpg">
-                            <img src="../images/gallery/image-9.jpg" alt="">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
+            <x-image-slide :images="$images" />
 
             <hr class="space" />
             <div class="maso-list gallery">
