@@ -13,7 +13,7 @@ class GalleryController extends Controller
     public function index()
     {
         //
-        $images=ImageUpload::latest()->paginate(9);
+        $images=ImageUpload::latest()->paginate(15);
         return view('images.index',compact('images'));
     }
 
@@ -38,7 +38,8 @@ class GalleryController extends Controller
      */
     public function show(string $id)
     {
-
+        $images=ImageUpload::where('service_id', $id)->paginate(15);
+        return view('images.show',compact('images'));
     }
 
     /**

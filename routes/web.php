@@ -10,19 +10,21 @@ use Illuminate\Support\Facades\Route;
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
 Route::get('/', [HomeController::class,'home'])->name('home');
-Route::get('/contact-us', [HomeController::class,'contact'])->name('contact');
+Route::get('/contact-us', [HomeController::class,'contact'])->name('contact.index');
 
-// 2. Route กลุ่ม images (ย้ายมาไว้ก่อน {slug})
+// Gallery Routes
 Route::prefix('gallery')->group(function(){
     Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/show/{id}', [GalleryController::class, 'show'])->name('gallery.show');
 });
 
+//Admin Route
 Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('gallery.index');
 });
 
 
-
+// Blog Routes
 Route::prefix('blog')->group(function(){
     Route::get('/',[BlogController::class,'index'])->name('blog.index');
     Route::get('/{id}',[BlogController::class,'show'])->name('blog.show');

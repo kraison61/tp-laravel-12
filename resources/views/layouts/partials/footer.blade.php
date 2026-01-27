@@ -31,11 +31,11 @@
                     <div class="row">
                         <div class="col-md-4 text-s">
                             <h3>เมนู</h3>
-                            <a href="#">Home</a><br />
+                            <a href="/">Home</a><br />
                             <a href="#">บริการ</a><br />
-                            <a href="#">ภาพ & วิดีโอ</a><br />
-                            <a href="#">บทความ</a><br />
-                            <a href="#">ติดต่อเรา</a><br />
+                            <a href="{{ route('gallery.index') }}">ภาพ & วิดีโอ</a><br />
+                            <a href="{{ route('blog.index') }}">บทความ</a><br />
+                            <a href="{{ route('contact.index') }}">ติดต่อเรา</a><br />
 
                         </div>
                         <div class="col-md-8 text-s">
@@ -46,7 +46,7 @@
                                 <div class="col-md-6 col-12 column-left">
                                     @foreach ($columnLeft as $service)
                                         <div class="service-item mb-3">
-                                            <a href="#"> {{ $service->category->name ?? 'บริการ' }}</a>
+                                            <a href="{{ route('service.show',$service->category->slug) }}"> {{ $service->category->name ?? 'บริการ' }}</a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -55,7 +55,7 @@
                                 <div class="col-md-6 col-12 column-right">
                                     @foreach ($columnRight as $service)
                                         <div class="service-item mb-3">
-                                            <a href="#"> {{ $service->category->name ?? 'บริการ' }}</a>
+                                            <a href="{{ route('service.show',$service->category->slug) }}"> {{ $service->category->name ?? 'บริการ' }}</a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -72,5 +72,5 @@
             </div>
         </div>
     </div>
-    
+
 </footer>

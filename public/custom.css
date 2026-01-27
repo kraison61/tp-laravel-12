@@ -33,3 +33,10 @@
     background: #000;
     opacity: 0.9;
 }
+
+.parallax-mirror {
+    filter: brightness(40%); /* ปรับค่า % ยิ่งน้อยยิ่งมืด */
+}
+
+
+

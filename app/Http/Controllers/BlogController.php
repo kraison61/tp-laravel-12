@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $images = Blog::all();
+        $images = Blog::latest()->paginate(8);
         return view('blogs.index',compact('images'));
     }
 
