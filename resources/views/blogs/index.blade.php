@@ -3,7 +3,7 @@
 @section('title', 'ข่าว และบทความ')
 
 @section('content')
-<div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920" data-image-src="../images/bg-10.jpg">
+<div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920" data-image-src="{{ asset('images/bg-blog.jpg') }}">
         <div class="container">
             <div class="title-base">
                 <hr class="anima" />

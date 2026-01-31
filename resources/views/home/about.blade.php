@@ -1,0 +1,104 @@
+@extends('layouts.app')
+
+@section('title', 'หน้าแรก')
+
+@section('content')
+<div class="header-title ken-burn white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920" data-image-src="{{asset('images/bg-about.jpg')}}">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>เกี่ยวกับ บริษัท ธีรพงษ์เซอร์วิส จำกัด (Theeraphong Co., Ltd.)</h1>
+            <p>จากจุดเริ่มต้นเล็กๆ ในฐานะทีมรับเหมาก่อสร้างทั่วไป ที่มุ่งมั่นทำงานด้วยความมานะและซื่อสัตย์ เราใช้เวลาและความทุ่มเทสั่งสมประสบการณ์จากหน้างานจริง จนในวันนี้ บริษัท ธีรพงษ์เซอร์วิส จำกัด เติบโตสู่การเป็นผู้เชี่ยวชาญเฉพาะด้านในงานโครงสร้างพื้นฐานและงานตกแต่งรอบตัวอาคาร เราภูมิใจที่ได้เป็นส่วนหนึ่งในการสร้างรากฐานที่มั่นคงให้กับบ้านและโครงการของลูกค้ามากมาย</p>
+        </div>
+    </div>
+</div>
+<div class="section-empty">
+    <div class="container content">
+        <div class="row proporzional-row">
+            <div class="col-md-4 boxed white middle-content">
+                <p>
+                    Aiusmod tempor incididunt utlabore et dolore magna aliqua.
+                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in voluptate velit esse cillum dolore.
+                </p>
+            </div>
+            <div class="col-md-8">
+                <hr class="space m visible-sm" />
+                <p>
+                    <strong>บริษัท ธีรพงษ์เซอร์วิส จำกัด</strong> เริ่มต้นก้าวแรกจากการเป็นทีมรับเหมาก่อสร้างขนาดเล็กที่มีเพียงความมานะและฝีมือช่างเป็นต้นทุนสำคัญ เราเติบโตขึ้นจากการได้รับโอกาสในงานรับเหมาทั่วไป ซึ่งในทุกๆ โปรเจกต์ที่ได้รับมอบหมาย เราใช้ความจริงจังและความเอาใจใส่เป็นเครื่องพิสูจน์ฝีมือ จนสั่งสมประสบการณ์หน้างานจริงมาอย่างยาวนานกว่า 20 ปี เส้นทางของเราไม่ได้ถูกสร้างขึ้นด้วยโฆษณาที่สวยหรู แต่ถูกสร้างขึ้นด้วย "คำบอกต่อ" จากลูกค้าที่ประทับใจในความซื่อสัตย์และการไม่เคยทิ้งงานแม้แต่ครั้งเดียว
+                </p>
+                <p> <strong>จากรากฐานความมุ่งมั่น สู่ความซื่อสัตย์ที่จับต้องได้</strong>
+                     บริษัท ธีรพงษ์เซอร์วิส จำกัด เริ่มต้นก้าวแรกจากการเป็นทีมรับเหมาก่อสร้างขนาดเล็กที่มีเพียงความมานะและฝีมือช่างเป็นต้นทุนสำคัญ เราเติบโตขึ้นจากการได้รับโอกาสในงานรับเหมาทั่วไป ซึ่งในทุกๆ โปรเจกต์ที่ได้รับมอบหมาย เราใช้ความจริงจังและความเอาใจใส่เป็นเครื่องพิสูจน์ฝีมือ จนสั่งสมประสบการณ์หน้างานจริงมาอย่างยาวนานกว่า 20 ปี เส้นทางของเราไม่ได้ถูกสร้างขึ้นด้วยโฆษณาที่สวยหรู แต่ถูกสร้างขึ้นด้วย "คำบอกต่อ" จากลูกค้าที่ประทับใจในความซื่อสัตย์และการไม่เคยทิ้งงานแม้แต่ครั้งเดียว
+                    เรายึดมั่นในหลักการว่า ความจริงใจคือรากฐานที่สำคัญที่สุดของงานก่อสร้าง ดังนั้นการประเมินราคาของเราจึงเป็นไปอย่างยุติธรรม ตรงไปตรงมา และไม่มีค่าใช้จ่ายแอบแฝงที่ทำให้ลูกค้าต้องกังวลใจ ทีมงานของเราทุกคนได้รับการปลูกฝังให้ดูแลงานของลูกค้าเสมือนเป็นงานของตัวเอง เพราะเราเข้าใจดีว่าอาคารหรือบ้านทุกหลังคือการลงทุนและความฝันของคุณ การได้รับความไว้วางใจให้เป็นส่วนหนึ่งในการสร้างฝันนั้น จึงเป็นเกียรติสูงสุดที่พวกเรา ธีรพงษ์เซอร์วิส พร้อมจะรักษาไว้ด้วยความรับผิดชอบอย่างเต็มภาคภูมิ
+                </p>
+            </div>
+        </div>
+        <hr class="space" />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="advs-box advs-box-top-icon boxed-inverse text-left">
+                    <i class="fa fa-paper-plane-o icon circle anima"></i>
+                    <h3>Web oriented</h3>
+                    <p>
+                        Interdum iusto pulvinar consequuntur augue optio repellat fuga hurus expedita tempo est odito.
+                        Optio laboriosam! A fugit ea congue. Necessitatibus pede earum aute atque.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="advs-box advs-box-top-icon boxed-inverse text-left">
+                    <i class="fa fa-commenting-o icon circle anima"></i>
+                    <h3>We love ideas</h3>
+                    <p>
+                        Interdum iusto pulvinar consequuntur augue optio repellat fuga hurus expedita tempo est odito.
+                        Optio laboriosam! A fugit ea congue. Necessitatibus pede earum aute atque.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="advs-box advs-box-top-icon boxed-inverse text-left">
+                    <i class="fa fa-wpexplorer icon circle anima"></i>
+                    <h3>Long experience</h3>
+                    <p>
+                        Interdum iusto pulvinar consequuntur augue optio repellat fuga hurus expedita tempo est odito.
+                        Optio laboriosam! A fugit ea congue. Necessitatibus pede earum aute atque.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr class="space" />
+        <div class="row proporzional-row">
+            <div class="col-md-8 col-sm-12">
+                <p class="block-quote quote-1 quote-gray">
+                จากประสบการณ์ช่างตัวจริงกว่า 20 ปี เราไม่ได้สร้างเพียงแค่รั้วหรือกำแพง แต่เราสร้างรากฐานที่มั่นคงด้วยความซื่อสัตย์และเอาใจใส่ เพื่อมอบงานคุณภาพที่ลูกค้าวางใจได้ตลอดไป
+            </p>
+                <p>
+                    <strong>ผู้นำด้านงานโครงสร้างพื้นฐานและงานรั้วครบวงจร</strong> ด้วยการเรียนรู้และพัฒนาฝีมืออย่างไม่หยุดยั้ง จากงานก่อสร้างทั่วไปในอดีตส่งผลให้ปัจจุบัน ธีรพงษ์เซอร์วิส ก้าวขึ้นมาเป็นผู้เชี่ยวชาญเฉพาะทางที่โดดเด่นในงานโครงสร้างรอบบริเวณและงานฐานรากที่มั่นคง เรามีความชำนาญเป็นพิเศษในด้านการก่อสร้าง "กำแพงกันดิน" ซึ่งต้องอาศัยความเข้าใจเรื่องแรงดันดินและมาตรฐานทางวิศวกรรมที่ถูกต้อง เพื่อป้องกันปัญหาดินทรุดอย่างยั่งยืน รวมถึงงานติดตั้ง "รั้วสำเร็จรูป" และ "รั้วก่อฉาบ" ที่เน้นทั้งความแข็งแรงและสุนทรียภาพที่ลงตัวกับพื้นที่
+                </p>
+                <p>
+                    นอกจากนี้ เรายังมีทีมงานที่พร้อมลุยงานหนักอย่าง "งานถมที่ดิน" และ "งานเทพื้นคอนกรีต" ทุกรูปแบบ ไม่ว่าจะเป็นพื้นที่ขนาดเล็กหรือโครงการขนาดใหญ่ เราคัดสรรวัสดุที่มีคุณภาพมาตรฐานสูงสุดในราคาที่สมเหตุสมผล เพื่อให้มั่นใจว่าพื้นทุกตารางเมตรจะรองรับน้ำหนักและทนทานต่อสภาพอากาศได้ดีเยี่ยม บริการของเราคือการส่งมอบงานคุณภาพที่เบ็ดเสร็จในที่เดียว (One-Stop Service) ตั้งแต่การปรึกษา วางแผน ไปจนถึงการส่งมอบงานที่สมบูรณ์แบบ หากคุณกำลังมองหาผู้รับเหมาที่เป็นงานจริง รู้ลึกถึงหน้างาน และพร้อมให้คำปรึกษาด้วยใจจริง บริษัท ธีรพงษ์เซอร์วิส จำกัด คือคำตอบที่คุณมั่นใจได้ 100%
+                </p>
+                <hr class="space xs" />
+                <a href="#" class="btn btn-sm">Read all details of our company</a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <hr class="space visible-sm" />
+                <div class="flexslider slider nav-inner white" data-options="controlNav:true,directionNav:true">
+                    <ul class="slides">
+                        <li>
+                            <a class="img-box lightbox" href="">
+                                <img src="../images/image-1.jpg" alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="img-box lightbox" href="">
+                                <img src="../images/image-7.jpg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

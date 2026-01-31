@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Route;
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
 Route::get('/', [HomeController::class,'home'])->name('home');
-Route::get('/contact-us', [HomeController::class,'contact'])->name('contact.index');
+Route::get('/contact-us', [HomeController::class,'contactUs'])->name('contact.index');
+Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about.index');
+
+
+
 
 // Gallery Routes
 Route::prefix('gallery')->group(function(){

@@ -28,6 +28,7 @@
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('skin.css') }}">
     <link rel="stylesheet" href="{{ asset('custom.css') }}">
+    @livewireStyles
 </head>
 
 <body>
@@ -56,7 +57,7 @@
     <script src="{{ asset('HTWF/scripts/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/smooth.scroll.min.js') }}"></script>
     <script src="{{ asset('script.js') }}"></script>
-
+    @livewireScripts
 </body>
 
 </html>

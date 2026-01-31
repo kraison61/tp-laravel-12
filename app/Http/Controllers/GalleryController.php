@@ -13,8 +13,9 @@ class GalleryController extends Controller
     public function index()
     {
         //
-        $images=ImageUpload::latest()->paginate(15);
-        return view('images.index',compact('images'));
+        // $images=ImageUpload::latest()->paginate(15);
+        // return view('images.index',compact('images'));
+        return view('images.index');
     }
 
     /**
