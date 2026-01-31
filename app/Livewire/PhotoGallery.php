@@ -7,6 +7,7 @@ use App\Models\ImageUpload;
 
 class PhotoGallery extends Component
 {
+    public $category = 'all';
     public $perPage = 12; // เริ่มต้นแสดง 12 รูป
 
     // ฟังก์ชันนี้จะถูกเรียกเมื่อเลื่อนหน้าจอมาถึงจุดดักจับ
