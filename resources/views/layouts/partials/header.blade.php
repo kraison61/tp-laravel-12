@@ -49,7 +49,7 @@ $columnRight = $allServices->skip($leftCount);
                                 role="button">หน้าหลัก</a>
                         </li>
                         <li class="dropdown {{ request()->routeIs('service.index') ? 'active' : '' }}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">บริการ
+                            <a href="#" class="" data-toggle="dropdown" role="button">บริการ
                                 <span class="caret"></span></a>
                             <div class="mega-menu dropdown-menu multi-level row bg-menu">
                                 <div class="col">
@@ -74,17 +74,17 @@ $columnRight = $allServices->skip($leftCount);
 
                         </li>
                         <li class="dropdown">
-                            <a href="{{ route('gallery.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button">ภาพ & วิดีโอ
+                            <a href="{{ route('gallery.index') }}" class="" data-toggle="dropdown" role="button">ภาพ & วิดีโอ
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="{{ route('blog.index')}}" class="dropdown-toggle" data-toggle="dropdown" role="button">บทความ </a>
+                            <a href="{{ route('blog.index')}}" class="" data-toggle="dropdown" role="button">บทความ </a>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('contact.index')}}">ติดต่อเรา</a>
+                            <a class="" data-toggle="dropdown" href="{{route('contact.index')}}">ติดต่อเรา</a>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('about.index')}}">เกี่ยวกับเรา</a>
+                            <a class="" data-toggle="dropdown" href="{{route('about.index')}}">เกี่ยวกับเรา</a>
                         </li>
                     </ul>
                     <div class="nav navbar-nav navbar-right">

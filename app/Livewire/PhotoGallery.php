@@ -7,20 +7,34 @@ use App\Models\ImageUpload;
 
 class PhotoGallery extends Component
 {
-    public $category = 'all';
-    public $perPage = 12; // เริ่มต้นแสดง 12 รูป
+    public $serviceId = 'all';
+    public $perPage = 6;
 
-    // ฟังก์ชันนี้จะถูกเรียกเมื่อเลื่อนหน้าจอมาถึงจุดดักจับ
+    // 1. รับค่า ID จาก URL ที่ส่งมาจากหน้าอื่น
+    public function mount($id = null)
+    {
+        if ($id) {
+            $this->serviceId = $id;
+        }
+    }
+
     public function loadMore()
     {
-        $this->perPage += 12; // เพิ่มจำนวนที่จะแสดงครั้งละ 12 รูป
+        $this->perPage += 12;
     }
 
     public function render()
     {
-        // ดึงข้อมูลตามจำนวนที่กำหนด (ใช้ take เพื่อประสิทธิภาพ)
-        $photos = ImageUpload::latest()->take($this->perPage)->get();
-        
+        // 2. สร้าง Query พื้นฐาน
+        $query = ImageUpload::query();
+
+        // 3. ถ้า $serviceId ไม่ใช่ 'all' ให้ดึงเฉพาะรูปที่มี service_id ตรงกัน
+        if ($this->serviceId !== 'all') {
+            $query->where('service_id', $this->serviceId);
+        }
+
+        $photos = $query->latest()->take($this->perPage)->get();
+
         return view('livewire.photo-gallery', [
             'photos' => $photos
         ]);

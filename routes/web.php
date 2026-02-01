@@ -18,8 +18,8 @@ Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about.index');
 
 // Gallery Routes
 Route::prefix('gallery')->group(function(){
-    Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
-    Route::get('/show/{id}', [GalleryController::class, 'show'])->name('gallery.show');
+    Route::get('/{id?}', [GalleryController::class, 'index'])->name('gallery.index');
+    // Route::get('/show/{id}', [GalleryController::class, 'show'])->name('gallery.show');
 });
 
 //Admin Route

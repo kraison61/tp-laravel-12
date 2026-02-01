@@ -7,7 +7,7 @@
     <div class="container">
         <div class="title-base">
             <hr class="anima" />
-            <h1>เกี่ยวกับ บริษัท ธีรพงษ์เซอร์วิส จำกัด (Theeraphong Co., Ltd.)</h1>
+            <h1>เกี่ยวกับ บริษัท ธีรพงษ์เซอร์วิส จำกัด</h1>
             <p>จากจุดเริ่มต้นเล็กๆ ในฐานะทีมรับเหมาก่อสร้างทั่วไป ที่มุ่งมั่นทำงานด้วยความมานะและซื่อสัตย์ เราใช้เวลาและความทุ่มเทสั่งสมประสบการณ์จากหน้างานจริง จนในวันนี้ บริษัท ธีรพงษ์เซอร์วิส จำกัด เติบโตสู่การเป็นผู้เชี่ยวชาญเฉพาะด้านในงานโครงสร้างพื้นฐานและงานตกแต่งรอบตัวอาคาร เราภูมิใจที่ได้เป็นส่วนหนึ่งในการสร้างรากฐานที่มั่นคงให้กับบ้านและโครงการของลูกค้ามากมาย</p>
         </div>
     </div>
@@ -15,12 +15,15 @@
 <div class="section-empty">
     <div class="container content">
         <div class="row proporzional-row">
-            <div class="col-md-4 boxed white middle-content">
+            {{-- <div class="col-md-4 boxed white middle-content">
                 <p>
                     Aiusmod tempor incididunt utlabore et dolore magna aliqua.
                     Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
                     in voluptate velit esse cillum dolore.
                 </p>
+            </div> --}}
+            <div class="col-md-4" >
+                <img src="https://minio.speedynetloans.net/theeraphong/about/194914_0.jpg" alt="" width="100%">
             </div>
             <div class="col-md-8">
                 <hr class="space m visible-sm" />
@@ -38,30 +41,27 @@
             <div class="col-md-4">
                 <div class="advs-box advs-box-top-icon boxed-inverse text-left">
                     <i class="fa fa-paper-plane-o icon circle anima"></i>
-                    <h3>Web oriented</h3>
+                    <h3>ซื่อสัตย์และโปร่งใส (Honest & Transparent)</h3>
                     <p>
-                        Interdum iusto pulvinar consequuntur augue optio repellat fuga hurus expedita tempo est odito.
-                        Optio laboriosam! A fugit ea congue. Necessitatibus pede earum aute atque.
+                        เรายึดถือความสัตย์จริงเป็นหัวใจในการทำธุรกิจ ประเมินราคาตามจริง วัสดุตรงสเปก ไม่มีค่าใช้จ่ายแอบแฝง เพื่อให้ลูกค้ามั่นใจได้ว่าจะได้รับความคุ้มค่าสูงสุดและผลงานที่ไม่มีการทิ้งงาน
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="advs-box advs-box-top-icon boxed-inverse text-left">
                     <i class="fa fa-commenting-o icon circle anima"></i>
-                    <h3>We love ideas</h3>
+                    <h3>เอาใจใส่ทุกรายละเอียด (Meticulous Care)</h3>
                     <p>
-                        Interdum iusto pulvinar consequuntur augue optio repellat fuga hurus expedita tempo est odito.
-                        Optio laboriosam! A fugit ea congue. Necessitatibus pede earum aute atque.
+                        เราดูแลงานเสมือนเป็นบ้านของเราเอง ตั้งแต่การถมที่ดินจนถึงการเทพื้นคอนกรีตและการเก็บงานรั้ว ใส่ใจในทุกจุดเชื่อมต่อเพื่อให้ได้ผลงานที่แข็งแรง ทนทาน และสวยงามตามความต้องการของลูกค้า
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="advs-box advs-box-top-icon boxed-inverse text-left">
                     <i class="fa fa-wpexplorer icon circle anima"></i>
-                    <h3>Long experience</h3>
+                    <h3>ความเชี่ยวชาญเฉพาะด้าน (Specialized Expertise)</h3>
                     <p>
-                        Interdum iusto pulvinar consequuntur augue optio repellat fuga hurus expedita tempo est odito.
-                        Optio laboriosam! A fugit ea congue. Necessitatibus pede earum aute atque.
+                        จากจุดเริ่มต้นเล็กๆ สู่ความเชี่ยวชาญในการแก้ปัญหาหน้างานจริงกว่า 20 ปี เราคือมืออาชีพในงานกำแพงกันดิน รั้วสำเร็จรูป และงานฐานรากที่พร้อมส่งมอบมาตรฐานวิศวกรรมในทุกโปรเจกต์
                     </p>
                 </div>
             </div>
@@ -85,14 +85,10 @@
                 <hr class="space visible-sm" />
                 <div class="flexslider slider nav-inner white" data-options="controlNav:true,directionNav:true">
                     <ul class="slides">
+
                         <li>
                             <a class="img-box lightbox" href="">
-                                <img src="../images/image-1.jpg" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a class="img-box lightbox" href="">
-                                <img src="../images/image-7.jpg" alt="">
+                                <img src="https://minio.speedynetloans.net/theeraphong/about/194911_0.jpg" alt="">
                             </a>
                         </li>
                     </ul>

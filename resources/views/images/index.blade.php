@@ -14,7 +14,7 @@
                     </div>
                     <x-media-service />
                 </div>
-                <livewire:photo-gallery />
+                <livewire:photo-gallery :id="$id" />
             </div>
         </div>
     </div>

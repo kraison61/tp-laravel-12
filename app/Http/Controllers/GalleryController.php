@@ -10,12 +10,9 @@ class GalleryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id = null)
     {
-        //
-        // $images=ImageUpload::latest()->paginate(15);
-        // return view('images.index',compact('images'));
-        return view('images.index');
+        return view('images.index', ['id' => $id]);
     }
 
     /**
