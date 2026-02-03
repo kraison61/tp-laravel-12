@@ -15,4 +15,7 @@ class ServiceCategory extends Model
     public function getRouteKeyName(){
         return 'slug';
     }
+    public function blogs(){
+        return $this->hasMany(Blog::class,'service_id');
+    }
 }

@@ -10,11 +10,22 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id = null)
     {
         //
-        $images = Blog::latest()->paginate(8);
-        return view('blogs.index',compact('images'));
+        if($id){
+            $blogs = Blog::where('service_id', $id)->latest()->paginate(8);
+            
+        }
+        else{
+            $blogs = Blog::latest()->paginate(8);
+        }
+        $allBlogs = Blog::latest()
+            ->get()
+            ->unique('service_id')
+            ->take(4);
+        return view('blogs.index',compact('blogs','allBlogs'));
+        
     }
 
     /**

@@ -8,6 +8,6 @@ class Blog extends Model
 {
     public function serviceCategory()
     {
-        return $this->belongsTo(ServiceCategory::class);
+        return $this->belongsTo(ServiceCategory::class,"service_id");
     }
 }
