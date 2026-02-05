@@ -13,8 +13,9 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $servicecategories=ServiceCategory::select('name', 'slug')->get();
-        return view('admin.index',compact('servicecategories'));
+        // $servicecategories=ServiceCategory::select('name', 'slug')->get();
+        // return view('admin.index',compact('servicecategories'));
+        return view('admin.index');
     }
 
     /**

@@ -1,6 +1,6 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
-@section('title','Services one - Yellow Business Company');
+@section('title','งานรับเหมาก่อสร้างที่ บ.ธีรพงษ์เซอร์วิส จำกัด ให้บริการ')
 
 @section('content')
 <div class="header-base">
@@ -8,159 +8,53 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="title-base text-left">
-                    <h1>Services one</h1>
-                    <p>Services and skills of the Yellow Business and business company.</p>
+                    <h1>เลือกบริการที่ตอบโจทย์คุณ</h1>
+                    <p>ยินดีต้อนรับสู่บริการงานวิศวกรรมฐานรากและรั้วรอบขอบชิด เราคือผู้เชี่ยวชาญด้านการจัดการพื้นที่ต่างระดับและการล้อมรั้วมาตรฐานสูง โดยเน้นความแข็งแรงทนทานในราคาที่ยุติธรรม</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <ol class="breadcrumb b white">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Pages</a></li>
-                    <li class="active">Services</li>
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li class="active">บริการ</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
 <div class="section-empty section-item">
-    <div class="container content">
-        <div class="row vertical-row">
-            <div class="col-md-5">
-                <img src="../images/mk-8.png" alt="" />
+    <div class="content container">
+        <div class="maso-list  list-sm-6">
+            <div class="maso-box row" data-lightbox-anima="fade-top">
+
+                @foreach ($services as $item)
+                <div class="maso-item col-md-4 col-sm-6">
+                    <div class="img-box adv-img adv-img-classic-box">
+                        <a class="img-box" target="_blank" href="{{route('service.show',$item->category->slug)}}">
+                            <img src="{{ asset('storage/'.$item->img_1) }}" alt="">
+                        </a>
+                        <div class="caption">
+                            <div class="caption-inner">
+                                <h2>{{ $item->title }}</h2>
+                                <p class="sub-text">{{ $item->category->name }}</p>
+                                <p class="big-text">
+                                    {{ $item->description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                <div class="clear"></div>
             </div>
-            <div class="col-md-7">
-                <div class="title-base text-left">
-                    <hr />
-                    <h2>Interior design</h2>
-                    <p>Super solutions</p>
-                </div>
-                <p>
-                    Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-                    cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh
-                    pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Sed porttitor lectus nibh. Proin eget tortor risus.
-                    Praesent sapien massa.
-                </p>
-                <hr class="space s" />
-                <div class="row vertical-row">
-                    <div class="col-md-9">
-                        <table class="grid-table border-table text-left">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4 class="text-color text-m">Starter plan</h4>
-                                        <h5>From $15.000</h5>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-color text-m">Family plan</h4>
-                                        <h5>From $30.000</h5>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-color text-m">Business plan</h4>
-                                        <h5>From $90.000</h5>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Informations</a>
-                    </div>
-                </div>
+            <div class="list-nav">
+                <a href="#" class="btn btn-sm circle-button load-more-maso" data-pagination-anima="fade-bottom" data-page-items="9">
+                    Load More
+                    <i class="fa fa-arrow-down"></i>
+                </a>
             </div>
         </div>
-        <hr class="space" />
-        <div class="row vertical-row" data-anima="fade-bottom">
-            <div class="col-md-7">
-                <div class="title-base text-left">
-                    <hr />
-                    <h2>Renovation and buildings</h2>
-                    <p>Cheap prices</p>
-                </div>
-                <p>
-                    Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-                    cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh
-                    pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Sed porttitor lectus nibh. Proin eget tortor risus.
-                    Praesent sapien massa, convallis neo.
-                </p>
-                <hr class="space s" />
-                <div class="row vertical-row">
-                    <div class="col-md-9">
-                        <table class="grid-table border-table text-left">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4 class="text-color text-m">Small flat</h4>
-                                        <h5>From $7.000</h5>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-color text-m">Homes</h4>
-                                        <h5>From $10.000</h5>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-color text-m">Villas</h4>
-                                        <h5>From $25.000</h5>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Contact us</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5 text-right">
-                <img src="../images/mk-9.png" alt="" />
-            </div>
-        </div>
-        <hr class="space" />
-        <div class="row vertical-row" data-anima="fade-bottom">
-            <div class="col-md-5">
-                <img src="../images/mk-10.png" alt="" />
-            </div>
-            <div class="col-md-7">
-                <div class="title-base text-left">
-                    <hr />
-                    <h2>Outdoor and gardening</h2>
-                    <p>Green technologies</p>
-                </div>
-                <p>
-                    Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-                    cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh
-                    pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Sed porttitor lectus nibh. Proin eget tortor risus.
-                    Praesent sapien massa, convallis a pellentesque.
-                </p>
-                <hr class="space s" />
-                <div class="row vertical-row">
-                    <div class="col-md-9">
-                        <table class="grid-table border-table text-left">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4 class="text-color text-m">Small areas</h4>
-                                        <h5>From $1.000</h5>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-color text-m">Medium areas</h4>
-                                        <h5>From $2.000</h5>
-                                    </td>
-                                    <td>
-                                        <h4 class="text-color text-m">Large areas</h4>
-                                        <h5>From $10.000</h5>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Informations</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <hr class="space m" />
     </div>
 </div>
 <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>

@@ -1,41 +1,46 @@
 <?php
 
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Front\HomeController as FrontHomeController;
+use App\Http\Controllers\Front\PageController as FrontPageController;
+use App\Http\Controllers\Front\BlogController as FrontBlogController;
+use App\Http\Controllers\Front\GalleryController as FrontGalleryController;
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
-Route::get('/', [HomeController::class,'home'])->name('home');
-Route::get('/contact-us', [HomeController::class,'contactUs'])->name('contact.index');
-Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about.index');
+Route::get('/', [FrontHomeController::class,'index'])->name('home');
+Route::get('/contact-us', [FrontHomeController::class,'contactUs'])->name('contact');
+Route::get('/about-us', [FrontHomeController::class,'aboutUs'])->name('about');
 
 
 
 
 // Gallery Routes
 Route::prefix('gallery')->group(function(){
-    Route::get('/{id?}', [GalleryController::class, 'index'])->name('gallery.index');
-    // Route::get('/show/{id}', [GalleryController::class, 'show'])->name('gallery.show');
+    Route::get('/{id?}', [FrontGalleryController::class, 'index'])->name('gallery.index');
 });
 
 //Admin Route
 Route::prefix('admin')->group(function(){
-    Route::get('/',[AdminController::class,'index'])->name('gallery.index');
+    Route::get('/',[AdminController::class,'index'])->name('admin.index');
+    Route::get('/',[AdminController::class,'index'])->name('admin.index');
+    Route::get('/',[AdminController::class,'index'])->name('admin.index');
 });
 
 
 // Blog Routes
 Route::prefix('blog')->group(function(){
-    Route::get('/',[BlogController::class,'index'])->name('blog.index');
-    Route::get('/category/{id}',[BlogController::class,'index'])->name('blog.filter');
-    
-    Route::get('/{id}',[BlogController::class,'show'])->name('blog.show');
+    Route::get('/',[FrontBlogController::class,'index'])->name('blog.index');
+    Route::get('/category/{id}',[FrontBlogController::class,'index'])->name('blog.filter');
+    Route::get('/{id}',[FrontBlogController::class,'show'])->name('blog.show');
 });
 
 
 //  Route ที่เป็นตัวแปรแบบกว้างมากๆ ({slug}) "ต้องอยู่ล่างสุดเสมอ"
-Route::get('/{slug}', [PageController::class,'show'])->name('service.show');
+Route::prefix('services')->group(function(){
+    Route::get('/', [FrontPageController::class,'index'])->name('services.index');
+    Route::get('/calculate', [FrontHomeController::class,'soilCalculate'])->name('calculate');
+});
+Route::get('/{slug}', [FrontPageController::class,'show'])->name('service.show');

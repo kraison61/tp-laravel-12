@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-center text-left">
-                    <img width="120" src="{{ asset('images/img-tp-logo.png') }}" alt="" />
+                    <img width="120" src="{{ asset('storage/images/img-tp-logo.png') }}" alt="theeraphong-service-logo" />
                     <hr class="space m" />
                     <p class="text-s">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</p>
                     <div class="tag-row text-s">
@@ -32,16 +32,15 @@
                         <div class="col-md-4 text-s">
                             <h3>เมนู</h3>
                             <a href="/">Home</a><br />
-                            <a href="#">บริการ</a><br />
+                            <a href="{{ route('services.index') }}">บริการ</a><br />
                             <a href="{{ route('gallery.index') }}">ภาพ & วิดีโอ</a><br />
                             <a href="{{ route('blog.index') }}">บทความ</a><br />
-                            <a href="{{ route('contact.index') }}">ติดต่อเรา</a><br />
+                            <a href="{{ route('contact') }}">ติดต่อเรา</a><br />
 
                         </div>
                         <div class="col-md-8 text-s">
                             <h3>บริการ</h3>
                             <div class="row">
-
                                 {{-- คอลัมน์ซ้าย (6/12) --}}
                                 <div class="col-md-6 col-12 column-left">
                                     @foreach ($columnLeft as $service)
@@ -58,8 +57,10 @@
                                             <a href="{{ route('service.show',$service->category->slug) }}"> {{ $service->category->name ?? 'บริการ' }}</a>
                                         </div>
                                     @endforeach
+                                    <div class="service-item mb-3">
+                                        <a href="{{ route('calculate') }}">คำนวณปริมาณดินถม</a>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

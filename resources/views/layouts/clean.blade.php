@@ -58,6 +58,7 @@
     <script src="{{ asset('HTWF/scripts/smooth.scroll.min.js') }}"></script>
     <script src="{{ asset('script.js') }}"></script>
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

@@ -4,8 +4,8 @@
         @foreach ($images as $item)
             <li>
                 {{-- href คือรูปใหญ่ที่จะเด้งขึ้นมา --}}
-                <a href="{{ asset($item->img_url) }}" data-lightbox-anima="show-scale">
-                    <img class="ratio-16-9" src="{{ asset($item->img_url) }}" alt="">
+                <a href="{{ asset('storage/'.$item->img_url) }}" data-lightbox-anima="show-scale">
+                    <img class="ratio-16-9" src="{{ asset('storage/'.$item->img_url) }}" alt="{{ $item->category->name.'-'.$item->id }}">
                 </a>
             </li>
         @endforeach

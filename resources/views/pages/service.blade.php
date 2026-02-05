@@ -24,7 +24,7 @@
         <div class="row vertical-row">
             <div class="col-md-5">
                 <!-- <img src="../images/mk-8.png" alt="" /> -->
-                <img class="rounded" src="{{ asset($service->services->first()->img_1) }}" alt="" />
+                <img class="rounded" src="{{ asset('storage/'.$service->services->first()->img_1) }}" alt="" />
             </div>
             <div class="col-md-7">
                 <div class="title-base text-left">
@@ -54,34 +54,9 @@
             </div>
             <div class="col-md-5 text-right">
                 <!-- <img src="../images/mk-9.png" alt="" /> -->
-                <img src="{{ asset($service->services->first()->img_2) }}" alt="" />
+                <img src="{{ asset('storage/'.$service->services->first()->img_2) }}" alt="" />
             </div>
-        </div>
-        <div class="row vertical-row">
-            <div class="col-md-9">
-                <table class="grid-table border-table text-left">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <h4 class="text-color text-m">Small areas</h4>
-                                <h5>From $1.000</h5>
-                            </td>
-                            <td>
-                                <h4 class="text-color text-m">Medium areas</h4>
-                                <h5>From $2.000</h5>
-                            </td>
-                            <td>
-                                <h4 class="text-color text-m">Large areas</h4>
-                                <h5>From $10.000</h5>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-3">
-                <a href="#" class="circle-button btn-border btn btn-sm nav-justified">Informations</a>
-            </div>
-        </div>
+        </div></div>
         <hr class="space" />
     </div>
 </div>

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'หน้าแรก')
+@section('description','ข่องทางการติดต่อเพื่อขอรับบริการ และให้คำปรึกษากับบริษัทธีรพงษ์เซอร์วิส จำกัด')
 
 @section('content')
     <div class="section-empty">
@@ -17,14 +18,14 @@
 
                     <a href="https://line.me/ti/p/h9SHumuTEB">
                     <p>ไลน์ไอดี : 0627188847</p>
-                    <img class="img-rounded" width="30%" height="auto" src="{{asset('images/lineid.webp')}}" alt="lineID" />
+                    <img class="img-rounded" width="30%" height="auto" src="{{asset('storage/images/lineid.webp')}}" alt="lineID" />
                     </a>
-                    
+
                     <p>
                         บริษัท ธีรพงษ์เซอร์วิส ยินดีให้บริการ
                     </p>
                     <hr class="space s" />
-                   <p class="">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000<br />062-718-8847 หรือ 087-700-7463<br />theeraphong.services@gmail.com</p> 
+                   <p class="">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000<br />062-718-8847 หรือ 087-700-7463<br />theeraphong.services@gmail.com</p>
                     <hr class="space m" />
                 </div>
             </div>

@@ -38,8 +38,8 @@ $columnRight = $allServices->skip($leftCount);
                     </button>
                     <a class="navbar-brand" href="{{ route('home') }}" style="height:110px">
                         <!-- <img class="logo-default" src="../images/logo.png" alt="logo" /> -->
-                        <img class="logo-default" src="{{ asset('images/tp-logo.svg') }}" alt="logo" />
-                        <img class="logo-retina" src="{{ asset('images/logo-retina.png') }}" alt="logo" />
+                        <img class="logo-default" src="{{ asset('storage/images/tp-logo.svg') }}" alt="logo" />
+                        <img class="logo-retina" src="{{ asset('storage/images/logo-retina.png') }}" alt="logo" />
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
@@ -68,6 +68,7 @@ $columnRight = $allServices->skip($leftCount);
                                             <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                         </li>
                                         @endforeach
+                                        <li><a href="{{ route('calculate') }}">คำนวณปริมาณดินถม</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -81,32 +82,33 @@ $columnRight = $allServices->skip($leftCount);
                             <a href="{{ route('blog.index')}}" class="" data-toggle="dropdown" role="button">บทความ </a>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
-                            <a class="" data-toggle="dropdown" href="{{route('contact.index')}}">ติดต่อเรา</a>
+                            <a class="" data-toggle="dropdown" href="{{route('contact')}}">ติดต่อเรา</a>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
-                            <a class="" data-toggle="dropdown" href="{{route('about.index')}}">เกี่ยวกับเรา</a>
+                            <a class="" data-toggle="dropdown" href="{{route('about')}}">เกี่ยวกับเรา</a>
                         </li>
                     </ul>
-                    <div class="nav navbar-nav navbar-right">
-                        <div class="search-box-menu">
-                            <div class="search-box scrolldown">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                            </div>
-                            <button type="button" class="btn btn-default btn-search">
-                                <span class="fa fa-search"></span>
-                            </button>
-                            <!-- @guest
-                            <button type="button" class="btn btn-primary">
-                                Login
-                            </button>
-                            @else
-                            <button type="button" class="btn btn-primary">
-                                Logout
-                            </button>
-                            @endguest -->
 
+                    {{-- Admin  --}}
+
+                    @if(request()->is('admin*'))
+                        <div class="collapse navbar-collapse" id="admin-navbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-user"></i> Admin <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Change Password</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
+                    @endif
+
                 </div>
             </div>
         </div>

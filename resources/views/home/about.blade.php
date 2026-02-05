@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'หน้าแรก')
+@section('title', 'เกี่ยวกับเรา | บริษัทธีรพงษ์เซอร์วิส จำกัด ผู้เชี่ยวชาญงานฐานรากและงานรับเหมาก่อสร้างอย่างมืออาชีพ')
+@section('description','รู้จักกับบริษัทธีรพงษ์เซอร์วิส จำกัด ทีมช่างผู้ชำนาญการด้านงานกดเสาเข็ม ถมดิน และงานกำแพงกันดิน ด้วยประสบการณ์ตรงจากหน้างานจริงและเครื่องจักรที่ทันสมัย มุ่งมั่นส่งมอบงานคุณภาพที่แข็งแรงและได้มาตรฐาน')
 
 @section('content')
 <div class="header-title ken-burn white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920" data-image-src="{{asset('images/bg-about.jpg')}}">
