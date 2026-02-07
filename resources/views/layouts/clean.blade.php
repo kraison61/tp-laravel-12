@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/font-awesome/css/font-awesome.css') }}">
-    <link rel="icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('storage/images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('skin.css') }}">
     <link rel="stylesheet" href="{{ asset('custom.css') }}">
     @livewireStyles

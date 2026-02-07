@@ -32,9 +32,9 @@
                     <h2>{{ $service->services->first()->top_1 }}</h2>
                     <p>Super solutions</p>
                 </div>
-                <p>
+
                     {!! $service->services->first()->content_1 !!}
-                </p>
+
                 <hr class="space s" />
 
             </div>
@@ -47,9 +47,9 @@
                     <h2>{{ $service->services->first()->top_2 }}</h2>
                     <p>Cheap prices</p>
                 </div>
-                <p>
+
                     {!! $service->services->first()->content_2 !!}
-                </p>
+
                 <hr class="space s" />
             </div>
             <div class="col-md-5 text-right">

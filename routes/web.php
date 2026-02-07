@@ -31,10 +31,10 @@ Route::prefix('admin')->group(function(){
 
 
 // Blog Routes
-Route::prefix('blog')->group(function(){
+Route::prefix('blogs')->group(function(){
     Route::get('/',[FrontBlogController::class,'index'])->name('blog.index');
     Route::get('/category/{id}',[FrontBlogController::class,'index'])->name('blog.filter');
-    Route::get('/{id}',[FrontBlogController::class,'show'])->name('blog.show');
+    Route::get('/{blog}',[FrontBlogController::class,'show'])->name('blog.show');
 });
 
 

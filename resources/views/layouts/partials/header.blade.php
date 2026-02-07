@@ -11,13 +11,13 @@ $columnRight = $allServices->skip($leftCount);
         <div class="navbar-mini scroll-hide">
             <div class="container">
                 <div class="nav navbar-nav navbar-left">
-                    <span><i class="fa fa-phone"></i>062-718-8847</span>
+                    <span><i class="fa fa-phone"></i><a href="tel:0627188847">062-718-8847</a></span>
                     <hr />
-                    <span><i class="fa fa-envelope"></i>theeraphong.services@gmail.com</span>
+                    <span><i class="fa fa-envelope"></i><a href="mailto:theeraphong.services@gmail.com?subject=สอบถามข้อมูล&body=สวัสดี">theeraphong.services@gmail.com</a> </span>
                     <hr />
                     <span><i class="fa fa-calendar"></i>Mon - Sat: 8.00 - 19:00</span>
                     <br />
-                    <span> <i class="fa fa-map-marker"></i>14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</span>
+                    <span> <i class="fa fa-map-marker"></i><a target="_blank" href="https://maps.app.goo.gl/PDdQwoC1tNFMiKnu6">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</a></span>
 
                 </div>
                 <div class="nav navbar-nav navbar-right">

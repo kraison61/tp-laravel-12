@@ -12,10 +12,10 @@
                 <div class="col-md-4 footer-center text-left">
                     <img width="120" src="{{ asset('storage/images/img-tp-logo.png') }}" alt="theeraphong-service-logo" />
                     <hr class="space m" />
-                    <p class="text-s">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</p>
+                    <p class="text-s"><a target="_blank" href="https://maps.app.goo.gl/PDdQwoC1tNFMiKnu6">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</a></p>
                     <div class="tag-row text-s">
-                        <span>theeraphong.services@gmail.com</span>
-                        <span>062-718-8847</span>
+                        <span><a href="mailto:theeraphong.services@gmail.com?subject=สอบถามข้อมูล&body=สวัสดี">theeraphong.services@gmail.com</a></span>
+                        <span><a href="tel:0627188847">062-718-8847</a></span>
                     </div>
                     <hr class="space m" />
                     <div class="btn-group social-group btn-group-icons">

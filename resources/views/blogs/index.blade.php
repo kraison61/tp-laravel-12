@@ -29,7 +29,7 @@
                                         </div>
                                         <a class="block-comment" href="#">2 <i class="fa fa-comment-o"></i></a>
                                     </div>
-                                    <a class="img-box ratio-16-9" href="{{ route('blog.show',$item->id)}}"><img class="anima" src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" /></a>
+                                    <a class="img-box ratio-16-9" href="{{ route('blog.show',$item->slug)}}"><img class="anima" src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" /></a>
                                     <div class="advs-box-content">
                                         <h2 class="text-m"><a href="#">{{ Str::limit($item->title, 30) }}</a></h2>
                                         <div class="tag-row">

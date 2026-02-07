@@ -27,9 +27,11 @@ class BlogController extends Controller
 
     }
 
-    public function show(string $id)
+    // public function show(string $id)
+    public function show(Blog $blog)
     {
-        $blog=Blog::findOrFail($id);
+        // $blog=Blog::findOrFail($id);
+        // return view('blogs.show',compact('blog'));
         return view('blogs.show',compact('blog'));
     }
 }
