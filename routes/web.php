@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +7,8 @@ use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PageController as FrontPageController;
 use App\Http\Controllers\Front\BlogController as FrontBlogController;
 use App\Http\Controllers\Front\GalleryController as FrontGalleryController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
 Route::get('/', [FrontHomeController::class,'index'])->name('home');
@@ -25,8 +26,8 @@ Route::prefix('gallery')->group(function(){
 //Admin Route
 Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('admin.index');
-    Route::get('/',[AdminController::class,'index'])->name('admin.index');
-    Route::get('/',[AdminController::class,'index'])->name('admin.index');
+    Route::get('/services',[AdminServiceController::class,'index'])->name('admin.service.index');
+    Route::get('/blogs',[FrontBlogController::class,'index'])->name('admin.blog.index');
 });
 
 

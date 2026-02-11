@@ -1,22 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'ข่าว และบทความ')\
+@section('title', 'Admin Page Management')
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-sm-3 col-md-2">
-                <ul class="nav nav-pills nav-stacked text-left">
-                    <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                    <li><a href="#"><i class="fa fa-file-text"></i> Articles</a></li>
-                    <li><a href="#"><i class="fa fa-file-text"></i> Images</a></li>
-                    <li><a href="#"><i class="fa fa-tags"></i> Categories</a></li>
-                    <li><a href="#"><i class="fa fa-image"></i> Page</a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> Users</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                </ul>
-            </div>
+            @include('admin.layouts.partials.sidebar')
 
 
             <!-- Main Content -->
