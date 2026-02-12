@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Blog;
+
 class BlogController extends Controller
 {
     /**
@@ -12,7 +14,21 @@ class BlogController extends Controller
      */
     public function index()
     {
-       
+        $columns = ['service_category_id', 'title', 'description','image','slug'];
+        $data = Blog::select($columns)->with('serviceCategory')->get();
+        $headers = [
+            'service_category_id' => 'หมวดหมู่',
+            'title' => 'Title',
+            'description' => 'Description',
+            'image' => 'รูปภาพ',
+            'slug' => 'Slug-SEO',
+        ];
+        // dd($data);
+        return view('admin.index',[
+            'title' => 'Admin-Service',
+            'data' => $data,
+            'headers' => $headers
+        ]);
     }
 
     /**

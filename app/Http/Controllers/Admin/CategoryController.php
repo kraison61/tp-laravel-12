@@ -3,16 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+
+
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.services.index');
+        $columns = ['id', 'name', 'slug'];
+        $data = ServiceCategory::select($columns)->get();
+        $headers = [
+            'id' => 'id',
+            'name' => 'ชื่อ',
+            'slug' => 'Slug-SEO'
+        ];
+        // dd($data);
+        return view('admin.index',[
+            'title' => 'Admin-ServiceCategories',
+            'data' => $data,
+            'headers' => $headers
+        ]);
     }
 
     /**

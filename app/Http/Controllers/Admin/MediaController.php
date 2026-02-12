@@ -12,7 +12,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.index',[
+            'title' => 'Admin-Media'
+        ]);
     }
 
     /**

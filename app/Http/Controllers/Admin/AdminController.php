@@ -12,10 +12,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
-        // $servicecategories=ServiceCategory::select('name', 'slug')->get();
-        // return view('admin.index',compact('servicecategories'));
-        return view('admin.index');
+        return view('admin.index',[
+            'title' => 'Admin-Dashboard',
+        ]);
     }
 
     /**

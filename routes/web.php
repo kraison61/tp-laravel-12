@@ -8,6 +8,8 @@ use App\Http\Controllers\Front\PageController as FrontPageController;
 use App\Http\Controllers\Front\BlogController as FrontBlogController;
 use App\Http\Controllers\Front\GalleryController as FrontGalleryController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
@@ -27,13 +29,15 @@ Route::prefix('gallery')->group(function(){
 Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('admin.index');
     Route::get('/services',[AdminServiceController::class,'index'])->name('admin.service.index');
-    Route::get('/blogs',[FrontBlogController::class,'index'])->name('admin.blog.index');
+    Route::get('/blogs',[AdminBlogController::class,'index'])->name('admin.blog.index');
+    Route::get('/categories',[AdminCategoryController::class,'index'])->name('admin.category.index');
+
 });
 
 
 // Blog Routes
 Route::prefix('blogs')->group(function(){
-    Route::get('/',[FrontBlogController::class,'index'])->name('blog.index');
+    Route::get('/',[AdminController::class,'index'])->name('blog.index');
     Route::get('/category/{id}',[FrontBlogController::class,'index'])->name('blog.filter');
     Route::get('/{blog}',[FrontBlogController::class,'show'])->name('blog.show');
 });
