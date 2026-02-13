@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PageController as FrontPageController;
 use App\Http\Controllers\Front\BlogController as FrontBlogController;

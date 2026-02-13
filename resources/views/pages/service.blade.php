@@ -24,7 +24,8 @@
         <div class="row vertical-row">
             <div class="col-md-5">
                 <!-- <img src="../images/mk-8.png" alt="" /> -->
-                <img class="rounded" src="{{ asset('storage/'.$service->services->first()->img_1) }}" alt="" />
+                {{-- <img class="rounded" src="{{ asset('storage/'.$service->services->first()->img_1) }}" alt="" /> --}}
+                <img class="rounded" src="{{ Storage::url($service->services->first()->img_1) }}" alt="" />
             </div>
             <div class="col-md-7">
                 <div class="title-base text-left">

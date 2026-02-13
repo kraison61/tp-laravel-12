@@ -4,27 +4,27 @@
 @section('description','รู้จักกับบริษัทธีรพงษ์เซอร์วิส จำกัด ทีมช่างผู้ชำนาญการด้านงานกดเสาเข็ม ถมดิน และงานกำแพงกันดิน ด้วยประสบการณ์ตรงจากหน้างานจริงและเครื่องจักรที่ทันสมัย มุ่งมั่นส่งมอบงานคุณภาพที่แข็งแรงและได้มาตรฐาน')
 
 @section('content')
-<div class="header-title ken-burn white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920" data-image-src="{{asset('images/bg-about.jpg')}}">
+
+<div class="header-base">
     <div class="container">
-        <div class="title-base">
-            <hr class="anima" />
-            <h1>เกี่ยวกับ บริษัท ธีรพงษ์เซอร์วิส จำกัด</h1>
-            <p>จากจุดเริ่มต้นเล็กๆ ในฐานะทีมรับเหมาก่อสร้างทั่วไป ที่มุ่งมั่นทำงานด้วยความมานะและซื่อสัตย์ เราใช้เวลาและความทุ่มเทสั่งสมประสบการณ์จากหน้างานจริง จนในวันนี้ บริษัท ธีรพงษ์เซอร์วิส จำกัด เติบโตสู่การเป็นผู้เชี่ยวชาญเฉพาะด้านในงานโครงสร้างพื้นฐานและงานตกแต่งรอบตัวอาคาร เราภูมิใจที่ได้เป็นส่วนหนึ่งในการสร้างรากฐานที่มั่นคงให้กับบ้านและโครงการของลูกค้ามากมาย</p>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>เกี่ยวกับ บริษัท ธีรพงษ์เซอร์วิส จำกัด</h1>
+                    <p>จากจุดเริ่มต้นเล็กๆ ในฐานะทีมรับเหมาก่อสร้างทั่วไป ที่มุ่งมั่นทำงานด้วยความมานะและซื่อสัตย์ เราใช้เวลาและความทุ่มเทสั่งสมประสบการณ์จากหน้างานจริง จนในวันนี้ บริษัท ธีรพงษ์เซอร์วิส จำกัด เติบโตสู่การเป็นผู้เชี่ยวชาญเฉพาะด้านในงานโครงสร้างพื้นฐานและงานตกแต่งรอบตัวอาคาร เราภูมิใจที่ได้เป็นส่วนหนึ่งในการสร้างรากฐานที่มั่นคงให้กับบ้านและโครงการของลูกค้ามากมาย</p>
+                </div>
+            </div>
+            <x-breadcrumb>เกี่ยวกับเรา</x-breadcrumb>
         </div>
     </div>
 </div>
+
+
 <div class="section-empty">
     <div class="container content">
         <div class="row proporzional-row">
-            {{-- <div class="col-md-4 boxed white middle-content">
-                <p>
-                    Aiusmod tempor incididunt utlabore et dolore magna aliqua.
-                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                    in voluptate velit esse cillum dolore.
-                </p>
-            </div> --}}
             <div class="col-md-4" >
-                <img src="https://minio.speedynetloans.net/theeraphong/about/194914_0.jpg" alt="" width="100%">
+                <img src="{{ asset('storage/images/about/194914_0.jpg') }}" alt="" width="100%">
             </div>
             <div class="col-md-8">
                 <hr class="space m visible-sm" />
@@ -80,20 +80,9 @@
                     นอกจากนี้ เรายังมีทีมงานที่พร้อมลุยงานหนักอย่าง "งานถมที่ดิน" และ "งานเทพื้นคอนกรีต" ทุกรูปแบบ ไม่ว่าจะเป็นพื้นที่ขนาดเล็กหรือโครงการขนาดใหญ่ เราคัดสรรวัสดุที่มีคุณภาพมาตรฐานสูงสุดในราคาที่สมเหตุสมผล เพื่อให้มั่นใจว่าพื้นทุกตารางเมตรจะรองรับน้ำหนักและทนทานต่อสภาพอากาศได้ดีเยี่ยม บริการของเราคือการส่งมอบงานคุณภาพที่เบ็ดเสร็จในที่เดียว (One-Stop Service) ตั้งแต่การปรึกษา วางแผน ไปจนถึงการส่งมอบงานที่สมบูรณ์แบบ หากคุณกำลังมองหาผู้รับเหมาที่เป็นงานจริง รู้ลึกถึงหน้างาน และพร้อมให้คำปรึกษาด้วยใจจริง บริษัท ธีรพงษ์เซอร์วิส จำกัด คือคำตอบที่คุณมั่นใจได้ 100%
                 </p>
                 <hr class="space xs" />
-                <a href="#" class="btn btn-sm">Read all details of our company</a>
             </div>
-            <div class="col-md-4 col-sm-12">
-                <hr class="space visible-sm" />
-                <div class="flexslider slider nav-inner white" data-options="controlNav:true,directionNav:true">
-                    <ul class="slides">
-
-                        <li>
-                            <a class="img-box lightbox" href="">
-                                <img src="https://minio.speedynetloans.net/theeraphong/about/194911_0.jpg" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-md-4" >
+                <img src="{{ asset('storage/images/about/194911_0.jpg') }}" alt="" width="100%">
             </div>
         </div>
     </div>

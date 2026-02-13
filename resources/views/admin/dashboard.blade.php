@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Admin Blog Management')
+@section('title', 'Admin Dashboard')
 
 
 @section('content')
@@ -9,14 +9,13 @@
             <!-- Sidebar -->
             @include('admin.layouts.partials.sidebar')
 
+
             <!-- Main Content -->
             <div class="col-sm-9 col-md-10">
                 <h1>{{$title}}</h1>
-                @if (isset($data) && isset($headers))
                 <div class="row text-left">
-                    <x-table-component :data="$data" :headers="$headers" />
+
                 </div>
-                @endif
             </div>
         </div>
     </div>
