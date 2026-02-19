@@ -4,7 +4,12 @@
         @yield('title')
     @endsection
 
+
    @section('child-description', $__env->yieldContent('description'))
+
+   @section('child-image')
+    @yield('image')
+   @endsection
 
     @section('child-content')
         @include('layouts.partials.header')
