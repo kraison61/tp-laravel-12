@@ -56,7 +56,7 @@ $columnRight = $allServices->skip($leftCount);
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnLeft as $item)
                                         <li>
-                                            <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                            <a href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                         </li>
                                         @endforeach
                                     </ul>
@@ -65,7 +65,7 @@ $columnRight = $allServices->skip($leftCount);
                                     <ul class="fa-ul no-icons text-s">
                                         @foreach ($columnRight as $item)
                                         <li>
-                                            <a target="_blank" href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
+                                            <a href="/{{ $item->category->slug }}">{{ Str::limit($item->category->name, 20, '...') }}</a>
                                         </li>
                                         @endforeach
                                         <li><a href="{{ route('calculate') }}">คำนวณปริมาณดินถม</a></li>

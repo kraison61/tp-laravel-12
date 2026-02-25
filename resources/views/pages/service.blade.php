@@ -3,46 +3,85 @@
 @php
     // 1. ดึงข้อมูลตัวแรกมาเก็บไว้ก่อน เพื่อป้องกัน Error และลดการเขียนซ้ำ
     $item = $service->services->first();
-    
+    $currentUrl = url()->current();
+    $locale = app()->getLocale();
+
     // 2. เตรียมข้อมูลสำหรับ JSON-LD ในรูปแบบ Array (แก้ปัญหา Syntax Error จากเครื่องหมาย @)
     $schemaData = [
         "@context" => "https://schema.org",
         "@graph" => [
+            // ข้อมูลองค์กร (รับเหมาก่อสร้าง)
             [
-                "@type" => "ConstructionBusiness",
+                "@type" => "LocalBusiness",
                 "@id" => url('/') . "#organization",
                 "name" => "บริษัทธีรพงษ์เซอร์วิส จำกัด",
                 "url" => url('/'),
                 "logo" => [
                     "@type" => "ImageObject",
-                    "url" => asset('storage/images/logo.png')
+                    "url" => asset('storage/images/tp-logo.svg')
                 ],
-                "image" => asset('storage/images/img_landing_1.png'),
+                "image" => asset('storage/images/about/194911_0.jpg'),
                 "telephone" => "+66627188847",
                 "priceRange" => "$$",
                 "address" => [
                     "@type" => "PostalAddress",
-                    "streetAddress" => "14 ต.บางกร่าง อ.บางกรวย",
-                    "addressLocality" => "Nonthaburi",
+                    "streetAddress" => "14 ต.บางกร่าง อ.เมืองนนทบุรี",
+                    "addressLocality" => "นนทบุรี",
                     "postalCode" => "11000",
                     "addressCountry" => "TH"
                 ]
             ],
+            // ข้อมูลผู้เชี่ยวชาญ
+            [
+                "@type"=> "Person",
+                "@id"=> $currentUrl . "#person",
+                "name"=> "ช่างรัก (Mr.Theeraphong Sarsuk)",
+                "jobTitle"=> "ผู้เชี่ยวชาญด้านงานก่อสร้าง"
+            ],
+            // โครงสร้างหน้าเว็บ
             [
                 "@type" => "WebPage",
-                "@id" => url()->current() . "#webpage",
-                "url" => url()->current(),
+                "@id" => $currentUrl . "#webpage",
+                "url" => $currentUrl,
                 "name" => $item->title ?? 'Service',
                 "inLanguage" => "th"
             ],
+            // ข้อมูลบริการ (ปรับจาก Article เป็น Service)
             [
-                "@type" => "Article",
-                "headline" => $item->h1 ?? ($item->title ?? ''),
-                "description" => trim($item->description ?? ''),
+                "@type" => "Service",
+                "@id" => $currentUrl . "#service",
+                "name" => $item->h1 ?? ($item->title ?? ''),
+                "description" => trim(strip_tags($item->description ?? '')),
                 "image" => asset('storage/' . ($item->img_1 ?? '')),
-                "author" => [
-                    "@type" => "Person",
-                    "name" => "ช่างรัก (Mr.Theeraphong Sarsuk)"
+                "provider" => ["@id" => url('/') . "#organization"],
+                "areaServed" => [
+                    "@type" => "Country",
+                    "name" => "Thailand"
+                ],
+                "mainEntityOfPage" => ["@id" => $currentUrl . "#webpage"]
+            ],
+            // เพิ่ม Breadcrumb List Schema
+            [
+                "@type" => "BreadcrumbList",
+                "@id" => $currentUrl . "#breadcrumb",
+                "itemListElement" => [
+                    [
+                        "@type" => "ListItem",
+                        "position" => 1,
+                        "name" => __('Home'),
+                        "item" => url('/')
+                    ],
+                    [
+                        "@type" => "ListItem",
+                        "position" => 2,
+                        "name" => __('Services'),
+                        "item" => url('/services') // อย่าลืมเปลี่ยนให้ตรงกับ Route รวมบริการของคุณ
+                    ],
+                    [
+                        "@type" => "ListItem",
+                        "position" => 3,
+                        "name" => $service->name
+                    ]
                 ]
             ]
         ]
@@ -111,7 +150,6 @@
                 <img src="{{ asset('storage/'.$item->img_2) }}" alt="{{ $item->bottom_alt ?? '' }}" />
             </div>
         </div>
-        {{-- ลบ </div> ที่เกินออกให้แล้วครับ --}}
     </div>
 </div>
 <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>

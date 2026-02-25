@@ -5,7 +5,7 @@
         {{-- <a class="img-box light-box" href="{{ asset('storage/'.$item->img_url) }}" data-lightbox-anima="fade-top"> --}}
         <a class="img-box light-box" href="{{ Storage::url($item->img_url) }}" data-lightbox-anima="fade-top">
             {{-- <img class="ratio-16-9" src="{{ asset('storage/'.$item->img_url) }}" alt="" /> --}}
-            <img class="ratio-16-9" src="{{ Storage::url($item->img_url) }}" alt="" />
+            <img class="ratio-16-9" src="{{ Storage::url($item->img_url) }}" alt="{{ $item->category->name }} ที่ {{ $item->location }} ลำดับที่ {{ $item->id }}" />
         </a>
     </div>
     @endforeach

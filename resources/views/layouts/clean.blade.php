@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if lt IE 10]> <html  lang="en" class="iex"> <![endif]-->
 <!--[if (gt IE 10)|!(IE)]><!-->
-<html lang="en">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <!--<![endif]-->
 
 <head>
@@ -13,6 +13,10 @@
     <meta name="description" content="{{ trim($__env->yieldContent('child-description', 'Service-Theeraphong')) }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:locale" content="th_TH">
+    @php
+        $locales = ['th', 'en'];
+        $currentPath = request()->path();
+    @endphp
     <meta property="og:type" content="@yield('og-type', 'article')">
     <meta property="og:title" content="@yield('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')">
     <meta property="og:description" content="@yield('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')">
@@ -23,12 +27,12 @@
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')">
+    <meta name="twitter:title" content="@yield('child-title','บริษัทธีรพงษ์เซอร์วิส จำกัด')">
     <meta name="twitter:description" content="@yield('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')">
     <meta name="twitter:image" content="@yield('child-image', asset('storage/images/img_landing_1.png'))">
     <meta name="twitter:label1" content="ให้บริการโดย">
     <meta name="twitter:data1" content="ช่างรัก (ประสบการณ์ 15 ปี)">
-    
+
     @stack('seo-schema')
 
     <script src="{{ asset('HTWF/scripts/jquery.min.js') }}"></script>
