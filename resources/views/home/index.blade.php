@@ -12,21 +12,21 @@
             'paragraph' => 'คุณกำลังมองหาผู้รับเหมาที่ไว้ใจได้ เข้าใจงาน และส่งมอบงานตรงเวลาใช่ไหม?
 ไว้ใจได้ เข้าใจงาน และส่งมอบงานตรงเวลา.
 เรามีความเชี่ยวชาญเฉพาะทางด้านงานโครงสร้างพื้นฐาน ตั้งแต่กำแพงกันดิน งานรั้ว เทพื้นคอนกรีต ไปจนถึงงานถมที่ดิน เราเข้าใจว่าทุกโครงการของคุณมีความสำคัญ และต้องการผู้เชี่ยวชาญที่คำนึงถึงความปลอดภัย ความแข็งแรง และความคุ้มค่าในระยะยาว',
-            'image' => 'img_landing_1.png',
+            'image' => 'images/img_landing_1.png',
             'alt'=>'กำแพงกันดิน'
         ],
         (object) [
             'heading' => 'ลูกค้าให้ความไว้ใจ ดูแลงานก่อสร้าง',
             'paragraph' =>
                 'สำหรับเจ้าของบ้าน งานอย่าง กำแพงกันดิน รั้ว และพื้นคอนกรีต ไม่ใช่แค่สร้างให้เสร็จ แต่เป็นงานโครงสร้างที่ส่งผลต่อความปลอดภัยของบ้านในระยะยาว เราให้ความสำคัญกับมาตรฐานวิศวกรรม การเลือกใช้วัสดุ และในระหว่างขั้นตอนการก่อสร้าง มีการควบคุมดูแลหน้างานตลอดเวลา',
-            'image' => 'img_landing_2.png',
+            'image' => 'images/img_landing_2.png',
             'alt'=>'เทพื้นคอนกรีต',
         ],
         (object) [
             'heading' => 'พร้อมให้คำปรึกษา และประเมินหน้างานจริง',
             'paragraph' =>
                 'หากกำลังมองหาผู้รับเหมาที่เชื่อถือได้ ตรงต่อเวลา ทำงานมาตรฐาน และที่สำคัญมีความรับผิดชอบ ไม่ทิ้งงาน เราพร้อมให้บริการตั้งแต่การให้คำปรึกษา ประเมินหน้างาน ไปจนถึงการเสนอราคาที่ชัดเจน โปร่งใส ไม่มีค่าใช้จ่ายแฝง',
-            'image' => 'img_landing_1.png',
+            'image' => 'images/img_landing_1.png',
             'alt'=>'เขื่อนกันดิน',
         ],
     ];
@@ -44,12 +44,16 @@
                                 </div>
                                 <div class="container">
                                     @if ($item->image)
+                                        {{-- <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
+                                            src="{{ asset('storage/images/' . $item->image) }}" alt="{{ $item->alt }}" /> --}}
                                         <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
-                                            src="{{ asset('storage/images/' . $item->image) }}" alt="{{ $item->alt }}" />
+                                            src="{{ Storage::disk('s3')->url($item->image) }}" alt="{{ $item->alt }}" />
                                     @else
                                         <!-- ใช้ภาพ default -->
-                                        <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
-                                            src="{{ asset('storage/images/img_landing_1.png') }}" alt="No image available" />
+                                        {{-- <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
+                                            src="{{ asset('storage/images/img_landing_1.png') }}" alt="No image available" /> --}}
+                                            <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
+                                            src="{{ Storage::disk('s3').'img_landing_1.png' }}" alt="No image available" />
                                     @endif
 
                                     <div class="container-middle">
@@ -143,7 +147,7 @@
             <hr class="space" />
             <div class="row">
                 <div class="col-md-4 hidden-sm visible-xs">
-                    <img data-anima="fade-bottom" data-time="700" src="{{ asset('storage/images/mk-3.png') }}" alt="Mobile-Chart" />
+                    <img data-anima="fade-bottom" data-time="700" src="{{ Storage::disk('s3')->url('images/mk-3.png') }}" alt="Mobile-Chart" />
                 </div>
                 <div class="col-md-8 col-sm-12">
                     <div class="title-base text-left">
@@ -233,6 +237,7 @@
                     <hr class="space visible-sm" />
                 </div>
                 <div class="col-md-4 text-right hidden-sm visible-xs">
+                    <img data-anima="fade-bottom" data-time="700" src="{{ asset('storage/images/mk-4.png') }}" alt="Mobile-calendar" />
                     <img data-anima="fade-bottom" data-time="700" src="{{ asset('storage/images/mk-4.png') }}" alt="Mobile-calendar" />
                 </div>
             </div>
