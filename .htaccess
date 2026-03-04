@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # สำหรับลิงก์: เทปูน 1 คิว ใช้ปูนกี่ถุง? คำนวณวัสดุ...
+    # ดักจับด้วย QUERY_STRING เพราะ Apache มองข้อความหลัง ? เป็น Query
+    RewriteCond %{QUERY_STRING} ^\s*คำนวณวัสดุและต้นทุนอย่างมืออาชีพ$ [NC]
+    RewriteRule ^blog/เทปูน\s1\sคิว\sใช้ปูนกี่ถุง$ https://www.theeraphong.com/blogs/เทปูน-1-คิว-ใช้ปูนกี่ถุง-คำนวณวัสดุและต้นทุนอย่างมืออาชีพ? [R=301,L]
+
+    # กรณีไม่มีช่องว่างหลังเครื่องหมาย ? (เผื่อไว้)
+    RewriteCond %{QUERY_STRING} ^คำนวณวัสดุและต้นทุนอย่างมืออาชีพ$ [NC]
+    RewriteRule ^blog/เทปูน\s1\sคิว\sใช้ปูนกี่ถุง$ https://www.theeraphong.com/blogs/เทปูน-1-คิว-ใช้ปูนกี่ถุง-คำนวณวัสดุและต้นทุนอย่างมืออาชีพ? [R=301,L]
+
+</IfModule>

@@ -2,6 +2,8 @@
 
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
@@ -50,3 +52,27 @@ Route::prefix('services')->group(function(){
     Route::get('/calculate', [FrontHomeController::class,'soilCalculate'])->name('calculate');
 });
 Route::get('/{slug}', [FrontPageController::class,'show'])->name('service.show');
+
+// Route::fallback(function () {
+//     return redirect()->route('home');
+// });
+
+Route::fallback(function (Request $request) {
+
+    // 1. ดึง URL ทั้งหมดมาถอดรหัส (รวมถึงพารามิเตอร์หลัง ?)
+    $fullUrl = urldecode($request->fullUrl());
+
+    // 2. ตรวจสอบเงื่อนไขบทความ "เทปูน 1 คิว"
+    // เราใช้การเช็คคำสำคัญ (Keywords) เพื่อให้ครอบคลุมทั้งลิงก์ที่มีช่องว่าง หรือ %3F (?)
+    if (Str::contains($fullUrl, 'เทปูน') && Str::contains($fullUrl, '1 คิว') && Str::contains($fullUrl, 'คำนวณวัสดุ')) {
+
+        // 3. ปลายทางที่ต้องการ (blogs แบบมี s และใช้ขีดแทนช่องว่าง)
+        $destination = 'https://www.theeraphong.com/blogs/เทปูน-1-คิว-ใช้ปูนกี่ถุง-คำนวณวัสดุและต้นทุนอย่างมืออาชีพ';
+
+        // 4. สั่ง 301 Permanent Redirect (สำคัญมากต่อ SEO)
+        return redirect()->to($destination, 301);
+    }
+
+    // หากไม่ตรงเงื่อนไขใดๆ ให้แสดงหน้า 404 ตามมาตรฐาน
+    abort(404);
+});

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 use App\Models\Blog;
 
@@ -30,8 +29,6 @@ class BlogController extends Controller
     // public function show(string $id)
     public function show(Blog $blog)
     {
-        // $blog=Blog::findOrFail($id);
-        // return view('blogs.show',compact('blog'));
         return view('blogs.show',compact('blog'));
     }
 }
