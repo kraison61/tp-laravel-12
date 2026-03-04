@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('title', 'รวมบทความความรู้เรื่องงานฐานราก กำแพงกันดิน และเทคนิคก่อสร้างบริษัทธีรพงษ์เซอร์วิส จำกัด')
-@section('description','แหล่งรวบรวมความรู้จากหน้างานจริง เจาะลึกเทคนิคการกดเสาเข็ม งานถมดิน และการก่อสร้างกำแพงกันดินตามหลักวิศวกรรม โดยทีมช่างผู้เชี่ยวชาญ พร้อมอัปเดตข่าวสารวงการก่อสร้างที่คุณต้องรู้')
+@section('description',
+    'แหล่งรวบรวมความรู้จากหน้างานจริง เจาะลึกเทคนิคการกดเสาเข็ม งานถมดิน
+    และการก่อสร้างกำแพงกันดินตามหลักวิศวกรรม โดยทีมช่างผู้เชี่ยวชาญ พร้อมอัปเดตข่าวสารวงการก่อสร้างที่คุณต้องรู้')
 
 @section('content')
-<div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650" data-natural-width="1920" data-image-src="{{ asset('images/bg-blog.jpg') }}">
+    <div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650"
+        data-natural-width="1920" data-image-src="{{ Storage::disk('s3')->url('images/bg-5.jpg') }}">
         <div class="container">
             <div class="title-base">
                 <hr class="anima" />
@@ -20,28 +23,32 @@
                     <div class="grid-list grid-layout grid-15">
                         <div class="grid-box row">
 
-                            @foreach($blogs as $item)
+                            @foreach ($blogs as $item)
                                 <div class="grid-item col-md-6">
-                                <div class="advs-box advs-box-top-icon-img niche-box-post boxed-inverse" data-anima="scale-rotate" data-trigger="hover">
-                                    <div class="block-infos">
-                                        <div class="block-data">
-                                            <p class="bd-day">{{ $item->created_at->format('d-M-Y') }}</p>
+                                    <div class="advs-box advs-box-top-icon-img niche-box-post boxed-inverse"
+                                        data-anima="scale-rotate" data-trigger="hover">
+                                        <div class="block-infos">
+                                            <div class="block-data">
+                                                <p class="bd-day">{{ $item->created_at->format('d-M-Y') }}</p>
+                                            </div>
+                                            <a class="block-comment" href="#">2 <i class="fa fa-comment-o"></i></a>
                                         </div>
-                                        <a class="block-comment" href="#">2 <i class="fa fa-comment-o"></i></a>
-                                    </div>
-                                    <a class="img-box ratio-16-9" href="{{ route('blog.show',$item->slug)}}"><img class="anima" src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" /></a>
-                                    <div class="advs-box-content">
-                                        <h2 class="text-m"><a href="#">{{ Str::limit($item->title, 30) }}</a></h2>
-                                        <div class="tag-row">
-                                            <span><i class="fa fa-bookmark"></i> <a href="#">{{ $item->serviceCategory->name }}</a></span>
-                                            <span><i class="fa fa-pencil"></i><a href="#">Admin</a></span>
+                                        <a class="img-box ratio-16-9" href="{{ route('blog.show', $item->slug) }}"><img
+                                                class="anima" src="{{ Storage::disk('s3')->url($item->image) }}"
+                                                alt="{{ $item->title }}" /></a>
+                                        <div class="advs-box-content">
+                                            <h2 class="text-m"><a href="#">{{ Str::limit($item->title, 30) }}</a></h2>
+                                            <div class="tag-row">
+                                                <span><i class="fa fa-bookmark"></i> <a
+                                                        href="#">{{ $item->serviceCategory->name }}</a></span>
+                                                <span><i class="fa fa-pencil"></i><a href="#">Admin</a></span>
+                                            </div>
+                                            <p class="niche-box-content">
+                                                {{ Str::limit($item->description, 45) }}
+                                            </p>
                                         </div>
-                                        <p class="niche-box-content">
-                                            {{ Str::limit($item->description, 45) }}
-                                        </p>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
 
                             <div class="">
@@ -49,7 +56,8 @@
                             </div>
                         </div>
                         <div class="list-nav">
-                            <ul class="pagination pagination-grid" data-page-items="8" data-pagination-anima="show-scale"></ul>
+                            <ul class="pagination pagination-grid" data-page-items="8" data-pagination-anima="show-scale">
+                            </ul>
                         </div>
                     </div>
                 </div>

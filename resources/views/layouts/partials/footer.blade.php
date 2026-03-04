@@ -1,25 +1,29 @@
 <?php
-    $count = $allServices->count();
-    $leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
+$count = $allServices->count();
+$leftCount = ceil($count / 2); // คำนวณจำนวนรายการในคอลัมน์ซ้าย
 
-    $columnLeft = $allServices->take($leftCount);
-    $columnRight = $allServices->skip($leftCount);
+$columnLeft = $allServices->take($leftCount);
+$columnRight = $allServices->skip($leftCount);
 ?>
 <footer class="footer-base">
     <div class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-center text-left">
-                    <img width="120" src="{{ asset('storage/images/img-tp-logo.png') }}" alt="theeraphong-service-logo" />
+                    <img width="120" src="{{ Storage::disk('s3')->url('images/img-tp-logo.png') }}"
+                        alt="theeraphong-service-logo" />
                     <hr class="space m" />
-                    <p class="text-s"><a target="_blank" href="https://maps.app.goo.gl/PDdQwoC1tNFMiKnu6">14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</a></p>
+                    <p class="text-s"><a target="_blank" href="https://maps.app.goo.gl/PDdQwoC1tNFMiKnu6">14 หมู่ 5
+                            ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000</a></p>
                     <div class="tag-row text-s">
-                        <span><a href="mailto:theeraphong.services@gmail.com?subject=สอบถามข้อมูล&body=สวัสดี">theeraphong.services@gmail.com</a></span>
+                        <span><a
+                                href="mailto:theeraphong.services@gmail.com?subject=สอบถามข้อมูล&body=สวัสดี">theeraphong.services@gmail.com</a></span>
                         <span><a href="tel:0627188847">062-718-8847</a></span>
                     </div>
                     <hr class="space m" />
                     <div class="btn-group social-group btn-group-icons">
-                        <a target="_blank" href="https://www.facebook.com/TheeraphongRetainingwall" data-social="share-facebook">
+                        <a target="_blank" href="https://www.facebook.com/TheeraphongRetainingwall"
+                            data-social="share-facebook">
                             <i class="fa fa-facebook text-xs circle"></i>
                         </a>
                         <a target="_blank" href="https://www.youtube.com/@ธีรพงษ์รับเหมา" data-social="share-twitter">
@@ -45,7 +49,8 @@
                                 <div class="col-md-6 col-12 column-left">
                                     @foreach ($columnLeft as $service)
                                         <div class="service-item mb-3">
-                                            <a href="{{ route('service.show',$service->category->slug) }}"> {{ $service->category->name ?? 'บริการ' }}</a>
+                                            <a href="{{ route('service.show', $service->category->slug) }}">
+                                                {{ $service->category->name ?? 'บริการ' }}</a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -54,7 +59,8 @@
                                 <div class="col-md-6 col-12 column-right">
                                     @foreach ($columnRight as $service)
                                         <div class="service-item mb-3">
-                                            <a href="{{ route('service.show',$service->category->slug) }}"> {{ $service->category->name ?? 'บริการ' }}</a>
+                                            <a href="{{ route('service.show', $service->category->slug) }}">
+                                                {{ $service->category->name ?? 'บริการ' }}</a>
                                         </div>
                                     @endforeach
                                     <div class="service-item mb-3">

@@ -1,36 +1,38 @@
 @extends('layouts.app')
 
 @section('title', 'หน้าแรก | บริษัทธีรพงษ์เซอร์วิส จำกัด')
-@section('description','รับเหมาก่อสร้าง กำแพงกันดิน รั้ว เทพื้นคอนกรีต ถมที่ดิน และอื่น ๆ ครบวงจร ด้วยประสบการณ์มากกว่า 15 ปี')
+@section('description',
+    'รับเหมาก่อสร้าง กำแพงกันดิน รั้ว เทพื้นคอนกรีต ถมที่ดิน และอื่น ๆ ครบวงจร ด้วยประสบการณ์มากกว่า
+    15 ปี')
 
 
-@php
-    $headContent = [
-        (object) [
-            'heading' =>
-                'รับเหมาก่อสร้าง กำแพงกันดิน รั้ว เทพื้นคอนกรีต ถมที่ดิน และอื่น ๆ ครบวงจร ด้วยประสบการณ์มากกว่า 15 ปี',
-            'paragraph' => 'คุณกำลังมองหาผู้รับเหมาที่ไว้ใจได้ เข้าใจงาน และส่งมอบงานตรงเวลาใช่ไหม?
+    @php
+        $headContent = [
+            (object) [
+                'heading' =>
+                    'รับเหมาก่อสร้าง กำแพงกันดิน รั้ว เทพื้นคอนกรีต ถมที่ดิน และอื่น ๆ ครบวงจร ด้วยประสบการณ์มากกว่า 15 ปี',
+                'paragraph' => 'คุณกำลังมองหาผู้รับเหมาที่ไว้ใจได้ เข้าใจงาน และส่งมอบงานตรงเวลาใช่ไหม?
 ไว้ใจได้ เข้าใจงาน และส่งมอบงานตรงเวลา.
 เรามีความเชี่ยวชาญเฉพาะทางด้านงานโครงสร้างพื้นฐาน ตั้งแต่กำแพงกันดิน งานรั้ว เทพื้นคอนกรีต ไปจนถึงงานถมที่ดิน เราเข้าใจว่าทุกโครงการของคุณมีความสำคัญ และต้องการผู้เชี่ยวชาญที่คำนึงถึงความปลอดภัย ความแข็งแรง และความคุ้มค่าในระยะยาว',
-            'image' => 'images/img_landing_1.png',
-            'alt'=>'กำแพงกันดิน'
-        ],
-        (object) [
-            'heading' => 'ลูกค้าให้ความไว้ใจ ดูแลงานก่อสร้าง',
-            'paragraph' =>
-                'สำหรับเจ้าของบ้าน งานอย่าง กำแพงกันดิน รั้ว และพื้นคอนกรีต ไม่ใช่แค่สร้างให้เสร็จ แต่เป็นงานโครงสร้างที่ส่งผลต่อความปลอดภัยของบ้านในระยะยาว เราให้ความสำคัญกับมาตรฐานวิศวกรรม การเลือกใช้วัสดุ และในระหว่างขั้นตอนการก่อสร้าง มีการควบคุมดูแลหน้างานตลอดเวลา',
-            'image' => 'images/img_landing_2.png',
-            'alt'=>'เทพื้นคอนกรีต',
-        ],
-        (object) [
-            'heading' => 'พร้อมให้คำปรึกษา และประเมินหน้างานจริง',
-            'paragraph' =>
-                'หากกำลังมองหาผู้รับเหมาที่เชื่อถือได้ ตรงต่อเวลา ทำงานมาตรฐาน และที่สำคัญมีความรับผิดชอบ ไม่ทิ้งงาน เราพร้อมให้บริการตั้งแต่การให้คำปรึกษา ประเมินหน้างาน ไปจนถึงการเสนอราคาที่ชัดเจน โปร่งใส ไม่มีค่าใช้จ่ายแฝง',
-            'image' => 'images/img_landing_1.png',
-            'alt'=>'เขื่อนกันดิน',
-        ],
-    ];
-@endphp
+                'image' => 'images/img_landing_1.png',
+                'alt' => 'กำแพงกันดิน',
+            ],
+            (object) [
+                'heading' => 'ลูกค้าให้ความไว้ใจ ดูแลงานก่อสร้าง',
+                'paragraph' =>
+                    'สำหรับเจ้าของบ้าน งานอย่าง กำแพงกันดิน รั้ว และพื้นคอนกรีต ไม่ใช่แค่สร้างให้เสร็จ แต่เป็นงานโครงสร้างที่ส่งผลต่อความปลอดภัยของบ้านในระยะยาว เราให้ความสำคัญกับมาตรฐานวิศวกรรม การเลือกใช้วัสดุ และในระหว่างขั้นตอนการก่อสร้าง มีการควบคุมดูแลหน้างานตลอดเวลา',
+                'image' => 'images/img_landing_2.png',
+                'alt' => 'เทพื้นคอนกรีต',
+            ],
+            (object) [
+                'heading' => 'พร้อมให้คำปรึกษา และประเมินหน้างานจริง',
+                'paragraph' =>
+                    'หากกำลังมองหาผู้รับเหมาที่เชื่อถือได้ ตรงต่อเวลา ทำงานมาตรฐาน และที่สำคัญมีความรับผิดชอบ ไม่ทิ้งงาน เราพร้อมให้บริการตั้งแต่การให้คำปรึกษา ประเมินหน้างาน ไปจนถึงการเสนอราคาที่ชัดเจน โปร่งใส ไม่มีค่าใช้จ่ายแฝง',
+                'image' => 'images/img_landing_1.png',
+                'alt' => 'เขื่อนกันดิน',
+            ],
+        ];
+    @endphp
 
 @section('content')
     <div class="section-empty no-paddings">
@@ -40,7 +42,9 @@
                     @foreach ($headContent as $item)
                         <li data-slider-anima="fade-left" data-time="1000">
                             <div class="section-slide">
-                                <div class="bg-cover" style="background-image: url('{{ asset('storage/images/bg-5.jpg') }}');" alt="background-05">
+                                <div class="bg-cover"
+                                    style="background-image: url({{ Storage::disk('s3')->url('images/bg-5.jpg') }});"
+                                    alt="background-05">
                                 </div>
                                 <div class="container">
                                     @if ($item->image)
@@ -52,8 +56,9 @@
                                         <!-- ใช้ภาพ default -->
                                         {{-- <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
                                             src="{{ asset('storage/images/img_landing_1.png') }}" alt="No image available" /> --}}
-                                            <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
-                                            src="{{ Storage::disk('s3').'img_landing_1.png' }}" alt="No image available" />
+                                        <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
+                                            src="{{ Storage::disk('s3')->url('img_landing_1.png') }}"
+                                            alt="No image available" />
                                     @endif
 
                                     <div class="container-middle">
@@ -66,7 +71,8 @@
                                                         {{ $item->paragraph }}
                                                     </p>
                                                     <hr class="space s" />
-                                                    <a href="{{ route('services.index') }}" class="btn btn-lg"><i class="fa fa-gears"></i>
+                                                    <a href="{{ route('services.index') }}" class="btn btn-lg"><i
+                                                            class="fa fa-gears"></i>
                                                         บริการ</a><span class="space"></span>
                                                     <a href="{{ route('gallery.index') }}" class="btn btn-lg btn-border"><i
                                                             class="fa fa-folder-open"></i> ผลงาน</a>
@@ -147,7 +153,8 @@
             <hr class="space" />
             <div class="row">
                 <div class="col-md-4 hidden-sm visible-xs">
-                    <img data-anima="fade-bottom" data-time="700" src="{{ Storage::disk('s3')->url('images/mk-3.png') }}" alt="Mobile-Chart" />
+                    <img data-anima="fade-bottom" data-time="700" src="{{ Storage::disk('s3')->url('images/mk-3.png') }}"
+                        alt="Mobile-Chart" />
                 </div>
                 <div class="col-md-8 col-sm-12">
                     <div class="title-base text-left">
@@ -237,8 +244,8 @@
                     <hr class="space visible-sm" />
                 </div>
                 <div class="col-md-4 text-right hidden-sm visible-xs">
-                    <img data-anima="fade-bottom" data-time="700" src="{{ asset('storage/images/mk-4.png') }}" alt="Mobile-calendar" />
-                    <img data-anima="fade-bottom" data-time="700" src="{{ asset('storage/images/mk-4.png') }}" alt="Mobile-calendar" />
+                    <img data-anima="fade-bottom" data-time="700" src="{{ Storage::disk('s3')->url('images/mk-4.png') }}"
+                        alt="Mobile-calendar" />
                 </div>
             </div>
         </div>
@@ -257,9 +264,9 @@
                 </div>
                 <div class="maso-box row">
                     @foreach ($allServices->take(12) as $service)
-                    <!-- <a href="/services/{{ $service->id }}"> -->
+                        <!-- <a href="/services/{{ $service->id }}"> -->
                         <x-card :service="$service" />
-                    <!-- </a> -->
+                        <!-- </a> -->
                     @endforeach
                     <div class="clear"></div>
                 </div>
@@ -299,7 +306,8 @@
                             <ul class="fa-ul text-light">
                                 <li>Line ID : <a href="https://line.me/ti/p/h9SHumuTEB">0627188847</a></li>
                                 <li>
-                                    <img src="{{ asset('storage/images/lineid.webp') }}" style="width:50%;" alt="lineID-Code"  />
+                                    <img src="{{ Storage::disk('s3')->url('images/lineid.webp') }}" style="width:50%;"
+                                        alt="lineID-Code" />
                                 </li>
                             </ul>
                         </div>

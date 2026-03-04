@@ -38,7 +38,7 @@ Route::prefix('admin')->group(function(){
 
 // Blog Routes
 Route::prefix('blogs')->group(function(){
-    Route::get('/',[AdminController::class,'index'])->name('blog.index');
+    Route::get('/',[FrontBlogController::class,'index'])->name('blog.index');
     Route::get('/category/{id}',[FrontBlogController::class,'index'])->name('blog.filter');
     Route::get('/{blog}',[FrontBlogController::class,'show'])->name('blog.show');
 });

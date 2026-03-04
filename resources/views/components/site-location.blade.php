@@ -1,5 +1,5 @@
 <div class="section-bg-image parallax-window" data-natural-height="650" data-natural-width="1920" data-parallax="scroll"
-    data-image-src="{{ asset('storage/images/bg-6.jpg') }}">
+    data-image-src="{{ Storage::disk('s3')->url('images/bg-6.jpg') }}">
     <div class="container content">
         <div class="row">
             <div class="col-md-9  col-sm-12">
