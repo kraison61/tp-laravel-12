@@ -20,6 +20,8 @@ class Service extends Model
     'img_2',
     'top_alt',
     'bottom_alt',
+    'is_active',
+    'schema_type'
     ];
 
     public function category()
@@ -29,5 +31,15 @@ class Service extends Model
     public function images()
     {
         return $this->hasMany(ImageUpload::class,'service_id','id');
+    }
+    public function prices()
+    {
+        return $this->hasMany(ServicePrice::class)->where('is_active', true)->orderBy('sort_order');
+    }
+
+    // ดึงข้อมูลผลงาน
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class)->orderBy('completion_date', 'desc');
     }
 }

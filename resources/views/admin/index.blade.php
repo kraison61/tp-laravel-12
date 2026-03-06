@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Admin Blog Management')
+@section('title', 'Admin Content Management')
 
 
 @section('content')

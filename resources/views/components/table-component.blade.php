@@ -47,7 +47,7 @@
                         <td>
                             @if($key == 'img_1' || $key == 'img_2' || $key == 'image')
                                 @if($row->$key)
-                                    <img src="{{ asset('storage/' . $row->$key) }}" class="img-thumbnail-custom">
+                                    <img src="{{ Storage::disk('s3')->url($row->$key) }}" class="img-thumbnail-custom">
                                 @else
                                     <span class="label label-default">No Image</span>
                                 @endif
