@@ -18,9 +18,10 @@
                 'url' => url('/'),
                 'logo' => [
                     '@type' => 'ImageObject',
-                    'url' => asset('storage/images/tp-logo.svg'),
+                    // 'url' => asset('storage/images/tp-logo.svg'),
+                    'url' => Storage::disk('s3')->url('images/tp-logo.svg'),
                 ],
-                'image' => asset('storage/images/about/194911_0.jpg'),
+                'image' => Storage::disk('s3')->url('images/about/194911_0.jpg'),
                 'telephone' => '+66627188847',
                 'priceRange' => "$$",
                 'address' => [
@@ -94,7 +95,7 @@
 @section('image', asset('storage/' . ($item->img_1 ?? '')))
 
 @push('seo-schema')
-    {{-- พิมพ์ JSON ออกมาโดยใช้ PHP เพื่อเลี่ยงปัญหา Blade Syntax --}}
+
     <script type="application/ld+json">
         {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
