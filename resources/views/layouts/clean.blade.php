@@ -50,7 +50,11 @@
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/font-awesome/css/font-awesome.css') }}">
-    <link rel="icon" href="{{ Storage::disk('s3')->url('images/favicon.png') }}">
+    {{-- <link rel="icon" href="{{ Storage::disk('s3')->url('images/favicon.png') }}"> --}}
+
+    <link rel="icon" type="image/png"
+        href="{{ Storage::disk('s3')->url('images/favicon.png') }}?width=32&format=webp">
+    <link rel="apple-touch-icon" href="{{ Storage::disk('s3')->url('images/favicon.png') }}?width=180&format=webp">
     <link rel="stylesheet" href="{{ asset('skin.css') }}">
     <link rel="stylesheet" href="{{ asset('custom.css') }}">
     @livewireStyles

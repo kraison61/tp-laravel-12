@@ -34,12 +34,12 @@ class Service extends Model
     }
     public function prices()
     {
-        return $this->hasMany(ServicePrice::class)->where('is_active', true)->orderBy('sort_order');
+        return $this->hasMany(ServicePrice::class, 'service_id', 'id')->where('is_active', true)->orderBy('sort_order');
     }
 
     // ดึงข้อมูลผลงาน
     public function portfolios()
     {
-        return $this->hasMany(Portfolio::class)->orderBy('completion_date', 'desc');
+        return $this->hasMany(Portfolio::class, 'service_id', 'id')->orderBy('completion_date', 'desc');
     }
 }

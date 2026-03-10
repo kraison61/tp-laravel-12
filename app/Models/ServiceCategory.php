@@ -16,6 +16,6 @@ class ServiceCategory extends Model
         return 'slug';
     }
     public function blogs(){
-        return $this->hasMany(Blog::class,'service_id');
+        return $this->hasMany(Blog::class, 'service_category_id', 'id');
     }
 }

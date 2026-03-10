@@ -16,9 +16,10 @@ class TableComponent extends Component
      public $data;
      public $headers;
 
-    public function __construct()
+    public function __construct($data = [], $headers = [])
     {
-        //
+        $this->data = $data;
+        $this->headers = $headers;
     }
 
     /**

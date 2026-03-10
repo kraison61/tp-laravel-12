@@ -1,11 +1,65 @@
-<div class="col-sm-3 col-md-2">
-    <ul class="nav nav-pills nav-stacked text-left">
-        <li class="{{ request()->routeIs('admin.index') ? 'active' : '' }}"><a href="{{ route('admin.index') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="{{ request()->routeIs('admin.blog.index') ? 'active' : '' }}"><a href="{{route('admin.blog.index')}}"><i class="fa fa-file-text"></i> Blogs</a></li>
-        <li><a href="#"><i class="fa fa-file-text"></i> Images</a></li>
-        <li class="{{ request()->routeIs('admin.category.index') ? 'active' : '' }}"><a href="{{route('admin.category.index')}}"><i class="fa fa-tags"></i> Categories</a></li>
-        <li class="{{ request()->routeIs('admin.service.index') ? 'active' : '' }}"><a href="{{route('admin.service.index')}}"><i class="fa fa-image"></i> Services</a></li>
-        <li><a href="#"><i class="fa fa-users"></i> Users</a></li>
-        <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-    </ul>
-</div>
+@php 
+    $menu = [
+        'dashboard' => [
+            'label' => 'Dashboard',
+            'icon' => 'fa fa-dashboard',
+            'route' => 'admin.index',
+        ],
+        'blog' => [
+            'label' => 'Blog',
+            'icon' => 'fa fa-file-text',
+            'route' => 'admin.blog.index',
+        ],
+        'image' => [
+            'label' => 'Image',
+            'icon' => 'fa fa-file-text',
+            'route' => '#', // Assuming this route exists or will exist
+        ],
+        'category' => [
+            'label' => 'Category',
+            'icon' => 'fa fa-tags',
+            'route' => 'admin.category.index',
+        ],
+        'service' => [
+            'label' => 'Service',
+            'icon' => 'fa fa-image',
+            'route' => 'admin.service.index',
+        ],
+        'faq' => [
+            'label' => 'FAQ',
+            'icon' => 'fa fa-question-circle', // Updated icon to be more relevant
+            'route' => 'admin.faq.index',
+        ],
+        'price' => [
+            'label' => 'Price',
+            'icon' => 'fa fa-image',
+            'route' => 'admin.service.index',
+        ],
+        'review' => [
+            'label' => 'Review',
+            'icon' => 'fa fa-image',
+            'route' => 'admin.service.index',
+        ],
+        'user' => [
+            'label' => 'User',
+            'icon' => 'fa fa-users',
+            'route' => '#',
+        ],
+        'setting' => [
+            'label' => 'Setting',
+            'icon' => 'fa fa-cog',
+            'route' => '#',
+        ],
+    ];
+@endphp
+
+
+<ul class="nav nav-pills nav-stacked" style="margin: 0; padding: 0; list-style: none;">
+    @foreach ($menu as $key => $item)
+        <li class="{{ $item['route'] !== '#' && request()->routeIs($item['route']) ? 'active' : '' }}">
+            <a href="{{ $item['route'] !== '#' ? route($item['route']) : '#' }}">
+                <i class="{{ $item['icon'] }}"></i> {{ $item['label'] }}
+            </a>
+        </li>
+    @endforeach
+</ul>

@@ -16,6 +16,6 @@ class Portfolio extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 }
