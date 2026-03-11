@@ -21,7 +21,7 @@ class Blog extends Model
         return 'slug';
     }
 
-    public function serviceCategory()
+    public function category()
     {
         return $this->belongsTo(ServiceCategory::class, 'service_category_id', 'id');
     }

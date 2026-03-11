@@ -1,5 +1,5 @@
 @php 
-    $menu = [
+        $menu = [
         'dashboard' => [
             'label' => 'Dashboard',
             'icon' => 'fa fa-dashboard',
@@ -7,12 +7,12 @@
         ],
         'blog' => [
             'label' => 'Blog',
-            'icon' => 'fa fa-file-text',
+            'icon' => 'fa fa-newspaper-o',
             'route' => 'admin.blog.index',
         ],
         'image' => [
             'label' => 'Image',
-            'icon' => 'fa fa-file-text',
+            'icon' => 'fa fa-picture-o',
             'route' => '#', // Assuming this route exists or will exist
         ],
         'category' => [
@@ -22,7 +22,7 @@
         ],
         'service' => [
             'label' => 'Service',
-            'icon' => 'fa fa-image',
+            'icon' => 'fa fa-briefcase',
             'route' => 'admin.service.index',
         ],
         'faq' => [
@@ -32,12 +32,12 @@
         ],
         'price' => [
             'label' => 'Price',
-            'icon' => 'fa fa-image',
+            'icon' => 'fa fa-money',
             'route' => 'admin.service.index',
         ],
         'review' => [
             'label' => 'Review',
-            'icon' => 'fa fa-image',
+            'icon' => 'fa fa-star',
             'route' => 'admin.service.index',
         ],
         'user' => [

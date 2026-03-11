@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
 use App\Models\Blog;
@@ -14,8 +15,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $columns = ['service_category_id', 'title', 'description','image','slug'];
-        $data = Blog::select($columns)->with('serviceCategory')->get();
+        $columns = ['service_category_id', 'title', 'description', 'image', 'slug'];
+        $data = Blog::select($columns)->with('category')->get();
         $headers = [
             'service_category_id' => 'หมวดหมู่',
             'title' => 'Title',
@@ -24,7 +25,7 @@ class BlogController extends Controller
             'slug' => 'Slug-SEO',
         ];
         // dd($data);
-        return view('admin.index',[
+        return view('admin.index', [
             'title' => 'Admin-Service',
             'data' => $data,
             'headers' => $headers
@@ -36,7 +37,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        $categories = ServiceCategory::select('id', 'name')->get();
+        return view('admin.blogs.create', compact('categories'));
     }
 
     /**

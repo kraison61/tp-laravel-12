@@ -22,14 +22,14 @@
     <meta property="og:description" content="@yield('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Theeraphong Construction">
-    <meta property="og:image" content="@yield('child-image', Storage::disk('s3')->url('images/img_landing_1.png'))">
+    <meta property="og:image" content="@yield('child-image', Storage::url('images/img_landing_1.png'))">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')">
     <meta name="twitter:description" content="@yield('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')">
-    <meta name="twitter:image" content="@yield('child-image', Storage::disk('s3')->url('images/img_landing_1.png'))">
+    <meta name="twitter:image" content="@yield('child-image', Storage::url('images/img_landing_1.png'))">
     <meta name="twitter:label1" content="ให้บริการโดย">
     <meta name="twitter:data1" content="ช่างรัก (ประสบการณ์ 15 ปี)">
 
@@ -50,11 +50,11 @@
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/font-awesome/css/font-awesome.css') }}">
-    {{-- <link rel="icon" href="{{ Storage::disk('s3')->url('images/favicon.png') }}"> --}}
-
-    <link rel="icon" type="image/png"
-        href="{{ Storage::disk('s3')->url('images/favicon.png') }}?width=32&format=webp">
-    <link rel="apple-touch-icon" href="{{ Storage::disk('s3')->url('images/favicon.png') }}?width=180&format=webp">
+    @php
+        $path = 'images/favicon.png';
+    @endphp
+    <link rel="icon" type="image/png" href="{{ \Illuminate\Support\Facades\Storage::url($path) }}?width=32&format=webp">
+    <link rel="apple-touch-icon" href="{{ \Illuminate\Support\Facades\Storage::url($path) }}?width=180&format=png">
     <link rel="stylesheet" href="{{ asset('skin.css') }}">
     <link rel="stylesheet" href="{{ asset('custom.css') }}">
     @livewireStyles

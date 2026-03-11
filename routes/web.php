@@ -13,7 +13,41 @@ use App\Http\Controllers\Front\GalleryController as FrontGalleryController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 
+
+Route::redirect('/blog', '/blogs', 301);
+Route::redirect('/about', '/about-us', 301);
+Route::redirect('/portfolio', '/gallery', 301);
+Route::redirect('/images/retaining-wall', '/retaining-wall', 301);
+
+// --- 2. กลุ่ม ID (แก้ไข Slug ปลายทางให้ตรงตาม blogs.sql) ---
+// *ตรวจสอบแล้วว่าใน SQL ของคุณ Slug บางตัวมีเครื่องหมายขีด (-) ไม่เหมือนเดิม*
+$idMap = [
+    18 => 'ถมที่ด้วยเศษวัสดุก่อสร้าง-ช่วยประหยัด-เสริมพื้นแข็งแรง-เหมาะกับงานสร้างกำแพงกันดิน',
+    19 => 'เขื่อนกันดินไทรม้า-19-ep-6',
+    20 => 'เขื่อนกันดินไทรม้า-19-ep-5',
+    21 => 'เขื่อนกันดินไทรม้า-19-ep-4',
+    22 => 'เขื่อนกันดินไทรม้า-19-ep3',
+    23 => 'เขื่อนกันดินไทรม้า-19-ep2',
+    24 => 'เขื่อนกันดินไทรม้า-19-ep1',
+    25 => 'เทพื้นปูน-ราคาต่อตารางเมตร-2567',
+    26 => 'เจาะเสียบเหล็ก-rebar-e-proxy-งานก่อสร้าง-มาตรฐานวิศวกรรม',
+    27 => 'งานกำแพงกันดิน-โครงการบ้านจัดสรร-ความแข็งแรงที่โครงการไว้วางใจ',
+];
+
+foreach ($idMap as $id => $slug) {
+    Route::redirect("/blog/{$id}", "/blogs/{$slug}", 301);
+}
+
+// --- 3. กลุ่มภาษาไทย (แก้ปัญหา Error จาก .htaccess) ---
+// Laravel จะรับค่าที่มี "ช่องว่าง" ได้โดยไม่ต้องใส่เครื่องหมายพิเศษ
+Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.2', '/blogs/เขื่อนกันดินไทรม้า-19-ep2', 301);
+Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.3', '/blogs/เขื่อนกันดินไทรม้า-19-ep3', 301);
+Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.6', '/blogs/เขื่อนกันดินไทรม้า-19-ep-6', 301);
+Route::redirect('/blog/ถมที่ด้วยเศษวัสดุก่อสร้าง ช่วยประหยัด เสริมพื้นแข็งแรง เหมาะกับงานสร้างกำแพงกันดิน', '/blogs/ถมที่ด้วยเศษวัสดุก่อสร้าง-ช่วยประหยัด-เสริมพื้นแข็งแรง-เหมาะกับงานสร้างกำแพงกันดิน', 301);
+Route::redirect('/blog/เทพื้นปูน ราคาต่อ ตาราง เมตร 2567 | รับเหมาเทพื้นคอนกรีต มืออาชีพ', '/blogs/เทพื้นปูน-ราคาต่อตารางเมตร-2567', 301);
+Route::redirect('/รับถมดิน', '/land-filling', 301);
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
 Route::get('/', [FrontHomeController::class, 'index'])->name('home');
@@ -32,15 +66,14 @@ Route::prefix('gallery')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/services', [AdminServiceController::class, 'index'])->name('admin.service.index');
-    // Route::get('/blogs',[AdminBlogController::class,'index'])->name('admin.blog.index');
     Route::get('/categories', [AdminCategoryController::class, 'index'])->name('admin.category.index');
-    Route::get('/faqs', [\App\Http\Controllers\Admin\FaqController::class, 'index'])->name('admin.faq.index');
+    Route::get('/faqs', [AdminFaqController::class, 'index'])->name('admin.faq.index');
 });
 Route::prefix('admin/blog')->group(
     function () {
         Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
         Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
-        Route::post('/store', [AdminBlogController::class, 'store']);
+        Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
         Route::get('/edit', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
     }
 );
@@ -63,6 +96,8 @@ Route::get('/{slug}', [FrontPageController::class, 'show'])->name('service.show'
 // Route::fallback(function () {
 //     return redirect()->route('home');
 // });
+
+
 
 Route::fallback(function (Request $request) {
 

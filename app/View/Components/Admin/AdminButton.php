@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class admin.AdminButton extends Component
+class AdminButton extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class admin.AdminButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.-admin-button');
+        return view('components.admin.admin-button');
     }
 }
