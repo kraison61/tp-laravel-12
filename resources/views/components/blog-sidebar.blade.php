@@ -3,8 +3,8 @@
     <div class="list-group list-blog">
         <p class="list-group-item active">หมวดหมู่</p>
         @foreach ($blogs as $item)
-            <a href="{{ route('blog.filter', $item->serviceCategory->id) }}"
-                class="list-group-item">{{ $item->serviceCategory->name }}</a>
+            <a href="{{ route('blog.filter', $item->category->id) }}"
+                class="list-group-item">{{ $item->category->name }}</a>
         @endforeach
     </div>
     <div class="list-group list-blog">

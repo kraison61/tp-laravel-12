@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="650"
-        data-natural-width="1920" data-image-src="{{ Storage::disk('s3')->url('images/bg-5.jpg') }}">
+        data-natural-width="1920" data-image-src="{{ Storage::url('images/bg-5.jpg') }}">
         <div class="container">
             <div class="title-base">
                 <hr class="anima" />
@@ -34,13 +34,13 @@
                                             <a class="block-comment" href="#">2 <i class="fa fa-comment-o"></i></a>
                                         </div>
                                         <a class="img-box ratio-16-9" href="{{ route('blog.show', $item->slug) }}"><img
-                                                class="anima" src="{{ Storage::disk('s3')->url($item->image) }}"
+                                                class="anima" src="{{ Storage::url($item->image) }}"
                                                 alt="{{ $item->title }}" /></a>
                                         <div class="advs-box-content">
                                             <h2 class="text-m"><a href="#">{{ Str::limit($item->title, 30) }}</a></h2>
                                             <div class="tag-row">
                                                 <span><i class="fa fa-bookmark"></i> <a
-                                                        href="#">{{ $item->serviceCategory->name }}</a></span>
+                                                        href="#">{{ $item->category->name }}</a></span>
                                                 <span><i class="fa fa-pencil"></i><a href="#">Admin</a></span>
                                             </div>
                                             <p class="niche-box-content">
