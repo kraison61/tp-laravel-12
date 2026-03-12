@@ -26,9 +26,10 @@ class BlogController extends Controller
         ];
         // dd($data);
         return view('admin.index', [
-            'title' => 'Admin-Service',
+            'title' => 'Admin-Blog',
             'data' => $data,
-            'headers' => $headers
+            'headers' => $headers,
+            'createRoute' => 'admin.blog.create',
         ]);
     }
 

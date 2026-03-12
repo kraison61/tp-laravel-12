@@ -23,7 +23,7 @@
         <div class="form-card">
             <div class="form-header">
                 <i class="fa fa-edit"></i>
-                <h2>ออกแบบตัวอย่างฟอร์ม (สร้างบทความใหม่)</h2>
+                <h2>สร้างบทความใหม่</h2>
             </div>
 
             <form action="#" method="POST" enctype="multipart/form-data">
@@ -79,7 +79,7 @@
 
                 <div class="form-group">
                     <label class="form-label">เนื้อหาบทความ (Content)</label>
-                    <textarea name="content" class="form-control" rows="8"
+                    <textarea name="content" class="form-control" id="summernote" rows="8"
                         placeholder="เขียนรายละเอียดเนื้อหาที่นี่..."></textarea>
                 </div>
 
@@ -111,4 +111,32 @@
         }
     </script>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            // เรียกใช้ Summernote ผ่าน ID ที่เรากำหนดใน textarea
+            $('#summernote').summernote({
+                placeholder: 'เริ่มเขียนเนื้อหาที่นี่...',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                // ถ้าต้องการจัดการเรื่องรูปภาพอัปโหลดเข้า S3/R2 สามารถเขียนฟังก์ชันเพิ่มตรงนี้ได้
+                callbacks: {
+                    onImageUpload: function (files) {
+                        // Logic สำหรับส่งรูปไปที่ Controller เพื่อเก็บใน S3
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
