@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Controllers\Controller;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
@@ -15,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $columns = ['service_category_id', 'title', 'description', 'image', 'slug'];
+        $columns = ['service_category_id', 'title', 'description', 'image', 'slug', 'content'];
         $data = Blog::select($columns)->with('category')->get();
         $headers = [
             'service_category_id' => 'หมวดหมู่',
@@ -38,8 +40,9 @@ class BlogController extends Controller
      */
     public function create()
     {
+        $blog = new Blog();
         $categories = ServiceCategory::select('id', 'name')->get();
-        return view('admin.blogs.create', compact('categories'));
+        return view('admin.blogs.create', compact('categories', 'blog'));
     }
 
     /**
@@ -47,7 +50,44 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'service_category_id' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'content' => 'required',
+        ]);
+
+        $blog = new Blog();
+        $blog->title = $request->input('title');
+        $blog->slug = $request->input('slug');
+        $blog->service_category_id = $request->input('service_category_id');
+        $blog->description = $request->input('description');
+        $blog->content = $request->input('content');
+        if ($request->hasFile('image')) {
+            $folder = 'images/blogs';
+            $image = $request->file('image');
+            $imageName = 'blog' . time() . '.' . $image->getClientOriginalExtension();
+
+            try {
+                // Delete old image if exists
+                if ($blog->image) {
+                    Storage::disk('s3')->delete($blog->image);
+                }
+
+                // Upload new image
+                Storage::disk('s3')->putFileAs($folder, $image, $imageName);
+
+                // Save path to DB
+                $blog->image = $folder . '/' . $imageName;
+            } catch (\Exception $e) {
+                return back()->withInput()->withErrors(['image' => 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ: ' . $e->getMessage()]);
+            }
+        }
+
+        $blog->save();
+        return redirect()->route('admin.blog.index')->with('success', 'Blog created successfully');
     }
 
     /**
@@ -63,7 +103,10 @@ class BlogController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $blog = Blog::where('slug', $id)->firstOrFail();
+        $categories = ServiceCategory::select('id', 'name')->get();
+
+        return view('admin.blogs.edit', compact('categories', 'blog'));
     }
 
     /**

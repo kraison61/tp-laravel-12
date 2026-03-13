@@ -8,7 +8,7 @@
     <!-- TOP BAR -->
     <div class="admin-topbar">
         <a href="{{ route('admin.index') }}" class="brand">
-            <i class="fa fa-cogs"></i> Admin Panel
+            <i class="fa fa-cogs"></i> Admin-Blog-Edit
         </a>
     </div>
 
@@ -23,7 +23,7 @@
         <div class="form-card">
             <div class="form-header">
                 <i class="fa fa-edit"></i>
-                <h2>สร้างบทความใหม่</h2>
+                <h2>แก้ไขบทความ</h2>
             </div>
 
             <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
