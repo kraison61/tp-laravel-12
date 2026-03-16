@@ -17,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $columns = ['service_category_id', 'title', 'description', 'image', 'slug', 'content'];
+        $columns = ['service_category_id', 'title', 'description', 'image', 'slug', 'content', 'id'];
         $data = Blog::select($columns)->with('category')->get();
         $headers = [
             'service_category_id' => 'หมวดหมู่',
@@ -26,11 +26,14 @@ class BlogController extends Controller
             'image' => 'รูปภาพ',
             'slug' => 'Slug-SEO',
         ];
+
         // dd($data);
+
         return view('admin.index', [
             'title' => 'Admin-Blog',
             'data' => $data,
             'headers' => $headers,
+            'routeBase' => 'admin.blog',
             'createRoute' => 'admin.blog.create',
         ]);
     }
@@ -55,7 +58,7 @@ class BlogController extends Controller
             'slug' => 'required',
             'service_category_id' => 'required',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'content' => 'required',
         ]);
 
@@ -105,7 +108,6 @@ class BlogController extends Controller
     {
         $blog = Blog::where('slug', $id)->firstOrFail();
         $categories = ServiceCategory::select('id', 'name')->get();
-
         return view('admin.blogs.edit', compact('categories', 'blog'));
     }
 
@@ -122,6 +124,13 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blog = Blog::where('slug', $id)->firstOrFail();
+
+        // ลบรูปภาพออกจาก S3 (เปลี่ยนจาก public เป็น s3 ให้ตรงกับตอน store)
+        if ($blog->image) {
+            Storage::disk('s3')->delete($blog->image);
+        }
+        $blog->delete();
+        return redirect()->route('admin.blog.index')->with('success', 'Blog deleted successfully');
     }
 }

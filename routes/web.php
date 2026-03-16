@@ -14,7 +14,8 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
-
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::redirect('/blog', '/blogs', 301);
 Route::redirect('/about', '/about-us', 301);
@@ -33,7 +34,7 @@ Route::get('/blog/{any}', function ($any) {
     $idMap = [
         17 => 'เขื่อนกันดิน-ไทรม้า19-EP1',
         18 => 'เขื่อนกันดิน-ไทรม้า19-EP2',
-        19 => 'เขื่อนกันดิน-ไทรม้า19-EP3', // เช็คให้ชัวร์ว่ามีขีด ep-6 หรือ ep6
+        19 => 'เขื่อนกันดิน-ไทรม้า19-EP3',
         20 => 'เขื่อนกันดิน-ไทรม้า19-EP4',
         21 => 'กำแพงกันดิน-ซอยบางกร่าง45-5-EP1',
         22 => 'เขื่อนกันดิน-ไทรม้า19-EP5',
@@ -53,7 +54,7 @@ Route::get('/blog/{any}', function ($any) {
 
     // 2. จัดการกลุ่มภาษาไทย (ใช้ Str::contains เพื่อไม่ต้องกังวลเรื่องการเว้นวรรคผิด)
     if (Str::contains($decodedUrl, 'เขื่อนกันดินไทรม้า 19 EP.2'))
-        return redirect()->to('/blogs/เขื่อนกันดินไทรม้า-19-EP2', 301);
+        return redirect()->to('/blogs/เขื่อนกันดินไทรม้า19-EP2', 301);
     if (Str::contains($decodedUrl, 'เขื่อนกันดินไทรม้า 19 EP.3'))
         return redirect()->to('/blogs/เขื่อนกันดิน-ไทรม้า19-EP3', 301);
     if (Str::contains($decodedUrl, 'เขื่อนกันดินไทรม้า 19 EP.6'))
@@ -77,7 +78,13 @@ Route::redirect('/blog/ถมที่ด้วยเศษวัสดุก่
 Route::redirect('/blog/เทพื้นปูน ราคาต่อ ตาราง เมตร 2567 | รับเหมาเทพื้นคอนกรีต มืออาชีพ', '/blogs/เทพื้นปูน-ราคาต่อตารางเมตร-2567', 301);
 Route::redirect('/blog/เทพื้นปูน ราคาต่อ ตาราง เมตร 2567 | รับเหมาเทพื้นคอนกรีต มืออาชีพ', '/blogs/เทพื้นปูน-ราคาต่อตารางเมตร-2567', 301);
 
+// Route::get('/test-hash', function () {
+//     // 1. สร้างรหัสผ่านแบบ Hash
+//     $hashedPassword = Hash::make('12345678');
 
+//     // 2. แสดงผลออกมาบนหน้าจอ
+//     return "Your Hashed Password: " . $hashedPassword;
+// });
 
 // 1. Route ที่เป็นชื่อเฉพาะ (Static) ต้องอยู่บนสุด
 Route::get('/', [FrontHomeController::class, 'index'])->name('home');
@@ -93,20 +100,60 @@ Route::prefix('gallery')->group(function () {
 });
 
 //Admin Route
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/services', [AdminServiceController::class, 'index'])->name('admin.service.index');
-    Route::get('/categories', [AdminCategoryController::class, 'index'])->name('admin.category.index');
-    Route::get('/faqs', [AdminFaqController::class, 'index'])->name('admin.faq.index');
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::prefix('blog')->group(function () {
+        Route::get('/blog/edit/{slug}', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::delete('/blog/del/{slug}', [AdminBlogController::class, 'destroy'])->name('admin.blog.destroy');
+    });
+
+    Route::prefix('service')->group(function () {
+        Route::get('/', [AdminServiceController::class, 'index'])->name('admin.service.index');
+        Route::get('/service/edit/{slug}', [AdminServiceController::class, 'edit'])->name('admin.service.edit');
+        Route::delete('/service/del/{slug}', [AdminServiceController::class, 'destroy'])->name('admin.service.destroy');
+    });
+
+    Route::prefix('category')->group(function () {
+        Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category.index');
+        Route::get('/category/edit/{slug}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::delete('/category/del/{slug}', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
+    });
+
+    Route::prefix('faqs')->group(function () {
+        Route::get('/', [AdminFaqController::class, 'index'])->name('admin.faq.index');
+        Route::get('/create', [AdminFaqController::class, 'create'])->name('admin.faq.create');
+        Route::post('/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
+        Route::get('/edit/{slug}', [AdminFaqController::class, 'edit'])->name('admin.faq.edit');
+        Route::delete('/del/{slug}', [AdminFaqController::class, 'destroy'])->name('admin.faq.destroy');
+    });
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
+        Route::get('/create', [ProfileController::class, 'create'])->name('admin.profile.create');
+        Route::post('/store', [ProfileController::class, 'store'])->name('admin.profile.store');
+        Route::get('/edit/{slug}', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+        Route::delete('/del/{slug}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
+    });
+
 });
-Route::prefix('admin/blog')->group(
-    function () {
-        Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
-        Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
-        Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
-        Route::get('/edit', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
-    }
-);
+
+Route::prefix('admin')->middleware(['guest'])->group(function () {
+
+    // แสดงหน้าฟอร์ม Login
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+
+    // รับข้อมูลตอนกดปุ่มเข้าสู่ระบบ (ต้องเป็น POST)
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+});
+
+Route::prefix('admin/blog')->group(function () {
+    Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
+    Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
+    Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
+    Route::get('/edit', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
+    // Route::post('/update', [AdminBlogController::class, 'update'])->name('admin.blog.update');
+    // Route::post('/delete', [AdminBlogController::class, 'delete'])->name('admin.blog.delete');
+});
 
 // Blog Routes
 Route::prefix('blogs')->group(function () {
@@ -123,9 +170,7 @@ Route::prefix('services')->group(function () {
 });
 Route::get('/{slug}', [FrontPageController::class, 'show'])->name('service.show');
 
-// Route::fallback(function () {
-//     return redirect()->route('home');
-// });
+
 
 
 

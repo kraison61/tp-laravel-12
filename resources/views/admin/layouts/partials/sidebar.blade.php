@@ -1,9 +1,9 @@
-@php 
+@php
         $menu = [
         'dashboard' => [
             'label' => 'Dashboard',
             'icon' => 'fa fa-dashboard',
-            'route' => 'admin.index',
+            'route' => 'dashboard',
         ],
         'blog' => [
             'label' => 'Blog',

@@ -7,7 +7,7 @@
 
     <!-- TOP BAR -->
     <div class="admin-topbar">
-        <a href="{{ route('admin.index') }}" class="brand">
+        <a href="{{ route('dashboard') }}" class="brand">
             <i class="fa fa-cogs"></i> Admin Panel
         </a>
     </div>

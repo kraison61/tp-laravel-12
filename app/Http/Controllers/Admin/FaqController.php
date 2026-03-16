@@ -11,15 +11,17 @@ class FaqController extends Controller
     {
         // Dummy data for Admin UX/UI Preview
         $data = collect([
-            (object)[
+            (object) [
                 'id' => 1,
+                'service_id' => '10',
                 'question' => 'ทำไมต้องเลือกบริการของเรา?',
                 'answer' => 'เพราะเรามีทีมงานคุณภาพและให้บริการมายาวนาน',
                 'status' => 'Active',
                 'sort_order' => 1
             ],
-            (object)[
+            (object) [
                 'id' => 2,
+                'service_id' => '10',
                 'question' => 'ราคาเริ่มต้นเท่าไหร่?',
                 'answer' => 'ราคาเริ่มต้นที่ 1,500 บาท ขึ้นอยู่กับหน้างาน',
                 'status' => 'Active',
@@ -28,6 +30,7 @@ class FaqController extends Controller
         ]);
 
         $headers = [
+            'service_id' => 'บริการ',
             'question' => 'คำถาม (Question)',
             'answer' => 'คำตอบ (Answer)',
             'status' => 'สถานะ',
@@ -37,7 +40,9 @@ class FaqController extends Controller
         return view('admin.index', [
             'title' => 'Admin - FAQ (คำถามที่พบบ่อย)',
             'data' => $data,
-            'headers' => $headers
+            'headers' => $headers,
+            'routeBase' => 'admin.faq',
+            'createRoute' => 'admin.faq.create',
         ]);
     }
 }

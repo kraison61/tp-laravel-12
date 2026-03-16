@@ -14,7 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $columns = ['service_category_id', 'title', 'description', 'h1','top_1','top_2','img_1','img_2','top_alt','bottom_alt'];
+        $columns = ['service_category_id', 'title', 'description', 'h1', 'top_1', 'top_2', 'img_1', 'img_2', 'top_alt', 'bottom_alt'];
         $data = Service::select($columns)->with('category')->get();
         $headers = [
             'service_category_id' => 'หมวดหมู่',
@@ -29,10 +29,12 @@ class ServiceController extends Controller
             'bottom_alt' => 'alt-รูปภาพ-ล่าง',
         ];
         // dd($data);
-        return view('admin.index',[
+        return view('admin.index', [
             'title' => 'Admin-Service',
             'data' => $data,
-            'headers' => $headers
+            'headers' => $headers,
+            'routeBase' => 'admin.service',
+            'createRoute' => 'admin.service.create',
         ]);
     }
 

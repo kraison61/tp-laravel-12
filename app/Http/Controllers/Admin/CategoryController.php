@@ -23,10 +23,12 @@ class CategoryController extends Controller
             'slug' => 'Slug-SEO'
         ];
         // dd($data);
-        return view('admin.index',[
+        return view('admin.index', [
             'title' => 'Admin-ServiceCategories',
             'data' => $data,
-            'headers' => $headers
+            'headers' => $headers,
+            'routeBase' => 'admin.category',
+            'createRoute' => 'admin.category.create',
         ]);
     }
 

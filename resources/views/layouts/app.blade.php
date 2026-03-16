@@ -1,18 +1,18 @@
 @extends('layouts.clean')
 
 @section('child-title')
-@yield('title')
+    @yield('title')
 @endsection
 
 
 @section('child-description', $__env->yieldContent('description'))
 
 @section('child-image')
-@yield('image')
+    @yield('image')
 @endsection
 
 @section('child-content')
     @include('layouts.partials.header')
-        @yield('content')
+    @yield('content')
     @include('layouts.partials.footer')
 @endsection
