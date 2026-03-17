@@ -45,7 +45,7 @@ class BlogController extends Controller
     {
         $blog = new Blog();
         $categories = ServiceCategory::select('id', 'name')->get();
-        return view('admin.blogs.create', compact('categories', 'blog'));
+        return view('admin.blogs.index', compact('categories', 'blog'));
     }
 
     /**
@@ -106,9 +106,9 @@ class BlogController extends Controller
      */
     public function edit(string $id)
     {
-        $blog = Blog::where('slug', $id)->firstOrFail();
+        $blog = Blog::findOrFail($id);
         $categories = ServiceCategory::select('id', 'name')->get();
-        return view('admin.blogs.edit', compact('categories', 'blog'));
+        return view('admin.blogs.index', compact('categories', 'blog'));
     }
 
     /**
@@ -124,7 +124,7 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        $blog = Blog::where('slug', $id)->firstOrFail();
+        $blog = Blog::findOrFail($id);
 
         // ลบรูปภาพออกจาก S3 (เปลี่ยนจาก public เป็น s3 ให้ตรงกับตอน store)
         if ($blog->image) {

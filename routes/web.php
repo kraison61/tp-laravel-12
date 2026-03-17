@@ -53,6 +53,8 @@ Route::get('/blog/{any}', function ($any) {
     }
 
     // 2. จัดการกลุ่มภาษาไทย (ใช้ Str::contains เพื่อไม่ต้องกังวลเรื่องการเว้นวรรคผิด)
+    if (Str::contains($decodedUrl, 'เขื่อนกันดินไทรม้า 19 EP.1'))
+        return redirect()->to('/blogs/เขื่อนกันดิน-ไทรม้า19-EP1', 301);
     if (Str::contains($decodedUrl, 'เขื่อนกันดินไทรม้า 19 EP.2'))
         return redirect()->to('/blogs/เขื่อนกันดินไทรม้า19-EP2', 301);
     if (Str::contains($decodedUrl, 'เขื่อนกันดินไทรม้า 19 EP.3'))
@@ -61,6 +63,8 @@ Route::get('/blog/{any}', function ($any) {
         return redirect()->to('/blogs/เขื่อนกันดิน-ไทรม้า19-EP6', 301);
     if (Str::contains($decodedUrl, 'ถมที่ด้วยเศษวัสดุก่อสร้าง'))
         return redirect()->to('/blogs/ถมที่ด้วยเศษวัสดุก่อสร้าง-ช่วยประหยัด-เสริมพื้นแข็งแรง-เหมาะกับงานสร้างกำแพงกันดิน', 301);
+    if (Str::contains($decodedUrl, 'เทปูน 1 คิว ใช้ปูนกี่ถุง? คำนวณวัสดุและต้นทุนอย่างมืออาชีพ'))
+        return redirect()->to('/blogs/เทปูน-1-คิว-ใช้ปูนกี่ถุง-คำนวณวัสดุและต้นทุนอย่างมืออาชีพ', 301);
     if (Str::contains($decodedUrl, 'เทพื้นปูน'))
         return redirect()->to('/blogs/เทพื้นปูน-ราคาต่อตารางเมตร-2567-รับเหมาเทพื้นคอนกรีต-มืออาชีพ', 301);
 
@@ -72,10 +76,10 @@ Route::get('/blog/{any}', function ($any) {
 // --- 3. กลุ่มภาษาไทย (แก้ปัญหา Error จาก .htaccess) ---
 // Laravel จะรับค่าที่มี "ช่องว่าง" ได้โดยไม่ต้องใส่เครื่องหมายพิเศษ
 Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.2', '/blogs/เขื่อนกันดินไทรม้า-19-EP2', 301);
+Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.2', '/blogs/เขื่อนกันดินไทรม้า-19-EP2', 301);
 Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.3', '/blogs/เขื่อนกันดินไทรม้า-19-ep3', 301);
 Route::redirect('/blog/เขื่อนกันดินไทรม้า 19 EP.6', '/blogs/เขื่อนกันดินไทรม้า-19-ep-6', 301);
 Route::redirect('/blog/ถมที่ด้วยเศษวัสดุก่อสร้าง ช่วยประหยัด เสริมพื้นแข็งแรง เหมาะกับงานสร้างกำแพงกันดิน', '/blogs/ถมที่ด้วยเศษวัสดุก่อสร้าง-ช่วยประหยัด-เสริมพื้นแข็งแรง-เหมาะกับงานสร้างกำแพงกันดิน', 301);
-Route::redirect('/blog/เทพื้นปูน ราคาต่อ ตาราง เมตร 2567 | รับเหมาเทพื้นคอนกรีต มืออาชีพ', '/blogs/เทพื้นปูน-ราคาต่อตารางเมตร-2567', 301);
 Route::redirect('/blog/เทพื้นปูน ราคาต่อ ตาราง เมตร 2567 | รับเหมาเทพื้นคอนกรีต มืออาชีพ', '/blogs/เทพื้นปูน-ราคาต่อตารางเมตร-2567', 301);
 
 // Route::get('/test-hash', function () {
@@ -103,14 +107,19 @@ Route::prefix('gallery')->group(function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::prefix('blog')->group(function () {
-        Route::get('/blog/edit/{slug}', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
-        Route::delete('/blog/del/{slug}', [AdminBlogController::class, 'destroy'])->name('admin.blog.destroy');
+        Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
+        Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
+        Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
+        Route::get('/edit/{id}', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::delete('/del/{id}', [AdminBlogController::class, 'destroy'])->name('admin.blog.destroy');
     });
 
     Route::prefix('service')->group(function () {
         Route::get('/', [AdminServiceController::class, 'index'])->name('admin.service.index');
-        Route::get('/service/edit/{slug}', [AdminServiceController::class, 'edit'])->name('admin.service.edit');
-        Route::delete('/service/del/{slug}', [AdminServiceController::class, 'destroy'])->name('admin.service.destroy');
+        Route::get('/create', [AdminServiceController::class, 'create'])->name('admin.service.create');
+        Route::post('/store', [AdminServiceController::class, 'store'])->name('admin.service.store');
+        Route::get('/edit/{slug}', [AdminServiceController::class, 'edit'])->name('admin.service.edit');
+        Route::delete('/del/{slug}', [AdminServiceController::class, 'destroy'])->name('admin.service.destroy');
     });
 
     Route::prefix('category')->group(function () {
@@ -144,15 +153,6 @@ Route::prefix('admin')->middleware(['guest'])->group(function () {
     // รับข้อมูลตอนกดปุ่มเข้าสู่ระบบ (ต้องเป็น POST)
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-});
-
-Route::prefix('admin/blog')->group(function () {
-    Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
-    Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
-    Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
-    Route::get('/edit', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
-    // Route::post('/update', [AdminBlogController::class, 'update'])->name('admin.blog.update');
-    // Route::post('/delete', [AdminBlogController::class, 'delete'])->name('admin.blog.delete');
 });
 
 // Blog Routes

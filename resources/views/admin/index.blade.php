@@ -98,8 +98,8 @@
                             @endforeach
                             <td>
                                 <div style="display:flex;gap:6px;align-items:center;">
-                                    <a href="{{ route($routeBase.'edit'.$row->id) }}" class="btn-edit-icon"><i class="fa fa-pencil"></i> แก้ไข</a>
-                                    <form action="{{ route('admin.blog.destroy', $row->id) }}" method="POST" style="margin:0;">
+                                    <a href="{{ route($routeBase.'.edit', $row->id) }}" class="btn-edit-icon"><i class="fa fa-pencil"></i> แก้ไข</a>
+                                    <form action="{{ route($routeBase.'.destroy', $row->id) }}" method="POST" style="margin:0;">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="btn-delete-icon"
                                             onclick="return confirm('ยืนยันการลบข้อมูลนี้?')">
