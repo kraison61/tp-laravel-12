@@ -106,12 +106,14 @@ Route::prefix('gallery')->group(function () {
 //Admin Route
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+
     Route::prefix('blog')->group(function () {
         Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
         Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
         Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
         Route::get('/edit/{id}', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
         Route::delete('/del/{id}', [AdminBlogController::class, 'destroy'])->name('admin.blog.destroy');
+        Route::put('/update/{id}', [AdminBlogController::class, 'update'])->name('admin.blog.update');
     });
 
     Route::prefix('service')->group(function () {
@@ -124,6 +126,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::prefix('category')->group(function () {
         Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category.index');
+        Route::get('/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
         Route::get('/category/edit/{slug}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
         Route::delete('/category/del/{slug}', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
     });

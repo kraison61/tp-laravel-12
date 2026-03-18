@@ -37,7 +37,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category = new ServiceCategory();
+        return view('admin.categories.index', compact('category'));
     }
 
     /**
@@ -45,7 +46,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+        ]);
+
+        $category = new ServiceCategory();
+        $category->name = $request->input('name');
+        $category->slug = $request->input('slug');
+        $category->save();
+        return redirect()->route('admin.category.index')->with('success', 'Category created successfully');
     }
 
     /**
@@ -61,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = ServiceCategory::findOrFail($id);
+        return view('admin.categories.index', compact('category'));
     }
 
     /**

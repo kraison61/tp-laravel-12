@@ -116,7 +116,47 @@ class BlogController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'service_category_id' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'content' => 'required',
+        ]);
+
+        $blog->title = $request->input('title');
+        $blog->slug = $request->input('slug');
+        $blog->service_category_id = $request->input('service_category_id');
+        $blog->description = $request->input('description');
+        $blog->content = $request->input('content');
+
+        // Check if new image is uploaded
+        if ($request->hasFile('image')) {
+            $folder = 'images/blogs';
+            $image = $request->file('image');
+            $imageName = 'blog' . time() . '.' . $image->getClientOriginalExtension();
+
+            try {
+                // Delete old image from S3 if exists
+                if ($blog->image) {
+                    Storage::disk('s3')->delete($blog->image);
+                }
+
+                // Upload new image to S3
+                Storage::disk('s3')->putFileAs($folder, $image, $imageName);
+
+                // Save new image path to DB
+                $blog->image = $folder . '/' . $imageName;
+            } catch (\Exception $e) {
+                return back()->withInput()->withErrors(['image' => 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ: ' . $e->getMessage()]);
+            }
+        }
+
+        $blog->save();
+        return redirect()->route('admin.blog.index')->with('success', 'Blog updated successfully');
     }
 
     /**
