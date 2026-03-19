@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function index()
     {
         $columns = ['service_category_id', 'title', 'description', 'image', 'slug', 'content', 'id'];
-        $data = Blog::select($columns)->with('category')->get();
+        $data = Blog::select($columns)->with('category')->orderBy('updated_at', 'desc')->get();
         $headers = [
             'service_category_id' => 'หมวดหมู่',
             'title' => 'Title',

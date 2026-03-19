@@ -16,13 +16,12 @@ class CategoryController extends Controller
     public function index()
     {
         $columns = ['id', 'name', 'slug'];
-        $data = ServiceCategory::select($columns)->get();
+        $data = ServiceCategory::select($columns)->orderBy('name', 'asc')->get();
         $headers = [
             'id' => 'id',
             'name' => 'ชื่อ',
             'slug' => 'Slug-SEO'
         ];
-        // dd($data);
         return view('admin.index', [
             'title' => 'Admin-ServiceCategories',
             'data' => $data,
@@ -80,7 +79,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = ServiceCategory::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+        ]);
+
+        $category->name = $request->input('name');
+        $category->slug = $request->input('slug');
+
+        $category->save();
+        return redirect()->route('admin.category.index')->with('success', 'Category updated successfully');
     }
 
     /**
@@ -88,6 +98,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = ServiceCategory::findOrFail($id);
+        $category->delete();
+        return redirect()->route('admin.category.index')->with('success', 'Category deleted successfully');
     }
 }

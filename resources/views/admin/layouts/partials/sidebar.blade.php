@@ -1,5 +1,5 @@
 @php
-        $menu = [
+    $menu = [
         'dashboard' => [
             'label' => 'Dashboard',
             'icon' => 'fa fa-dashboard',
@@ -33,12 +33,12 @@
         'price' => [
             'label' => 'Price',
             'icon' => 'fa fa-money',
-            'route' => 'admin.service.index',
+            'route' => 'admin.price.index',
         ],
         'review' => [
             'label' => 'Review',
             'icon' => 'fa fa-star',
-            'route' => 'admin.service.index',
+            'route' => 'admin.review.index',
         ],
         'user' => [
             'label' => 'User',
@@ -56,7 +56,9 @@
 
 <ul class="nav nav-pills nav-stacked" style="margin: 0; padding: 0; list-style: none;">
     @foreach ($menu as $key => $item)
-        <li class="{{ $item['route'] !== '#' && request()->routeIs($item['route']) ? 'active' : '' }}">
+        <!-- <li class="{{ $item['route'] !== '#' && request()->routeIs($item['route']) ? 'active' : '' }}"> -->
+        <li
+            class="{{ $item['route'] !== '#' && request()->routeIs(str_replace('.index', '.*', $item['route'])) ? 'active' : '' }}">
             <a href="{{ $item['route'] !== '#' ? route($item['route']) : '#' }}">
                 <i class="{{ $item['icon'] }}"></i> {{ $item['label'] }}
             </a>

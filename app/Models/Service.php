@@ -21,7 +21,9 @@ class Service extends Model
     'top_alt',
     'bottom_alt',
     'is_active',
-    'schema_type'
+    'schema_type',
+    'rating_value',
+    'review_count'
     ];
 
     public function category()

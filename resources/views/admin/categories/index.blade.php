@@ -39,12 +39,14 @@
             @endphp
 
             {{-- ถ้าเป็นการแก้ไข ให้พิมพ์ @method('PUT') ออกมา --}}
-            @if($isEdit)
-                @method('PUT')
-            @endif
+
 
             <form action="{{ $actionUrl }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                @if($isEdit)
+                    @method('PUT')
+                @endif
 
                 @if ($errors->any())
                     <div

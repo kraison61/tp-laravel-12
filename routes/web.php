@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
+use App\Http\Controllers\Admin\PriceController as AdminPriceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -120,16 +122,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/', [AdminServiceController::class, 'index'])->name('admin.service.index');
         Route::get('/create', [AdminServiceController::class, 'create'])->name('admin.service.create');
         Route::post('/store', [AdminServiceController::class, 'store'])->name('admin.service.store');
-        Route::get('/edit/{slug}', [AdminServiceController::class, 'edit'])->name('admin.service.edit');
-        Route::delete('/del/{slug}', [AdminServiceController::class, 'destroy'])->name('admin.service.destroy');
+        Route::get('/edit/{id}', [AdminServiceController::class, 'edit'])->name('admin.service.edit');
+        Route::delete('/del/{id}', [AdminServiceController::class, 'destroy'])->name('admin.service.destroy');
+        Route::put('/update/{id}', [AdminServiceController::class, 'update'])->name('admin.service.update');
     });
 
     Route::prefix('category')->group(function () {
         Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
         Route::post('/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
-        Route::get('/category/edit/{slug}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
-        Route::delete('/category/del/{slug}', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::get('/edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::delete('/del/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::put('/update/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
     });
 
     Route::prefix('faqs')->group(function () {
@@ -145,6 +149,20 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/store', [ProfileController::class, 'store'])->name('admin.profile.store');
         Route::get('/edit/{slug}', [ProfileController::class, 'edit'])->name('admin.profile.edit');
         Route::delete('/del/{slug}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
+    });
+    Route::prefix('review')->group(function () {
+        Route::get('/', [AdminReviewController::class, 'index'])->name('admin.review.index');
+        Route::get('/create', [AdminReviewController::class, 'create'])->name('admin.review.create');
+        Route::post('/store', [AdminReviewController::class, 'store'])->name('admin.review.store');
+        Route::get('/edit/{slug}', [AdminReviewController::class, 'edit'])->name('admin.review.edit');
+        Route::delete('/del/{slug}', [AdminReviewController::class, 'destroy'])->name('admin.review.destroy');
+    });
+    Route::prefix('price')->group(function () {
+        Route::get('/', [AdminPriceController::class, 'index'])->name('admin.price.index');
+        Route::get('/create', [AdminPriceController::class, 'create'])->name('admin.price.create');
+        Route::post('/store', [AdminPriceController::class, 'store'])->name('admin.price.store');
+        Route::get('/edit/{slug}', [AdminPriceController::class, 'edit'])->name('admin.price.edit');
+        Route::delete('/del/{slug}', [AdminPriceController::class, 'destroy'])->name('admin.price.destroy');
     });
 
 });

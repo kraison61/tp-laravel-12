@@ -11,13 +11,7 @@
             <label class="form-label">ลิงก์ URL (Slug) <span class="text-danger">*</span></label>
             <input type="text" name="slug" id="slugInput" class="form-control"
                 value="{{ old('slug', $category->slug ?? '') }}" placeholder="เช่น concrete-work" required>
-            <small class="text-muted">ระบบจะสร้างให้อัตโนมัติจากชื่อหมวดหมู่ แต่สามารถแก้ไขเองได้</small>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">คำอธิบายเพิ่มเติม (Description)</label>
-            <textarea name="description" class="form-control" rows="4"
-                placeholder="อธิบายรายละเอียดของหมวดหมู่นี้สั้นๆ...">{{ old('description', $category->description ?? '') }}</textarea>
+            <!-- <small class="text-muted">ระบบจะสร้างให้อัตโนมัติจากชื่อหมวดหมู่ แต่สามารถแก้ไขเองได้</small> -->
         </div>
     </div>
     <div class="col-md-4">
@@ -63,6 +57,6 @@
                     slugInput.value = generateSlug(this.value);
                 });
             @endif
-        });
+                });
     </script>
 @endpush
