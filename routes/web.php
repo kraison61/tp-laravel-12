@@ -161,8 +161,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/', [AdminPriceController::class, 'index'])->name('admin.price.index');
         Route::get('/create', [AdminPriceController::class, 'create'])->name('admin.price.create');
         Route::post('/store', [AdminPriceController::class, 'store'])->name('admin.price.store');
-        Route::get('/edit/{slug}', [AdminPriceController::class, 'edit'])->name('admin.price.edit');
-        Route::delete('/del/{slug}', [AdminPriceController::class, 'destroy'])->name('admin.price.destroy');
+        Route::get('/edit/{id}', [AdminPriceController::class, 'edit'])->name('admin.price.edit');
+        Route::delete('/del/{id}', [AdminPriceController::class, 'destroy'])->name('admin.price.destroy');
+        Route::put('/update/{id}', [AdminPriceController::class, 'update'])->name('admin.price.update');
     });
 
 });
