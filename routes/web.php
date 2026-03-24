@@ -138,10 +138,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::prefix('faqs')->group(function () {
         Route::get('/', [AdminFaqController::class, 'index'])->name('admin.faq.index');
-        Route::get('/create', [AdminFaqController::class, 'create'])->name('admin.faq.create');
         Route::post('/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
-        Route::get('/edit/{slug}', [AdminFaqController::class, 'edit'])->name('admin.faq.edit');
-        Route::delete('/del/{slug}', [AdminFaqController::class, 'destroy'])->name('admin.faq.destroy');
+        Route::get('/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin.faq.edit');
+        Route::put('/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faq.update');
+        Route::delete('/del/{id}', [AdminFaqController::class, 'destroy'])->name('admin.faq.destroy');
     });
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
@@ -152,10 +152,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     });
     Route::prefix('review')->group(function () {
         Route::get('/', [AdminReviewController::class, 'index'])->name('admin.review.index');
-        Route::get('/create', [AdminReviewController::class, 'create'])->name('admin.review.create');
         Route::post('/store', [AdminReviewController::class, 'store'])->name('admin.review.store');
-        Route::get('/edit/{slug}', [AdminReviewController::class, 'edit'])->name('admin.review.edit');
-        Route::delete('/del/{slug}', [AdminReviewController::class, 'destroy'])->name('admin.review.destroy');
+        Route::get('/edit/{id}', [AdminReviewController::class, 'edit'])->name('admin.review.edit');
+        Route::post('/update/{id}', [AdminReviewController::class, 'update'])->name('admin.review.update');
+        Route::delete('/del/{id}', [AdminReviewController::class, 'destroy'])->name('admin.review.destroy');
     });
     Route::prefix('price')->group(function () {
         Route::get('/', [AdminPriceController::class, 'index'])->name('admin.price.index');

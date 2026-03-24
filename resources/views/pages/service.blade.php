@@ -6,7 +6,41 @@
     $currentUrl = url()->current();
     $locale = app()->getLocale();
 
-    // 2. เตรียมข้อมูลสำหรับ JSON-LD ในรูปแบบ Array (แก้ปัญหา Syntax Error จากเครื่องหมาย @)
+    // ---------------------------------------------------------
+    // 🌟 ใหม่: นำข้อมูลราคาจากตาราง prices มาสร้างเป็น Schema Offers
+    // ---------------------------------------------------------
+    $schemaOffers = [];
+    
+    if (isset($prices) && $prices->isNotEmpty()) {
+        foreach ($prices as $p) {
+            $offer = [
+                '@type' => 'Offer',
+                'name' => $p->name, // ชื่อแพ็กเกจราคา
+                // ถ้ามีราคาโปรโมชั่น (sale_price) ให้ใช้ราคานั้น ถ้าไม่มีให้ใช้ราคาปกติ (price)
+                'price' => $p->sale_price ?? $p->price, 
+                'priceCurrency' => $p->currency ?? 'THB',
+                'url' => $p->url ? $p->url : $currentUrl,
+                'availability' => $p->availability ?? 'https://schema.org/InStock'
+            ];
+
+            // ถ้ามีวันหมดอายุโปรโมชั่น ให้ใส่เข้าไปด้วย
+            if (!empty($p->price_valid_until)) {
+                $offer['priceValidUntil'] = date('Y-m-d', strtotime($p->price_valid_until));
+            }
+
+            $schemaOffers[] = $offer; // เก็บลงกล่อง array
+        }
+    } else {
+        // Fallback: กรณีที่บริการนี้ยังไม่ได้เพิ่มราคาลงในระบบ
+        $schemaOffers = [
+            '@type' => 'Offer',
+            'price' => '0.00', // ปรับเป็น 0 หรือราคาเริ่มต้นมาตรฐาน
+            'priceCurrency' => 'THB',
+            'url' => $currentUrl,
+        ];
+    }
+
+    // 2. เตรียมข้อมูลสำหรับ JSON-LD ในรูปแบบ Array 
     $schemaData = [
         '@context' => 'https://schema.org',
         '@graph' => [
@@ -18,7 +52,6 @@
                 'url' => url('/'),
                 'logo' => [
                     '@type' => 'ImageObject',
-                    // 'url' => asset('storage/images/tp-logo.svg'),
                     'url' => Storage::disk('s3')->url('images/tp-logo.svg'),
                 ],
                 'image' => Storage::disk('s3')->url('images/about/194911_0.jpg'),
@@ -32,60 +65,23 @@
                     'addressCountry' => 'TH',
                 ],
             ],
-            // ข้อมูลผู้เชี่ยวชาญ
-            [
-                '@type' => 'Person',
-                '@id' => $currentUrl . '#person',
-                'name' => 'ช่างรัก (Mr.Theeraphong Sarsuk)',
-                'jobTitle' => 'ผู้เชี่ยวชาญด้านงานก่อสร้าง',
-            ],
-            // โครงสร้างหน้าเว็บ
-            [
-                '@type' => 'WebPage',
-                '@id' => $currentUrl . '#webpage',
-                'url' => $currentUrl,
-                'name' => $item->title ?? 'Service',
-                'inLanguage' => 'th',
-            ],
-            // ข้อมูลบริการ (ปรับจาก Article เป็น Service)
+            // ข้อมูลบริการ (Service)
             [
                 '@type' => 'Service',
-                '@id' => $currentUrl . '#service',
-                'name' => $item->h1 ?? ($item->title ?? ''),
-                'description' => trim(strip_tags($item->description ?? '')),
-                'image' => asset('storage/' . ($item->img_1 ?? '')),
-                'provider' => ['@id' => url('/') . '#organization'],
+                'name' => $service->title,
+                'provider' => [
+                    '@id' => url('/') . '#organization',
+                ],
+                'description' => strip_tags($service->description),
                 'areaServed' => [
                     '@type' => 'Country',
                     'name' => 'Thailand',
                 ],
-                'mainEntityOfPage' => ['@id' => $currentUrl . '#webpage'],
-            ],
-            // เพิ่ม Breadcrumb List Schema
-            [
-                '@type' => 'BreadcrumbList',
-                '@id' => $currentUrl . '#breadcrumb',
-                'itemListElement' => [
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 1,
-                        'name' => __('Home'),
-                        'item' => url('/'),
-                    ],
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 2,
-                        'name' => __('Services'),
-                        'item' => url('/services'), // อย่าลืมเปลี่ยนให้ตรงกับ Route รวมบริการของคุณ
-                    ],
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 3,
-                        'name' => $service->name,
-                    ],
-                ],
-            ],
-        ],
+                
+                // 🌟 ใหม่: นำตัวแปร $schemaOffers มาใส่ตรงนี้แทนค่าคงที่
+                'offers' => $schemaOffers, 
+            ]
+        ]
     ];
 @endphp
 
@@ -153,5 +149,16 @@
             </div>
         </div>
     </div>
+    <div class="section-empty section-item">
+        <div class="container">
+            <div class="title-base text-left">
+                <hr />
+                <h2>ราคาประมาณการสินค้าและบริการ</h2>
+                <p>ราคาอาจมีการเปลี่ยนแปลงขึ้นอยู่กับขนาดและวัสดุ</p>
+            </div>
+            <x-pricing-table :prices="$prices" />
+        </div>
+    </div>
+
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
 @endsection

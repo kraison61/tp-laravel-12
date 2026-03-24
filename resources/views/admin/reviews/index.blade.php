@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 
-@section('child-title', 'FAQ - คำถามที่พบบ่อย')
+@section('child-title', 'Reviews - รีวิวจากลูกค้า')
 
 @section('child-content')
 
@@ -40,39 +40,49 @@
 
         <div class="row">
 
-            {{-- ===== ซ้าย: รายการ FAQ ===== --}}
+            {{-- ===== ซ้าย: รายการรีวิว ===== --}}
             <div class="col-md-8">
                 <div class="form-card">
                     <div class="form-header">
-                        <i class="fa fa-question-circle"></i>
-                        <h2>รายการ FAQ ทั้งหมด</h2>
+                        <i class="fa fa-star"></i>
+                        <h2>รายการรีวิวทั้งหมด</h2>
                     </div>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" style="font-size: 13px;">
                             <thead>
                                 <tr class="active">
-                                    <th style="width: 40px;">#</th>
-                                    <th>บริการ</th>
-                                    <th>คำถาม / คำตอบ</th>
-                                    <th style="width: 60px;" class="text-center">ลำดับ</th>
+                                    <th style="width: 50px;">รูป</th>
+                                    <th>ชื่อลูกค้า</th>
+                                    <th style="width: 80px;" class="text-center">คะแนน</th>
+                                    <th>ความคิดเห็น</th>
                                     <th style="width: 70px;" class="text-center">สถานะ</th>
                                     <th style="width: 90px;" class="text-center">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($faqs as $item)
-                                <tr class="{{ $faq->exists && $faq->id === $item->id ? 'info' : '' }}">
-                                    <td>{{ $item->id }}</td>
-                                    <td>
-                                        <small class="text-muted">{{ $item->service->title ?? '-' }}</small>
+                                @forelse($reviews as $item)
+                                <tr class="{{ $review->exists && $review->id === $item->id ? 'info' : '' }}">
+                                    <td class="text-center">
+                                        @if($item->image)
+                                            <img src="{{ Storage::disk('s3')->url($item->image) }}"
+                                                 alt="{{ $item->customer_name }}"
+                                                 style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 1px solid #ddd;">
+                                        @else
+                                            <span class="text-muted"><i class="fa fa-user-circle fa-2x"></i></span>
+                                        @endif
+                                    </td>
+                                    <td><strong>{{ $item->customer_name }}</strong></td>
+                                    <td class="text-center">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fa fa-star{{ $i <= $item->rating ? '' : '-o' }}"
+                                               style="color: #f39c12; font-size: 11px;"></i>
+                                        @endfor
+                                        <br><small class="text-muted">{{ $item->rating }}/5</small>
                                     </td>
                                     <td>
-                                        <strong>{{ Str::limit($item->question, 60) }}</strong>
-                                        <br>
-                                        <small class="text-muted">{{ Str::limit($item->answer, 80) }}</small>
+                                        <small>{{ Str::limit($item->comment ?? '-', 70) }}</small>
                                     </td>
-                                    <td class="text-center">{{ $item->sort_order }}</td>
                                     <td class="text-center">
                                         @if($item->is_active)
                                             <span class="label label-success">เปิด</span>
@@ -81,13 +91,13 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.faq.edit', $item->id) }}"
+                                        <a href="{{ route('admin.review.edit', $item->id) }}"
                                            class="btn btn-xs btn-warning" title="แก้ไข">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('admin.faq.destroy', $item->id) }}"
+                                        <form action="{{ route('admin.review.destroy', $item->id) }}"
                                               method="POST" style="display:inline;"
-                                              onsubmit="return confirm('ยืนยันการลบ FAQ นี้?')">
+                                              onsubmit="return confirm('ยืนยันการลบรีวิวของ {{ addslashes($item->customer_name) }}?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-xs btn-danger" title="ลบ">
@@ -99,7 +109,7 @@
                                 @empty
                                 <tr>
                                     <td colspan="6" class="text-center text-muted" style="padding: 30px;">
-                                        <i class="fa fa-inbox"></i> ยังไม่มีข้อมูล FAQ
+                                        <i class="fa fa-inbox"></i> ยังไม่มีข้อมูลรีวิว
                                     </td>
                                 </tr>
                                 @endforelse
@@ -109,7 +119,7 @@
 
                     {{-- Pagination --}}
                     <div style="margin-top: 10px;">
-                        {{ $faqs->links('vendor.pagination.semantic-ui') }}
+                        {{ $reviews->links('vendor.pagination.semantic-ui') }}
                     </div>
                 </div>
             </div>
@@ -119,26 +129,24 @@
                 <div class="form-card">
                     <div class="form-header">
                         <i class="fa fa-edit"></i>
-                        <h2>{{ $faq->exists ? 'แก้ไข FAQ' : 'เพิ่ม FAQ ใหม่' }}</h2>
+                        <h2>{{ $review->exists ? 'แก้ไขรีวิว' : 'เพิ่มรีวิวใหม่' }}</h2>
                     </div>
 
                     @php
-                        $actionUrl = $faq->exists
-                            ? route('admin.faq.update', $faq->id)
-                            : route('admin.faq.store');
+                        $actionUrl = $review->exists
+                            ? route('admin.review.update', $review->id)
+                            : route('admin.review.store');
                     @endphp
 
-                    <form action="{{ $actionUrl }}" method="POST">
+                    {{-- ใช้ POST สำหรับทั้ง Store และ Update เพราะมีไฟล์อัปโหลด --}}
+                    <form action="{{ $actionUrl }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @if($faq->exists)
-                            @method('PUT')
-                        @endif
 
-                        @include('admin.faqs.form')
+                        @include('admin.reviews.form')
 
                         <div style="margin-top: 20px; border-top: 1px solid #f0f0f0; padding-top: 15px;">
-                            @if($faq->exists)
-                                <a href="{{ route('admin.faq.index') }}"
+                            @if($review->exists)
+                                <a href="{{ route('admin.review.index') }}"
                                    class="btn btn-default" style="margin-right: 8px;">
                                     <i class="fa fa-times"></i> ยกเลิก
                                 </a>
