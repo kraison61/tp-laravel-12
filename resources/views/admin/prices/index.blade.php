@@ -23,7 +23,7 @@
         <div class="form-card">
             <div class="form-header">
                 <i class="fa fa-edit"></i>
-                @if($price->exists || isset($price))
+                @if(isset($price) && $price->exists)
                     <h2>แก้ไขราคา</h2>
                 @else
                     <h2>สร้างราคาใหม่</h2>

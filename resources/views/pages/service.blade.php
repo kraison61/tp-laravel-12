@@ -1,50 +1,55 @@
 @extends('layouts.app')
 
 @php
-    // 1. ดึงข้อมูลตัวแรกมาเก็บไว้ก่อน เพื่อป้องกัน Error และลดการเขียนซ้ำ
-    $item = $service->services->first();
+    // 1. เตรียมข้อมูลพื้นฐาน
+    $item = $service->services->first(); // เช็กให้ดีว่าตัวนี้มีการใช้งานต่อหรือไม่
     $currentUrl = url()->current();
     $locale = app()->getLocale();
+    $pageTitle = $service->title ?? 'บริการของเรา';
+    $pageDescription = strip_tags($service->description ?? '');
 
     // ---------------------------------------------------------
-    // 🌟 ใหม่: นำข้อมูลราคาจากตาราง prices มาสร้างเป็น Schema Offers
+    // 2. เตรียมข้อมูล Offers (ดึงจากตาราง Prices)
     // ---------------------------------------------------------
     $schemaOffers = [];
-    
+
     if (isset($prices) && $prices->isNotEmpty()) {
         foreach ($prices as $p) {
             $offer = [
                 '@type' => 'Offer',
-                'name' => $p->name, // ชื่อแพ็กเกจราคา
-                // ถ้ามีราคาโปรโมชั่น (sale_price) ให้ใช้ราคานั้น ถ้าไม่มีให้ใช้ราคาปกติ (price)
-                'price' => $p->sale_price ?? $p->price, 
+                'name' => $p->name ?? $pageTitle,
+                'price' => $p->sale_price ?? $p->price ?? '0.00',
                 'priceCurrency' => $p->currency ?? 'THB',
                 'url' => $p->url ? $p->url : $currentUrl,
-                'availability' => $p->availability ?? 'https://schema.org/InStock'
+                'availability' => $p->availability == 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+                'itemCondition' => 'https://schema.org/NewCondition'
             ];
 
-            // ถ้ามีวันหมดอายุโปรโมชั่น ให้ใส่เข้าไปด้วย
             if (!empty($p->price_valid_until)) {
                 $offer['priceValidUntil'] = date('Y-m-d', strtotime($p->price_valid_until));
             }
 
-            $schemaOffers[] = $offer; // เก็บลงกล่อง array
+            $schemaOffers[] = $offer;
         }
     } else {
-        // Fallback: กรณีที่บริการนี้ยังไม่ได้เพิ่มราคาลงในระบบ
-        $schemaOffers = [
+        // Fallback: หากยังไม่มีข้อมูลราคา ให้ส่งโครงสร้างกลับไปเป็น Array เหมือนเดิม
+        $schemaOffers[] = [
             '@type' => 'Offer',
-            'price' => '0.00', // ปรับเป็น 0 หรือราคาเริ่มต้นมาตรฐาน
+            'price' => '0.00',
             'priceCurrency' => 'THB',
             'url' => $currentUrl,
+            'availability' => 'https://schema.org/InStock'
         ];
     }
 
-    // 2. เตรียมข้อมูลสำหรับ JSON-LD ในรูปแบบ Array 
+    // ---------------------------------------------------------
+    // 3. ประกอบร่าง JSON-LD Graph
+    // ---------------------------------------------------------
     $schemaData = [
         '@context' => 'https://schema.org',
         '@graph' => [
-            // ข้อมูลองค์กร (รับเหมาก่อสร้าง)
+
+            // --- 3.1 องค์กร (LocalBusiness) ---
             [
                 '@type' => 'LocalBusiness',
                 '@id' => url('/') . '#organization',
@@ -56,7 +61,7 @@
                 ],
                 'image' => Storage::disk('s3')->url('images/about/194911_0.jpg'),
                 'telephone' => '+66627188847',
-                'priceRange' => "$$",
+                'priceRange' => '$$',
                 'address' => [
                     '@type' => 'PostalAddress',
                     'streetAddress' => '14 ต.บางกร่าง อ.เมืองนนทบุรี',
@@ -65,25 +70,69 @@
                     'addressCountry' => 'TH',
                 ],
             ],
-            // ข้อมูลบริการ (Service)
+
+            // --- 3.2 ข้อมูลบริการหลัก (Service) ---
             [
                 '@type' => 'Service',
-                'name' => $service->title,
+                '@id' => $currentUrl . '#service',
+                'name' => $pageTitle,
                 'provider' => [
                     '@id' => url('/') . '#organization',
                 ],
-                'description' => strip_tags($service->description),
+                'description' => $pageDescription,
                 'areaServed' => [
-                    '@type' => 'Country',
-                    'name' => 'Thailand',
+                    ['@type' => 'City', 'name' => 'Bangkok'],
+                    ['@type' => 'City', 'name' => 'Nonthaburi'],
+                    ['@type' => 'City', 'name' => 'Pathum Thani']
                 ],
-                
-                // 🌟 ใหม่: นำตัวแปร $schemaOffers มาใส่ตรงนี้แทนค่าคงที่
-                'offers' => $schemaOffers, 
+                'offers' => $schemaOffers, // ยัด Array ของราคาลงไป
+            ],
+
+            // --- 3.3 แผนสำรอง: แปลงร่างเป็น Product เพื่อชิงพื้นที่ Google Merchant (สู้คู่แข่ง) ---
+            [
+                '@type' => 'Product',
+                '@id' => $currentUrl . '#product',
+                'name' => $pageTitle,
+                'description' => $pageDescription,
+                'image' => Storage::disk('s3')->url('images/about/194911_0.jpg'), // ควรเปลี่ยนเป็นรูปหน้างานเฉพาะบริการนี้ถ้ามี
+                'brand' => [
+                    '@id' => url('/') . '#organization'
+                ],
+                'sku' => $service->sku ?? 'TP-SRV-' . ($service->id ?? rand(100, 999)),
+                'offers' => $schemaOffers, // ดึงราคาชุดเดียวกันมาใช้
+            ],
+
+            // --- 3.4 Breadcrumbs (เพื่อให้ URL บน Google สวยงาม) ---
+            [
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'name' => 'หน้าแรก',
+                        'item' => url('/')
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'name' => 'บริการของเรา',
+                        'item' => url('/services')
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 3,
+                        'name' => $pageTitle
+                    ]
+                ]
             ]
+
         ]
     ];
 @endphp
+
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
 
 {{-- ส่งข้อมูลไปที่ Meta Tags ใน Layout --}}
 @section('title', $item->title ?? 'Service')
@@ -93,8 +142,8 @@
 @push('seo-schema')
 
     <script type="application/ld+json">
-        {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-    </script>
+            {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+        </script>
 @endpush
 
 @section('content')

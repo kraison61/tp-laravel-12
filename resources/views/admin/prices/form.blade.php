@@ -12,9 +12,9 @@
                     <select name="service_id" class="form-control" required>
                         <option value="">-- เลือกบริการ --</option>
 
-                        @foreach($categories ?? [] as $category)
-                            <option value="{{ $category->id }}" {{ old('service_id', $price->service_id ?? '') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
+                        @foreach($services as $service)
+                            <option value="{{ $service->id }}" {{ old('service_id', $price->service_id ?? '') == $service->id ? 'selected' : '' }}>
+                                {{ $service->name }}
                             </option>
                         @endforeach
                     </select>

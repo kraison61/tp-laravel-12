@@ -16,7 +16,20 @@ class PriceController extends Controller
     public function index()
     {
         $columns = ['id', 'service_id', 'sku', 'name', 'description', 'price', 'max_price', 'sale_price', 'price_type', 'unit_text', 'currency', 'price_valid_until', 'availability', 'url', 'sort_order', 'is_active'];
-        $data = Price::select($columns)->with('service')->orderBy('updated_at', 'desc')->get();
+        $data = Price::select($columns)
+            ->with('category')
+            ->orderBy('updated_at', 'desc')
+            ->get()
+            ->map(function ($item) {
+                // 2. แปลงค่า service_id ให้เป็นชื่อหมวดหมู่ เพื่อให้หน้า index กลางโชว์ชื่อได้ทันที
+                // เราเก็บชื่อไว้ใน property ชื่อเดิม (service_id) เพื่อให้ตรงกับ $headers
+                $item->service_id = $item->category->name ?? 'ไม่มีหมวดหมู่';
+
+                // (ตัวเลือกเสริม) แปลงสถานะจาก 0,1 ให้เป็นข้อความภาษาไทย
+                $item->is_active = $item->is_active ? 'ใช้งาน' : 'ปิดใช้งาน';
+
+                return $item;
+            });
         $headers = [
             'service_id' => 'หมวดหมู่',
             'sku' => 'รหัสบริการ',
@@ -50,8 +63,8 @@ class PriceController extends Controller
     public function create()
     {
         $price = new Price();
-        $categories = ServiceCategory::select('id', 'name')->get();
-        return view('admin.prices.index', compact('price', 'categories'));
+        $services = ServiceCategory::select('id', 'name')->get();
+        return view('admin.prices.index', compact('price', 'services'));
     }
 
     /**
@@ -71,7 +84,7 @@ class PriceController extends Controller
 
         // 2. ตรวจสอบข้อมูล (Validation)
         $validatedData = $request->validate([
-            'service_id' => 'required|exists:services,id',
+            'service_id' => 'required|exists:service_categories,id',
             'sku' => 'nullable|string|max:100',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -120,9 +133,8 @@ class PriceController extends Controller
     public function edit(string $id)
     {
         $price = Price::findOrFail($id);
-        $categories = ServiceCategory::select('id', 'name')->get();
-        // dd($id);
-        return view('admin.prices.index', compact('price', 'categories'));
+        $services = ServiceCategory::select('id', 'name')->get();
+        return view('admin.prices.index', compact('price', 'services'));
     }
 
     /**
@@ -138,7 +150,7 @@ class PriceController extends Controller
         ];
 
         $validatedData = $request->validate([
-            'service_id' => 'required|exists:services,id',
+            'service_id' => 'required|exists:service_categories,id',
             'sku' => 'nullable|string|max:100',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
