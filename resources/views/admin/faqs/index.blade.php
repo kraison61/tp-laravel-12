@@ -6,7 +6,7 @@
 
     <!-- TOP BAR -->
     <div class="admin-topbar">
-        <a href="{{ route('dashboard') }}" class="brand">
+        <a href="{{ route('admin.dashboard') }}" class="brand">
             <i class="fa fa-cogs"></i> Admin Panel
         </a>
     </div>
@@ -62,46 +62,45 @@
                             </thead>
                             <tbody>
                                 @forelse($faqs as $item)
-                                <tr class="{{ $faq->exists && $faq->id === $item->id ? 'info' : '' }}">
-                                    <td>{{ $item->id }}</td>
-                                    <td>
-                                        <small class="text-muted">{{ $item->service->title ?? '-' }}</small>
-                                    </td>
-                                    <td>
-                                        <strong>{{ Str::limit($item->question, 60) }}</strong>
-                                        <br>
-                                        <small class="text-muted">{{ Str::limit($item->answer, 80) }}</small>
-                                    </td>
-                                    <td class="text-center">{{ $item->sort_order }}</td>
-                                    <td class="text-center">
-                                        @if($item->is_active)
-                                            <span class="label label-success">เปิด</span>
-                                        @else
-                                            <span class="label label-default">ปิด</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{ route('admin.faq.edit', $item->id) }}"
-                                           class="btn btn-xs btn-warning" title="แก้ไข">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('admin.faq.destroy', $item->id) }}"
-                                              method="POST" style="display:inline;"
-                                              onsubmit="return confirm('ยืนยันการลบ FAQ นี้?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-xs btn-danger" title="ลบ">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    <tr class="{{ $faq->exists && $faq->id === $item->id ? 'info' : '' }}">
+                                        <td>{{ $item->id }}</td>
+                                        <td>
+                                            <small class="text-muted">{{ $item->service->title ?? '-' }}</small>
+                                        </td>
+                                        <td>
+                                            <strong>{{ Str::limit($item->question, 60) }}</strong>
+                                            <br>
+                                            <small class="text-muted">{{ Str::limit($item->answer, 80) }}</small>
+                                        </td>
+                                        <td class="text-center">{{ $item->sort_order }}</td>
+                                        <td class="text-center">
+                                            @if($item->is_active)
+                                                <span class="label label-success">เปิด</span>
+                                            @else
+                                                <span class="label label-default">ปิด</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.faqs.edit', $item->id) }}" class="btn btn-xs btn-warning"
+                                                title="แก้ไข">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('admin.faqs.destroy', $item->id) }}" method="POST"
+                                                style="display:inline;" onsubmit="return confirm('ยืนยันการลบ FAQ นี้?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-xs btn-danger" title="ลบ">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @empty
-                                <tr>
-                                    <td colspan="6" class="text-center text-muted" style="padding: 30px;">
-                                        <i class="fa fa-inbox"></i> ยังไม่มีข้อมูล FAQ
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted" style="padding: 30px;">
+                                            <i class="fa fa-inbox"></i> ยังไม่มีข้อมูล FAQ
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -124,8 +123,8 @@
 
                     @php
                         $actionUrl = $faq->exists
-                            ? route('admin.faq.update', $faq->id)
-                            : route('admin.faq.store');
+                            ? route('admin.faqs.update', $faq->id)
+                            : route('admin.faqs.store');
                     @endphp
 
                     <form action="{{ $actionUrl }}" method="POST">
@@ -138,8 +137,7 @@
 
                         <div style="margin-top: 20px; border-top: 1px solid #f0f0f0; padding-top: 15px;">
                             @if($faq->exists)
-                                <a href="{{ route('admin.faq.index') }}"
-                                   class="btn btn-default" style="margin-right: 8px;">
+                                <a href="{{ route('admin.faqs.index') }}" class="btn btn-default" style="margin-right: 8px;">
                                     <i class="fa fa-times"></i> ยกเลิก
                                 </a>
                             @endif

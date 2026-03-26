@@ -3,7 +3,7 @@
         'dashboard' => [
             'label' => 'Dashboard',
             'icon' => 'fa fa-dashboard',
-            'route' => 'dashboard',
+            'route' => 'admin.dashboard',
         ],
         'blog' => [
             'label' => 'Blog',
@@ -28,7 +28,7 @@
         'faq' => [
             'label' => 'FAQ',
             'icon' => 'fa fa-question-circle', // Updated icon to be more relevant
-            'route' => 'admin.faq.index',
+            'route' => 'admin.faqs.index',
         ],
         'price' => [
             'label' => 'Price',
@@ -39,6 +39,16 @@
             'label' => 'Review',
             'icon' => 'fa fa-star',
             'route' => 'admin.review.index',
+        ],
+        'labor_cost' => [
+            'label' => 'Labor Cost',
+            'icon' => 'fa fa-star',
+            'route' => 'admin.labor_cost.index',
+        ],
+        'labor_category' => [
+            'label' => 'Labor Category',
+            'icon' => 'fa fa-star',
+            'route' => 'admin.labor_category.index',
         ],
         'user' => [
             'label' => 'User',

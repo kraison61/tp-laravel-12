@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 
-@section('child-title', 'Create New Services')
+@section('child-title', 'Create New Blog Post')
 
 @section('child-content')
 
@@ -23,19 +23,19 @@
         <div class="form-card">
             <div class="form-header">
                 <i class="fa fa-edit"></i>
-                @if(isset($service) && $service->exists)
-                    <h2>แก้ไขบริการ</h2>
+                @if(isset($category))
+                    <h2>แก้ไขหมวดหมู่</h2>
                 @else
-                    <h2>สร้างบริการใหม่</h2>
+                    <h2>สร้างหมวดหมู่ใหม่</h2>
                 @endif
             </div>
 
             @php
                 // เช็คว่ามีข้อมูลเดิมไหม (ถ้ามี = Edit, ถ้าไม่มี = Create)
-                $isEdit = $service->exists;
+                $isEdit = $category->exists;
 
                 // กำหนด URL ของ Action
-                $actionUrl = $isEdit ? route('admin.service.update', $service->id) : route('admin.service.store');
+                $actionUrl = $isEdit ? route('admin.labor_category.update', $category->id) : route('admin.labor_category.store');
             @endphp
 
             {{-- ถ้าเป็นการแก้ไข ให้พิมพ์ @method('PUT') ออกมา --}}
@@ -60,7 +60,7 @@
                     </div>
                 @endif
 
-                @include('admin.services.form')
+                @include('admin.labor_categories.form')
                 <div style="text-align: right; margin-top: 30px; border-top: 1px solid #f0f0f0; padding-top: 20px;">
                     <button type="button" class="btn-submit" onclick="window.history.back();"
                         style="background:#f3f4f6; color:#4b5563 !important; margin-right: 10px;">

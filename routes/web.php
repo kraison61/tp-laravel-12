@@ -18,6 +18,10 @@ use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\PriceController as AdminPriceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PublicLaborCostController;
+use App\Http\Controllers\Admin\LaborCostController as AdminLaborCostController;
+use App\Http\Controllers\Admin\LaborCategoryController as AdminLaborCategoryController;
+
 
 Route::redirect('/blog', '/blogs', 301);
 Route::redirect('/about', '/about-us', 301);
@@ -98,6 +102,9 @@ Route::get('/contact-us', [FrontHomeController::class, 'contactUs'])->name('cont
 Route::get('/about-us', [FrontHomeController::class, 'aboutUs'])->name('about');
 
 
+// Labor Cost Routes
+Route::get('/labor-costs', [PublicLaborCostController::class, 'index'])->name('public.labor_costs');
+
 
 
 // Gallery Routes
@@ -105,68 +112,40 @@ Route::prefix('gallery')->group(function () {
     Route::get('/{id?}', [FrontGalleryController::class, 'index'])->name('gallery.index');
 });
 
-//Admin Route
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+Route::prefix('admin')
+    ->name('admin.') // 🌟 เพิ่ม name('admin.') ตรงนี้ เพื่อไม่ต้องพิมพ์ 'admin.' ซ้ำๆ ใน resource
+    ->middleware(['auth'])
+    ->group(function () {
 
-    Route::prefix('blog')->group(function () {
-        Route::get('/', [AdminBlogController::class, 'index'])->name('admin.blog.index');
-        Route::get('/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
-        Route::post('/store', [AdminBlogController::class, 'store'])->name('admin.blog.store');
-        Route::get('/edit/{id}', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
-        Route::delete('/del/{id}', [AdminBlogController::class, 'destroy'])->name('admin.blog.destroy');
-        Route::put('/update/{id}', [AdminBlogController::class, 'update'])->name('admin.blog.update');
-    });
+        // --- หน้า Dashboard ---
+        // สังเกตว่าชื่อ Route จะกลายเป็น 'admin.dashboard' อัตโนมัติ เพราะเราใส่ ->name('admin.') ไว้ข้างบนแล้ว
+        // (แต่ถ้าอยากให้เป็นแค่ 'dashboard' เฉยๆ ตามเดิม ให้ย้ายบรรทัดนี้ออกไปไว้นอกกลุ่ม name('admin.') นะครับ)
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::prefix('service')->group(function () {
-        Route::get('/', [AdminServiceController::class, 'index'])->name('admin.service.index');
-        Route::get('/create', [AdminServiceController::class, 'create'])->name('admin.service.create');
-        Route::post('/store', [AdminServiceController::class, 'store'])->name('admin.service.store');
-        Route::get('/edit/{id}', [AdminServiceController::class, 'edit'])->name('admin.service.edit');
-        Route::delete('/del/{id}', [AdminServiceController::class, 'destroy'])->name('admin.service.destroy');
-        Route::put('/update/{id}', [AdminServiceController::class, 'update'])->name('admin.service.update');
-    });
+        // --- กลุ่ม CRUD มาตรฐาน (ยุบรวม 6 บรรทัดเหลือ 1 บรรทัด) ---
+        // except(['show']) คือบอกว่าเราไม่มีหน้า show รายละเอียด
+        Route::resource('blog', AdminBlogController::class)->except(['show']);
+        Route::resource('service', AdminServiceController::class)->except(['show']);
+        Route::resource('category', AdminCategoryController::class)->except(['show']);
+        Route::resource('price', AdminPriceController::class)->except(['show']);
 
-    Route::prefix('category')->group(function () {
-        Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category.index');
-        Route::get('/create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
-        Route::post('/store', [AdminCategoryController::class, 'store'])->name('admin.category.store');
-        Route::get('/edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
-        Route::delete('/del/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.category.destroy');
-        Route::put('/update/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
-    });
+        // --- กลุ่ม CRUD ที่มีแค่บางหน้า (ใช้ only) ---
+        // สมมติว่า FAQs และ Reviews ไม่มีหน้า create ให้ไปกดปุ่ม (เช่น อาจจะมาจากฟอร์มอื่น) 
+        Route::resource('faqs', AdminFaqController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('review', AdminReviewController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
 
-    Route::prefix('faqs')->group(function () {
-        Route::get('/', [AdminFaqController::class, 'index'])->name('admin.faq.index');
-        Route::post('/store', [AdminFaqController::class, 'store'])->name('admin.faq.store');
-        Route::get('/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin.faq.edit');
-        Route::put('/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faq.update');
-        Route::delete('/del/{id}', [AdminFaqController::class, 'destroy'])->name('admin.faq.destroy');
-    });
-    Route::prefix('profile')->group(function () {
-        Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
-        Route::get('/create', [ProfileController::class, 'create'])->name('admin.profile.create');
-        Route::post('/store', [ProfileController::class, 'store'])->name('admin.profile.store');
-        Route::get('/edit/{slug}', [ProfileController::class, 'edit'])->name('admin.profile.edit');
-        Route::delete('/del/{slug}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
-    });
-    Route::prefix('review')->group(function () {
-        Route::get('/', [AdminReviewController::class, 'index'])->name('admin.review.index');
-        Route::post('/store', [AdminReviewController::class, 'store'])->name('admin.review.store');
-        Route::get('/edit/{id}', [AdminReviewController::class, 'edit'])->name('admin.review.edit');
-        Route::post('/update/{id}', [AdminReviewController::class, 'update'])->name('admin.review.update');
-        Route::delete('/del/{id}', [AdminReviewController::class, 'destroy'])->name('admin.review.destroy');
-    });
-    Route::prefix('price')->group(function () {
-        Route::get('/', [AdminPriceController::class, 'index'])->name('admin.price.index');
-        Route::get('/create', [AdminPriceController::class, 'create'])->name('admin.price.create');
-        Route::post('/store', [AdminPriceController::class, 'store'])->name('admin.price.store');
-        Route::get('/edit/{id}', [AdminPriceController::class, 'edit'])->name('admin.price.edit');
-        Route::delete('/del/{id}', [AdminPriceController::class, 'destroy'])->name('admin.price.destroy');
-        Route::put('/update/{id}', [AdminPriceController::class, 'update'])->name('admin.price.update');
-    });
+        // --- กลุ่มพิเศษ (ใช้ {slug} แทน {id}) ---
+        // แบบนี้คือการบอก Resource ว่าเวลาหาข้อมูล ให้หาด้วยคอลัมน์ 'slug' แทน 'id'
+        Route::resource('profile', ProfileController::class)->parameters([
+            'profile' => 'slug' // เปลี่ยน parameter จาก {profile} เป็น {slug}
+        ])->except(['show']);
 
-});
+        Route::resource('labor_cost', AdminLaborCostController::class);
+
+        // เพิ่มบรรทัดนี้ลงไปครับ
+        Route::resource('labor_category', AdminLaborCategoryController::class);
+
+    });
 
 Route::prefix('admin')->middleware(['guest'])->group(function () {
 
