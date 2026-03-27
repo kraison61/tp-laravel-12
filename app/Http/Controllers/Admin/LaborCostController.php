@@ -42,7 +42,7 @@ class LaborCostController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('admin.labor_costs.create_edit', compact('laborCost', 'categories'));
+        return view('admin.labor_costs.index', compact('laborCost', 'categories'));
     }
 
     // 3. หน้าฟอร์มแก้ไขข้อมูล
@@ -53,7 +53,7 @@ class LaborCostController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('admin.labor_costs.create_edit', compact('laborCost', 'categories'));
+        return view('admin.labor_costs.index', compact('laborCost', 'categories'));
     }
 
     // 4. บันทึกข้อมูลใหม่

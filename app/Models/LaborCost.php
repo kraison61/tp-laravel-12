@@ -22,4 +22,17 @@ class LaborCost extends Model
     {
         return $this->belongsTo(LaborCategory::class, 'category_id');
     }
+
+    // Accessor สำหรับแสดงชื่อหมวดหมู่ในตาราง Admin
+    public function getCategoryNameAttribute()
+    {
+        if ($this->category) {
+            $name = $this->category->name;
+            if ($this->category->parent) {
+                $name = $this->category->parent->name . ' > ' . $name;
+            }
+            return $name;
+        }
+        return '-';
+    }
 }

@@ -13,7 +13,6 @@ class LaborCategoryController extends Controller
     {
         $data = LaborCategory::with('parent')->orderBy('name', 'asc')->get();
         $headers = [
-            'id' => '#',
             'name' => 'ชื่อหมวดหมู่',
             'parent_name' => 'อยู่ภายใต้หมวดหมู่', // Virtual Column จาก Accessor ใน Model
         ];

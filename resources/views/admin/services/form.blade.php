@@ -181,9 +181,13 @@
                 placeholder: 'เขียนเนื้อหา...',
                 tabsize: 2,
                 height: 300,
+                dialogsInBody: true, // แก้ปัญหากดแทรกลิงก์/รูป แล้ว Popup ไม่ขึ้นหรือกดไม่ได้
+                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '36', '48', '64', '82'],
                 toolbar: [
                     ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],

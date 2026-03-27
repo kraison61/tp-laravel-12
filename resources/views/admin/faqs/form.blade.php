@@ -2,10 +2,9 @@
     <label class="form-label">บริการที่เกี่ยวข้อง <span class="text-danger">*</span></label>
     <select name="service_id" class="form-control" required>
         <option value="">-- เลือกบริการ --</option>
-        @foreach($services as $service)
-            <option value="{{ $service->id }}"
-                {{ old('service_id', $faq->service_id ?? '') == $service->id ? 'selected' : '' }}>
-                {{ $service->title }}
+        @foreach($serviceCategories as $serviceCategory)
+            <option value="{{ $serviceCategory->id }}" {{ old('service_id', $faq->service_id ?? '') == $serviceCategory->id ? 'selected' : '' }}>
+                {{ $serviceCategory->name }}
             </option>
         @endforeach
     </select>
@@ -36,8 +35,10 @@
         <div class="form-group">
             <label class="form-label">สถานะการแสดงผล</label>
             <select name="is_active" class="form-control">
-                <option value="1" {{ old('is_active', $faq->is_active ?? 1) == 1 ? 'selected' : '' }}>🟢 เปิดใช้งาน</option>
-                <option value="0" {{ old('is_active', $faq->is_active ?? 1) == '0' ? 'selected' : '' }}>🔴 ปิดซ่อนไว้</option>
+                <option value="1" {{ old('is_active', $faq->is_active ?? 1) == 1 ? 'selected' : '' }}>🟢 เปิดใช้งาน
+                </option>
+                <option value="0" {{ old('is_active', $faq->is_active ?? 1) == '0' ? 'selected' : '' }}>🔴 ปิดซ่อนไว้
+                </option>
             </select>
         </div>
     </div>

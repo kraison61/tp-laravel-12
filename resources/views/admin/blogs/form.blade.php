@@ -86,9 +86,13 @@
                 placeholder: 'เริ่มเขียนเนื้อหาที่นี่...',
                 tabsize: 2,
                 height: 400, // ปรับความสูงให้เยอะขึ้นหน่อยเพื่อความสบายตา
+                dialogsInBody: true,
+                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '36', '48', '64', '82'],
                 toolbar: [
                     ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],

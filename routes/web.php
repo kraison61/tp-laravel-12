@@ -103,6 +103,7 @@ Route::get('/about-us', [FrontHomeController::class, 'aboutUs'])->name('about');
 
 
 // Labor Cost Routes
+Route::get('/labor-costs/autocomplete', [PublicLaborCostController::class, 'autocomplete'])->name('public.labor_costs.autocomplete');
 Route::get('/labor-costs', [PublicLaborCostController::class, 'index'])->name('public.labor_costs');
 
 

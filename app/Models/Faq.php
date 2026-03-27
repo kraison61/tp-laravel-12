@@ -10,8 +10,12 @@ class Faq extends Model
 
     protected $casts = ['is_active' => 'boolean'];
 
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
     public function category()
     {
-        return $this->belongsTo(ServiceCategory::class);
+        return $this->belongsTo(ServiceCategory::class, 'service_id');
     }
 }

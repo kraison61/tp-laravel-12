@@ -55,7 +55,7 @@
     @endphp
     <link rel="icon" type="image/png" href="{{ \Illuminate\Support\Facades\Storage::url($path) }}?width=32&format=webp">
     <link rel="apple-touch-icon" href="{{ \Illuminate\Support\Facades\Storage::url($path) }}?width=180&format=png">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('skin.css') }}">
     <link rel="stylesheet" href="{{ asset('custom.css') }}">
     @livewireStyles
@@ -68,7 +68,7 @@
 
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <!-- ✅ Scripts โหลดตามลำดับ (ลบ async ออกหมด) -->
     <script src="{{ asset('HTWF/scripts/script.js') }}"></script>

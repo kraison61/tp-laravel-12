@@ -42,6 +42,24 @@
         ];
     }
 
+    $schemaFaqs = [];
+    foreach ($faqs as $faq) {
+        $schemaFaqs[] = [
+            '@type' => 'Question',
+            'name' => $faq['q'],
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => $faq['a']
+            ]
+        ];
+    }
+
+    // 3. เพิ่มเข้าไปใน $schemaData (ที่อยู่ในไฟล์ service.blade.php ของคุณ)
+    $schemaData['@graph'][] = [
+        '@type' => 'FAQPage',
+        'mainEntity' => $schemaFaqs
+    ];
+
     // ---------------------------------------------------------
     // 3. ประกอบร่าง JSON-LD Graph
     // ---------------------------------------------------------
@@ -92,8 +110,8 @@
             [
                 '@type' => 'Product',
                 '@id' => $currentUrl . '#product',
-                'name' => $pageTitle,
-                'description' => $pageDescription,
+                'name' => $service->title,
+                'description' => $service->description,
                 'image' => Storage::disk('s3')->url('images/about/194911_0.jpg'), // ควรเปลี่ยนเป็นรูปหน้างานเฉพาะบริการนี้ถ้ามี
                 'brand' => [
                     '@id' => url('/') . '#organization'
@@ -139,12 +157,7 @@
 @section('description', trim($item->description ?? ''))
 @section('image', asset('storage/' . ($item->img_1 ?? '')))
 
-@push('seo-schema')
 
-    <script type="application/ld+json">
-            {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-        </script>
-@endpush
 
 @section('content')
     <div class="header-base">
@@ -198,16 +211,17 @@
             </div>
         </div>
     </div>
-    <div class="section-empty section-item">
-        <div class="container">
-            <div class="title-base text-left">
-                <hr />
-                <h2>ราคาประมาณการสินค้าและบริการ</h2>
-                <p>ราคาอาจมีการเปลี่ยนแปลงขึ้นอยู่กับขนาดและวัสดุ</p>
+    @if($prices->count() > 0)
+        <div class="section-empty section-item">
+            <div class="container">
+                <div class="title-base text-left">
+                    <hr />
+                    <h2>ราคาประมาณการสินค้าและบริการ</h2>
+                    <p>ราคาอาจมีการเปลี่ยนแปลงขึ้นอยู่กับขนาดและวัสดุ</p>
+                </div>
+                <x-pricing-table :prices="$prices" />
             </div>
-            <x-pricing-table :prices="$prices" />
         </div>
-    </div>
-
+    @endif
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
 @endsection

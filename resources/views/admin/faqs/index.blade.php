@@ -65,7 +65,7 @@
                                     <tr class="{{ $faq->exists && $faq->id === $item->id ? 'info' : '' }}">
                                         <td>{{ $item->id }}</td>
                                         <td>
-                                            <small class="text-muted">{{ $item->service->title ?? '-' }}</small>
+                                            <small class="text-muted">{{ $item->category->name ?? '-' }}</small>
                                         </td>
                                         <td>
                                             <strong>{{ Str::limit($item->question, 60) }}</strong>

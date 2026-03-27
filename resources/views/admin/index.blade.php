@@ -73,6 +73,15 @@
                                             {{ is_object($row->category) ? ($row->category->name ?? 'ทั่วไป') : ($row->category ?? 'ทั่วไป') }}
                                         </span>
 
+                                    @elseif($key == 'category_name')
+                                        <span style="background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">
+                                            {{ $row->$key }}
+                                        </span>
+                                    @elseif($key == 'service_name')
+                                        <span style="background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">
+                                            {{ $row->category->name ?? 'ทั่วไป' }}
+                                        </span>
+
                                     @elseif(in_array($key, ['description','content_1','answer']))
                                         <span title="{{ strip_tags($row->$key) }}" style="color:#555;">
                                             {{ Str::limit(strip_tags($row->$key), 70) }}

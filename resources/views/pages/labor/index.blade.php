@@ -18,7 +18,6 @@
                 '@id' => url('/') . '#organization',
                 'name' => 'บริษัทธีรพงษ์เซอร์วิส จำกัด',
                 'url' => url('/'),
-                // ถ้ามี Logo บน S3 ค่อยใส่กลับมา หรือใช้ asset ปกติ
                 'logo' => [
                     '@type' => 'ImageObject',
                     'url' => asset('images/tp-logo.svg'), 
@@ -95,34 +94,63 @@
     <div class="section-empty section-item" style="padding-top: 40px; padding-bottom: 60px;">
         <div class="container">
             
-            <div style="background-color: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-                <form action="{{ route('public.labor_costs') }}" method="GET" class="row">
-                    <div class="col-md-5" style="margin-bottom: 15px;">
-                        <label style="font-weight: bold; margin-bottom: 5px; display: block;">ค้นหารายการ</label>
-                        <input type="text" name="search" class="form-control" placeholder="เช่น ทาสี, ก่ออิฐ, แอร์..." value="{{ $search ?? '' }}">
-                    </div>
-                    
-                    <div class="col-md-5" style="margin-bottom: 15px;">
-                        <label style="font-weight: bold; margin-bottom: 5px; display: block;">หมวดหมู่งาน</label>
-                        <select name="category_id" class="form-control">
-                            <option value="">-- ดูทุกหมวดหมู่ --</option>
-                            @if(isset($categories))
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ ($categoryId ?? '') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-md-2" style="display: flex; align-items: flex-end; margin-bottom: 15px;">
-                        <button type="submit" class="btn btn-primary btn-block" style="width: 100%; height: 40px;">
-                            <i class="fa fa-search"></i> ค้นหา
-                        </button>
-                    </div>
-                </form>
+            {{-- ส่วนค้นหาและตัวกรอง --}}
+           {{-- ส่วนค้นหาและตัวกรอง --}}
+<div style="background-color: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #e3e3e3; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 20;">
+    <form action="{{ route('public.labor_costs') }}" method="GET" class="row">
+        
+        <div class="col-md-4" style="margin-bottom: 15px; position: relative;">
+            <label style="font-weight: bold; margin-bottom: 5px; display: block;">ค้นหารายการ</label>
+            <input type="text" name="search" id="searchInput" class="form-control" placeholder="เช่น ทาสี, ก่ออิฐ, แอร์..." value="{{ request('search') }}" autocomplete="off">
+            
+            <div id="searchSuggestions" class="list-group shadow-sm" 
+                 style="display: none; 
+                        position: absolute; 
+                        width: calc(100% - 30px); 
+                        z-index: 9999; 
+                        top: 100%; 
+                        left: 15px; 
+                        max-height: 400px; 
+                        overflow-y: auto; 
+                        background: white; 
+                        border: 1px solid #ddd; 
+                        box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
             </div>
+        </div>
+        
+        <div class="col-md-5" style="margin-bottom: 15px;">
+            <label style="font-weight: bold; margin-bottom: 5px; display: block;">หมวดหมู่งาน</label>
+            <select name="category_id" class="form-control">
+                <option value="">-- ดูทุกหมวดหมู่ --</option>
+                @if(isset($categories))
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->parent ? $category->parent->name . ' > ' : '' }}{{ $category->name }}
+                        </option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
+        <div class="col-md-3" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">&nbsp;</label> 
+            <div style="display: table; width: 100%;">
+                <div style="display: table-cell; width: 100%;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; height: 34px;">
+                        <i class="fa fa-search"></i> ค้นหา
+                    </button>
+                </div>
+                @if(request('search') || request('category_id'))
+                <div style="display: table-cell; padding-left: 8px;">
+                    <a href="{{ route('public.labor_costs') }}" class="btn btn-default" style="height: 34px; width: 40px; display: flex; align-items: center; justify-content: center;" title="ล้างการค้นหา">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                @endif
+            </div>
+        </div>
+    </form>
+</div>
 
             <div class="title-base text-left">
                 <hr />
@@ -130,44 +158,53 @@
                 <p>ข้อมูลอ้างอิงจากหนังสือ กค. 0433.2/ว809 (ปรับปรุงแก้ไขตามความเหมาะสมของบริษัท)</p>
             </div>
 
+            {{-- ตารางแสดงผล --}}
             <div style="overflow-x: auto; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                <table class="table table-striped table-hover" style="margin-bottom: 0;">
+                <table class="table table-striped table-hover" style="margin-bottom: 0; min-width: 800px;">
                     <thead style="background-color: #333; color: #fff;">
                         <tr>
-                            <th style="padding: 15px 10px; width: 5%;">ลำดับ</th>
-                            <th style="padding: 15px 10px; width: 45%;">รายการงานก่อสร้าง</th>
+                            <th style="padding: 15px 10px; width: 8%; text-align: center;">ลำดับ</th>
+                            <th style="padding: 15px 10px; width: 42%;">รายการงานก่อสร้าง</th>
                             <th style="padding: 15px 10px; width: 20%;">หมวดหมู่</th>
-                            <th style="padding: 15px 10px; text-align: center; width: 15%;">หน่วย</th>
-                            <th style="padding: 15px 10px; text-align: right; width: 15%;">ค่าแรง/หน่วย (บาท)</th>
+                            <th style="padding: 15px 10px; text-align: center; width: 12%;">หน่วย</th>
+                            <th style="padding: 15px 10px; text-align: right; width: 18%;">ค่าแรง/หน่วย (บาท)</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(isset($laborCosts) && $laborCosts->count() > 0)
                             @foreach($laborCosts as $index => $cost)
                             <tr>
-                                <td style="padding: 12px 10px; vertical-align: middle;">{{ $laborCosts->firstItem() + $index }}</td>
-                                <td style="padding: 12px 10px; vertical-align: middle; font-weight: 500;">
-                                    {{ $cost->item_name }}
-                                    @if($cost->remark)
-                                        <div style="font-size: 0.85em; color: #666; margin-top: 4px;"><i class="fa fa-info-circle"></i> {{ $cost->remark }}</div>
+                                <td style="padding: 15px 10px; vertical-align: middle; text-align: center; color: #666;">
+                                    {{ $laborCosts->firstItem() + $index }}
+                                </td>
+                                <td style="padding: 15px 10px; vertical-align: middle;">
+                                    <span style="font-weight: bold; color: #2c3e50;">{{ $cost->item_name }}</span>
+                                    @if($cost->remark || $cost->document_ref)
+                                        <div style="font-size: 0.85em; color: #7f8c8d; margin-top: 5px;">
+                                            @if($cost->document_ref) <span style="margin-right: 10px;"><i class="fa fa-file-text-o"></i> อ้างอิง: {{ $cost->document_ref }}</span> @endif
+                                            @if($cost->remark) <span><i class="fa fa-info-circle"></i> {{ $cost->remark }}</span> @endif
+                                        </div>
                                     @endif
                                 </td>
-                                <td style="padding: 12px 10px; vertical-align: middle;">
-                                    <span style="background-color: #eee; padding: 3px 8px; border-radius: 4px; font-size: 0.85em; color: #555;">
+                                <td style="padding: 15px 10px; vertical-align: middle;">
+                                    <span style="background-color: #e9ecef; padding: 4px 10px; border-radius: 20px; font-size: 0.85em; color: #495057;">
                                         {{ $cost->category->name ?? '-' }}
                                     </span>
                                 </td>
-                                <td style="padding: 12px 10px; vertical-align: middle; text-align: center;">{{ $cost->unit }}</td>
-                                <td style="padding: 12px 10px; vertical-align: middle; text-align: right; font-weight: bold; color: #d32f2f;">
+                                <td style="padding: 15px 10px; vertical-align: middle; text-align: center;">
+                                    {{ $cost->unit }}
+                                </td>
+                                <td style="padding: 15px 10px; vertical-align: middle; text-align: right; font-weight: bold; color: #d32f2f; font-size: 1.1em;">
                                     {{ number_format($cost->cost_per_unit, 2) }}
                                 </td>
                             </tr>
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="5" style="padding: 40px; text-align: center; color: #888;">
-                                    <i class="fa fa-folder-open fa-3x" style="margin-bottom: 15px; color: #ddd;"></i><br>
-                                    ไม่พบรายการค่าแรงที่คุณค้นหา
+                                <td colspan="5" style="padding: 50px; text-align: center; color: #888;">
+                                    <i class="fa fa-search fa-3x" style="margin-bottom: 15px; color: #e0e0e0;"></i><br>
+                                    <h5 style="margin-top: 10px; color: #555;">ไม่พบรายการค่าแรงที่คุณค้นหา</h5>
+                                    <p style="font-size: 0.9em;">ลองเปลี่ยนคำค้นหา หรือเลือกหมวดหมู่อื่นดูอีกครั้ง</p>
                                 </td>
                             </tr>
                         @endif
@@ -175,6 +212,7 @@
                 </table>
             </div>
 
+            {{-- ตัวแบ่งหน้า (Pagination) --}}
             @if(isset($laborCosts) && $laborCosts->hasPages())
             <div style="margin-top: 30px; display: flex; justify-content: center;">
                 {{ $laborCosts->appends(request()->query())->links() }}
@@ -185,4 +223,77 @@
     </div>
 
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
+
+    @push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    let timeoutId;
+
+    // เมื่อมีการพิมพ์ในช่องค้นหา
+    searchInput.addEventListener('input', function() {
+        clearTimeout(timeoutId); // ป้องกันไม่ให้ส่ง Request ถี่เกินไป
+        const query = this.value.trim();
+
+        // ถ้าพิมพ์น้อยกว่า 2 ตัวอักษร ให้ซ่อน Popup
+        if (query.length < 2) {
+            searchSuggestions.style.display = 'none';
+            return;
+        }
+
+        // หน่วงเวลา 300ms (ให้พิมพ์เสร็จก่อนค่อยดึงข้อมูล จะได้ไม่กินสเปคเซิร์ฟเวอร์)
+        timeoutId = setTimeout(() => {
+            fetch(`{{ route('public.labor_costs.autocomplete') }}?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    searchSuggestions.innerHTML = '';
+                    
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            const a = document.createElement('a');
+                            a.href = 'javascript:void(0)';
+                            a.className = 'list-group-item list-group-item-action';
+                            a.style.borderLeft = '4px solid #0d6efd'; // แต่งสีขอบนิดหน่อย
+                            a.style.paddingLeft = '20px'; 
+a.style.borderLeft = '4px solid #0d6efd';
+                            
+                            // จัดรูปแบบข้อความใน Popup
+                            const categoryName = item.category ? item.category.name : '-';
+                            a.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <strong>${item.item_name}</strong>
+                                    <span class="text-success small">${Number(item.cost_per_unit).toLocaleString('en-US', {minimumFractionDigits: 2})} ฿</span>
+                                </div>
+                                <div class="small text-muted" style="margin-top: 5px;"><i class="fa fa-folder-o"></i> ${categoryName}</div>
+                            `;
+                            
+                            // เมื่อคลิกที่รายการใน Popup
+                            a.onclick = function() {
+                                searchInput.value = item.item_name; // เอาชื่อไปใส่ในช่องค้นหา
+                                searchSuggestions.style.display = 'none'; // ซ่อน Popup
+                                searchInput.closest('form').submit(); // สั่งกดค้นหา (Submit) อัตโนมัติเลย
+                            };
+                            
+                            searchSuggestions.appendChild(a);
+                        });
+                        searchSuggestions.style.display = 'block'; // โชว์ Popup
+                    } else {
+                        searchSuggestions.innerHTML = '<div class="list-group-item text-muted text-center py-3">ไม่พบรายการที่ค้นหา</div>';
+                        searchSuggestions.style.display = 'block';
+                    }
+                }).catch(err => console.error("Autocomplete Error: ", err));
+        }, 300);
+    });
+
+    // ซ่อน Popup เมื่อคลิกที่อื่นบนหน้าจอ
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+            searchSuggestions.style.display = 'none';
+        }
+    });
+});
+</script>
+@endpush
+    
 @endsection
