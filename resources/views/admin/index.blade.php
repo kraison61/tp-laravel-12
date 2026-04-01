@@ -60,7 +60,7 @@
                             <td class="text-muted" style="font-size:12px; font-weight:600;">{{ $index + 1 }}</td>
                             @foreach ($headers as $key => $label)
                                 <td>
-                                    @if(in_array($key, ['img_1','img_2','image']))
+                                    @if(in_array($key, ['img_1','img_2','image','img_url']))
                                         @if($row->$key)
                                             <img src="{{ Storage::url($row->$key) }}"
                                                  style="width:46px;height:46px;object-fit:cover;border-radius:8px;border:1px solid #eee;">
@@ -68,7 +68,7 @@
                                             <span style="color:#ccc;font-size:12px;"><i class="fa fa-image"></i> ไม่มีรูป</span>
                                         @endif
 
-                                    @elseif($key == 'service_category_id')
+                                    @elseif(in_array($key, ['service_category_id','service_id']))
                                         <span style="background:#eef0fe;color:#7289f5;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">
                                             {{ is_object($row->category) ? ($row->category->name ?? 'ทั่วไป') : ($row->category ?? 'ทั่วไป') }}
                                         </span>

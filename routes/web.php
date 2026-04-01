@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PublicLaborCostController;
 use App\Http\Controllers\Admin\LaborCostController as AdminLaborCostController;
 use App\Http\Controllers\Admin\LaborCategoryController as AdminLaborCategoryController;
+use App\Http\Controllers\Admin\ImageController as AdminImageController;
 
 
 Route::redirect('/blog', '/blogs', 301);
@@ -134,6 +135,8 @@ Route::prefix('admin')
         // สมมติว่า FAQs และ Reviews ไม่มีหน้า create ให้ไปกดปุ่ม (เช่น อาจจะมาจากฟอร์มอื่น) 
         Route::resource('faqs', AdminFaqController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
         Route::resource('review', AdminReviewController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
+
+        Route::resource('image',AdminImageController::class);
 
         // --- กลุ่มพิเศษ (ใช้ {slug} แทน {id}) ---
         // แบบนี้คือการบอก Resource ว่าเวลาหาข้อมูล ให้หาด้วยคอลัมน์ 'slug' แทน 'id'

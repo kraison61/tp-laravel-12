@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageUpload extends Model
 {
+    protected $fillable = [
+        'service_id',
+        'img_url',
+        'location',
+    ];
     public function category()
     {
         return $this->belongsTo(ServiceCategory::class, 'service_id');
