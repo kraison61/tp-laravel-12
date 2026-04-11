@@ -2,11 +2,17 @@
 
 @php
     // 1. เตรียมข้อมูลพื้นฐาน
-    $item = $service->services->first(); // เช็กให้ดีว่าตัวนี้มีการใช้งานต่อหรือไม่
+    $item = $service->services->first(); 
     $currentUrl = url()->current();
     $locale = app()->getLocale();
-    $pageTitle = $service->title ?? 'บริการของเรา';
-    $pageDescription = strip_tags($service->description ?? '');
+    
+    $pageTitle = $item?->title ?? $service->name ?? 'บริการของเรา'; 
+    
+    // จัดการ Description และใส่ Fallback ป้องกันค่าว่าง
+    $pageDescription = strip_tags($item?->description ?? '');
+    if (empty(trim($pageDescription))) {
+        $pageDescription = 'บริการรับเหมาก่อสร้าง มาตรฐานวิศวกรรม ควบคุมงานโดยทีมช่างผู้ชำนาญการจาก ธีรพงษ์เซอร์วิส';
+    }
 
     // ---------------------------------------------------------
     // 2. เตรียมข้อมูล Offers (ดึงจากตาราง Prices)
@@ -32,7 +38,6 @@
             $schemaOffers[] = $offer;
         }
     } else {
-        // Fallback: หากยังไม่มีข้อมูลราคา ให้ส่งโครงสร้างกลับไปเป็น Array เหมือนเดิม
         $schemaOffers[] = [
             '@type' => 'Offer',
             'price' => '0.00',
@@ -42,32 +47,31 @@
         ];
     }
 
+    // ---------------------------------------------------------
+    // 3. เตรียมข้อมูล FAQs
+    // ---------------------------------------------------------
     $schemaFaqs = [];
-    foreach ($faqs as $faq) {
-        $schemaFaqs[] = [
-            '@type' => 'Question',
-            'name' => $faq['q'],
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text' => $faq['a']
-            ]
-        ];
+    if (isset($faqs) && $faqs->isNotEmpty()) {
+        foreach ($faqs as $faq) {
+            $schemaFaqs[] = [
+                '@type' => 'Question',
+                'name' => $faq->question, 
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => strip_tags($faq->answer) 
+                ]
+            ];
+        }
     }
 
-    // 3. เพิ่มเข้าไปใน $schemaData (ที่อยู่ในไฟล์ service.blade.php ของคุณ)
-    $schemaData['@graph'][] = [
-        '@type' => 'FAQPage',
-        'mainEntity' => $schemaFaqs
-    ];
-
     // ---------------------------------------------------------
-    // 3. ประกอบร่าง JSON-LD Graph
+    // 4. ประกอบร่าง JSON-LD Graph 
     // ---------------------------------------------------------
     $schemaData = [
         '@context' => 'https://schema.org',
         '@graph' => [
 
-            // --- 3.1 องค์กร (LocalBusiness) ---
+            // --- 4.1 องค์กร (LocalBusiness) ---
             [
                 '@type' => 'LocalBusiness',
                 '@id' => url('/') . '#organization',
@@ -87,40 +91,54 @@
                     'postalCode' => '11000',
                     'addressCountry' => 'TH',
                 ],
+                'geo' => [
+                    '@type' => 'GeoCoordinates',
+                    'latitude' => '13.836991091487384', 
+                    'longitude' => '100.44377996643809'
+                ],
+                'openingHoursSpecification' => [
+                    '@type' => 'OpeningHoursSpecification',
+                    'dayOfWeek' => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    'opens' => '08:00',
+                    'closes' => '19:00'
+                ]
             ],
 
-            // --- 3.2 ข้อมูลบริการหลัก (Service) ---
+            // --- 4.2 ข้อมูลบริการหลัก (Service & Product รวมกัน) ---
             [
-                '@type' => 'Service',
+                '@type' => ['Service', 'Product'],
                 '@id' => $currentUrl . '#service',
                 'name' => $pageTitle,
                 'provider' => [
                     '@id' => url('/') . '#organization',
                 ],
-                'description' => $pageDescription,
-                'areaServed' => [
-                    ['@type' => 'City', 'name' => 'Bangkok'],
-                    ['@type' => 'City', 'name' => 'Nonthaburi'],
-                    ['@type' => 'City', 'name' => 'Pathum Thani']
-                ],
-                'offers' => $schemaOffers, // ยัด Array ของราคาลงไป
-            ],
-
-            // --- 3.3 แผนสำรอง: แปลงร่างเป็น Product เพื่อชิงพื้นที่ Google Merchant (สู้คู่แข่ง) ---
-            [
-                '@type' => 'Product',
-                '@id' => $currentUrl . '#product',
-                'name' => $service->title,
-                'description' => $service->description,
-                'image' => Storage::disk('s3')->url('images/about/194911_0.jpg'), // ควรเปลี่ยนเป็นรูปหน้างานเฉพาะบริการนี้ถ้ามี
                 'brand' => [
-                    '@id' => url('/') . '#organization'
+                    '@type' => 'Brand',
+                    'name' => 'ธีรพงษ์เซอร์วิส'
                 ],
                 'sku' => $service->sku ?? 'TP-SRV-' . ($service->id ?? rand(100, 999)),
-                'offers' => $schemaOffers, // ดึงราคาชุดเดียวกันมาใช้
+                'image' => Storage::disk('s3')->url($item?->img_1 ?? 'images/about/194911_0.jpg'),
+                'description' => $pageDescription,
+                'areaServed' => [
+                    ['@type' => 'Country', 'name' => 'Thailand'],
+                    ['@type' => 'City', 'name' => 'Bangkok'],
+                    ['@type' => 'City', 'name' => 'Nonthaburi'],
+                    ['@type' => 'City', 'name' => 'Pathum Thani'],
+                    ['@type' => 'City', 'name' => 'Samut Prakan'],
+                    ['@type' => 'City', 'name' => 'Samut Sakhon']
+                ],
+                'offers' => $schemaOffers,
+                // 🌟 เพิ่มดาวโชว์บน Google กลับเข้ามา 
+                'aggregateRating' => [
+                    '@type' => 'AggregateRating',
+                    'ratingValue' => $service->services->first()->rating_value,
+                    'reviewCount' => $service->services->first()->review_count
+                ]
             ],
 
-            // --- 3.4 Breadcrumbs (เพื่อให้ URL บน Google สวยงาม) ---
+            // ⚠️ (ส่วน 4.3 แผนสำรอง ถูกลบทิ้งไปแล้วเพราะรวมอยู่ใน 4.2 ด้านบนครบแล้ว)
+
+            // --- 4.4 Breadcrumbs ---
             [
                 '@type' => 'BreadcrumbList',
                 'itemListElement' => [
@@ -139,13 +157,21 @@
                     [
                         '@type' => 'ListItem',
                         'position' => 3,
-                        'name' => $pageTitle
+                        'name' => $pageTitle,
+                        'item' => $currentUrl 
                     ]
                 ]
             ]
-
         ]
     ];
+
+    // --- 4.5 เช็คและใส่ FAQ ลงไปใน Graph ถ้ามีข้อมูล ---
+    if (!empty($schemaFaqs)) {
+        $schemaData['@graph'][] = [
+            '@type' => 'FAQPage',
+            'mainEntity' => $schemaFaqs
+        ];
+    }
 @endphp
 
 <script type="application/ld+json">

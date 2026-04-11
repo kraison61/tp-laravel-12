@@ -31,7 +31,44 @@ $columnRight = $allServices->skip($leftCount);
                         <a target="_blank" href="https://www.youtube.com/@ธีรพงษ์รับเหมา"><i
                                 class="fa fa-youtube"></i></a>
                     </div>
+
+                <ul class="nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                <i class="fa fa-user" aria-hidden="true"></i> Login <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" style="padding: 15px; min-width: 250px;">
+                <li>
+                    <form class="form" role="form" id="nav-login-form" action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label class="sr-only" for="navLoginEmail">Email address</label>
+                            <input type="email" name="email" class="form-control" id="navLoginEmail" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="navLoginPassword">Password</label>
+                            <input type="password" name="password" class="form-control" id="navLoginPassword" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default btn-block">Sign In</button>
+                        </div>
+                        <div class="checkbox" style="margin-bottom: 0;">
+                            <label style="font-weight: normal; font-size: 13px;">
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </form>
+                </li>
+                <li role="separator" class="divider" style="height: 1px; margin: 12px 0; overflow: hidden; background-color: #e5e5e5;"></li>
+                <!-- <li><a href="#" style="padding: 3px 0; color: #666; font-size: 13px;">Forgot Password?</a></li>
+                <li><a href="#" style="padding: 3px 0; color: #666; font-size: 13px;">Create Account</a></li> -->
+            </ul>
+        </li>
+    </ul>
+                
                 </div>
+                
+
             </div>
         </div>
         <div class="navbar navbar-main">
@@ -124,3 +161,12 @@ $columnRight = $allServices->skip($leftCount);
         </div>
     </div>
 </header>
+
+@push('scripts')
+    <script>
+        // Prevent dropdown from closing when clicking inside the form
+        $('.user-menu .dropdown-menu').on('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+@endpush
