@@ -33,41 +33,54 @@ $columnRight = $allServices->skip($leftCount);
                     </div>
 
                 <ul class="nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                <i class="fa fa-user" aria-hidden="true"></i> Login <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" style="padding: 15px; min-width: 250px;">
-                <li>
-                    <form class="form" role="form" id="nav-login-form" action="{{ route('login') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label class="sr-only" for="navLoginEmail">Email address</label>
-                            <input type="email" name="email" class="form-control" id="navLoginEmail" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="navLoginPassword">Password</label>
-                            <input type="password" name="password" class="form-control" id="navLoginPassword" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default btn-block">Sign In</button>
-                        </div>
-                        <div class="checkbox" style="margin-bottom: 0;">
-                            <label style="font-weight: normal; font-size: 13px;">
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-                    </form>
-                </li>
-                <li role="separator" class="divider" style="height: 1px; margin: 12px 0; overflow: hidden; background-color: #e5e5e5;"></li>
-                <!-- <li><a href="#" style="padding: 3px 0; color: #666; font-size: 13px;">Forgot Password?</a></li>
-                <li><a href="#" style="padding: 3px 0; color: #666; font-size: 13px;">Create Account</a></li> -->
-            </ul>
-        </li>
-    </ul>
-                
-                </div>
-                
+                    @auth
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" style="padding: 15px; min-width: 200px;">
+                                <li><a href="#"><i class="fa fa-pencil"></i> Edit Profile</a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <form class="form" role="form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-default btn-block">Sign Out</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <i class="fa fa-user" aria-hidden="true"></i> Login <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" style="padding: 15px; min-width: 250px;">
+                                <li>
+                                    <form class="form" role="form" id="nav-login-form" action="{{ route('login') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label class="sr-only" for="navLoginEmail">Email address</label>
+                                            <input type="email" name="email" class="form-control" id="navLoginEmail" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="navLoginPassword">Password</label>
+                                            <input type="password" name="password" class="form-control" id="navLoginPassword" placeholder="Password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-default btn-block">Sign In</button>
+                                        </div>
+                                        <div class="checkbox" style="margin-bottom: 0;">
+                                            <label style="font-weight: normal; font-size: 13px;">
+                                                <input type="checkbox" name="remember"> Remember me
+                                            </label>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
+                </ul>
+            </div>
 
             </div>
         </div>
@@ -134,6 +147,11 @@ $columnRight = $allServices->skip($leftCount);
                         <li class="dropdown mega-dropdown mega-tabs">
                             <a class="" data-toggle="dropdown" href="{{ route('about') }}">เกี่ยวกับเรา</a>
                         </li>
+                        @auth
+                            <li class="dropdown mega-dropdown mega-tabs">
+                                <a class="" data-toggle="dropdown" href="{{ route('users.index') }}">งวดงาน</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     {{-- Admin  --}}

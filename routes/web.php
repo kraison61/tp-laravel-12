@@ -114,6 +114,10 @@ Route::prefix('gallery')->group(function () {
     Route::get('/{id?}', [FrontGalleryController::class, 'index'])->name('gallery.index');
 });
 
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/{id?}', [ProfileController::class, 'show'])->name('index');
+});
+
 Route::prefix('admin')
     ->name('admin.') // 🌟 เพิ่ม name('admin.') ตรงนี้ เพื่อไม่ต้องพิมพ์ 'admin.' ซ้ำๆ ใน resource
     ->middleware(['auth'])
@@ -149,7 +153,13 @@ Route::prefix('admin')
         // เพิ่มบรรทัดนี้ลงไปครับ
         Route::resource('labor_category', AdminLaborCategoryController::class);
 
+
     });
+
+Route::post('admin/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
 
 Route::prefix('admin')->middleware(['guest'])->group(function () {
 
