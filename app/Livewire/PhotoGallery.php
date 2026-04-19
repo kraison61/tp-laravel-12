@@ -9,10 +9,12 @@ class PhotoGallery extends Component
 {
     public $serviceId = 'all';
     public $perPage = 6;
+    public $isAdmin = false;
 
     // 1. รับค่า ID จาก URL ที่ส่งมาจากหน้าอื่น
-    public function mount($id = null)
+    public function mount($id = null, $isAdmin = false)
     {
+        $this->isAdmin = $isAdmin;
         if ($id) {
             $this->serviceId = $id;
         }

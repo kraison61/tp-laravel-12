@@ -19,7 +19,6 @@
 
     <!-- MAIN CONTENT -->
     <div class="admin-content-wrapper">
-
         <div class="form-card">
             <div class="form-header">
                 <i class="fa fa-edit"></i>

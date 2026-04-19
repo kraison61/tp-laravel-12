@@ -13,7 +13,7 @@
         'image' => [
             'label' => 'Image',
             'icon' => 'fa fa-picture-o',
-            'route' => '#', // Assuming this route exists or will exist
+            'route' => 'admin.photo.index', // Assuming this route exists or will exist
         ],
         'category' => [
             'label' => 'Category',
@@ -42,18 +42,23 @@
         ],
         'labor_cost' => [
             'label' => 'Labor Cost',
-            'icon' => 'fa fa-star',
+            'icon' => 'fa fa-calculator',
             'route' => 'admin.labor_cost.index',
         ],
         'labor_category' => [
             'label' => 'Labor Category',
-            'icon' => 'fa fa-star',
+            'icon' => 'fa fa-cubes',
             'route' => 'admin.labor_category.index',
+        ],
+        'project' => [
+            'label' => 'Project',
+            'icon' => 'fa fa-building-o',
+            'route' => 'admin.projects.index',
         ],
         'user' => [
             'label' => 'User',
             'icon' => 'fa fa-users',
-            'route' => '#',
+            'route' => 'admin.users.index',
         ],
         'setting' => [
             'label' => 'Setting',

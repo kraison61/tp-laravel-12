@@ -22,6 +22,11 @@ use App\Http\Controllers\PublicLaborCostController;
 use App\Http\Controllers\Admin\LaborCostController as AdminLaborCostController;
 use App\Http\Controllers\Admin\LaborCategoryController as AdminLaborCategoryController;
 use App\Http\Controllers\Admin\ImageController as AdminImageController;
+use App\Http\Controllers\ProjectController as ProjectController;
+
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\ProjectPhaseController as AdminProjectPhaseController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 
 Route::redirect('/blog', '/blogs', 301);
@@ -114,8 +119,9 @@ Route::prefix('gallery')->group(function () {
     Route::get('/{id?}', [FrontGalleryController::class, 'index'])->name('gallery.index');
 });
 
-Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/{id?}', [ProfileController::class, 'show'])->name('index');
+Route::prefix('projects')->name('projects.')->group(function () {
+    // Route::get('/user/{id?}', [ProjectController::class, 'index'])->name('user.index');
+    Route::resource('user', ProjectController::class)->only(['index', 'show']);
 });
 
 Route::prefix('admin')
@@ -135,12 +141,14 @@ Route::prefix('admin')
         Route::resource('category', AdminCategoryController::class)->except(['show']);
         Route::resource('price', AdminPriceController::class)->except(['show']);
 
+        //Admin Photo 
+        Route::resource('photo', AdminImageController::class);
+
         // --- กลุ่ม CRUD ที่มีแค่บางหน้า (ใช้ only) ---
         // สมมติว่า FAQs และ Reviews ไม่มีหน้า create ให้ไปกดปุ่ม (เช่น อาจจะมาจากฟอร์มอื่น) 
         Route::resource('faqs', AdminFaqController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
         Route::resource('review', AdminReviewController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
 
-        Route::resource('image',AdminImageController::class);
 
         // --- กลุ่มพิเศษ (ใช้ {slug} แทน {id}) ---
         // แบบนี้คือการบอก Resource ว่าเวลาหาข้อมูล ให้หาด้วยคอลัมน์ 'slug' แทน 'id'
@@ -153,6 +161,11 @@ Route::prefix('admin')
         // เพิ่มบรรทัดนี้ลงไปครับ
         Route::resource('labor_category', AdminLaborCategoryController::class);
 
+        // Project and Phases
+        Route::resource('projects', AdminProjectController::class);
+        Route::resource('project.phases', AdminProjectPhaseController::class);
+        Route::delete('project-phase/image/{image}', [AdminProjectPhaseController::class, 'destroyImage'])->name('project.phases.image.destroy');
+        Route::resource('users', AdminUserController::class)->except(['show']);
 
     });
 

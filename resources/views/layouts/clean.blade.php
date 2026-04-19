@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="{{ asset('HTWF/css/animations.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/css/components.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/flexslider/flexslider.css') }}">
+    <link rel="stylesheet" href="{{ asset('HTWF/scripts/jquery.flipster.min.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/php/contact-form.css') }}">
     <link rel="stylesheet" href="{{ asset('HTWF/scripts/font-awesome/css/font-awesome.css') }}">
@@ -85,6 +86,7 @@
     <script src="{{ asset('HTWF/scripts/jquery.tab-accordion.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/bootstrap/js/bootstrap.popover.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('HTWF/scripts/jquery.flipster.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/social.stream.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('HTWF/scripts/smooth.scroll.min.js') }}"></script>

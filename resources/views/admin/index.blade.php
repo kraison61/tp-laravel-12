@@ -91,10 +91,14 @@
                                         <strong style="color:#1e2340;">{{ $row->$key }}</strong>
 
                                     @elseif(in_array($key, ['status','is_active']))
-                                        @if($row->$key == 'Active' || $row->$key == '1' || $row->$key === true)
-                                            <span class="badge-status-active"><i class="fa fa-circle" style="font-size:8px;"></i> เปิดใช้งาน</span>
+                                        @php
+                                            // รายการคำที่ถือว่าเป็นสถานะเปิดใช้งาน (Active) ทั้งอังกฤษและไทย
+                                            $activeValues = ['Active', '1', 'กำลังดำเนินการ', 'เปิดใช้งาน', 'เสร็จแล้ว', 'เสร็จสิ้น'];
+                                        @endphp
+                                        @if(in_array($row->$key, $activeValues) || $row->$key === true)
+                                            <span class="badge-status-active"><i class="fa fa-circle" style="font-size:8px;"></i> {{ $row->$key }}</span>
                                         @else
-                                            <span class="badge-status-inactive"><i class="fa fa-circle" style="font-size:8px;"></i> ปิดใช้งาน</span>
+                                            <span class="badge-status-inactive"><i class="fa fa-circle" style="font-size:8px;"></i> {{ $row->$key }}</span>
                                         @endif
 
                                     @elseif($key == 'sort_order')
@@ -107,6 +111,11 @@
                             @endforeach
                             <td>
                                 <div style="display:flex;gap:6px;align-items:center;">
+                                    @if(isset($showPhases) && $showPhases)
+                                        <a href="{{ route('admin.project.phases.index', $row->id) }}" class="btn-edit-icon" style="background:#0dcaf0; color:white; border-color:#0dcaf0;">
+                                            <i class="fa fa-list"></i> งวดงาน
+                                        </a>
+                                    @endif
                                     <a href="{{ route($routeBase.'.edit', $row->id) }}" class="btn-edit-icon"><i class="fa fa-pencil"></i> แก้ไข</a>
                                     <form action="{{ route($routeBase.'.destroy', $row->id) }}" method="POST" style="margin:0;">
                                         @csrf @method('DELETE')

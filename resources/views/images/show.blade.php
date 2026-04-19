@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('title', 'Image Gallery')
 
@@ -18,4 +18,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection -->

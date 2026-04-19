@@ -2,12 +2,12 @@
 
 @php
     // 1. เตรียมข้อมูลพื้นฐาน
-    $item = $service->services->first(); 
+    $item = $service->services->first();
     $currentUrl = url()->current();
     $locale = app()->getLocale();
-    
-    $pageTitle = $item?->title ?? $service->name ?? 'บริการของเรา'; 
-    
+
+    $pageTitle = $item?->title ?? $service->name ?? 'บริการของเรา';
+
     // จัดการ Description และใส่ Fallback ป้องกันค่าว่าง
     $pageDescription = strip_tags($item?->description ?? '');
     if (empty(trim($pageDescription))) {
@@ -55,10 +55,10 @@
         foreach ($faqs as $faq) {
             $schemaFaqs[] = [
                 '@type' => 'Question',
-                'name' => $faq->question, 
+                'name' => $faq->question,
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => strip_tags($faq->answer) 
+                    'text' => strip_tags($faq->answer)
                 ]
             ];
         }
@@ -93,7 +93,7 @@
                 ],
                 'geo' => [
                     '@type' => 'GeoCoordinates',
-                    'latitude' => '13.836991091487384', 
+                    'latitude' => '13.836991091487384',
                     'longitude' => '100.44377996643809'
                 ],
                 'openingHoursSpecification' => [
@@ -158,7 +158,7 @@
                         '@type' => 'ListItem',
                         'position' => 3,
                         'name' => $pageTitle,
-                        'item' => $currentUrl 
+                        'item' => $currentUrl
                     ]
                 ]
             ]
@@ -212,7 +212,7 @@
                     <div class="title-base text-left">
                         <hr />
                         <h2>{{ $item->top_1 }}</h2>
-                        <p>Super solutions</p>
+                        <!-- <p>Super solutions</p> -->
                     </div>
                     {!! $item->content_1 !!}
                     <hr class="space s" />
@@ -226,7 +226,7 @@
                     <div class="title-base text-left">
                         <hr />
                         <h2>{{ $item->top_2 }}</h2>
-                        <p>Cheap prices</p>
+                        <!-- <p>Cheap prices</p> -->
                     </div>
                     {!! $item->content_2 !!}
                     <hr class="space s" />

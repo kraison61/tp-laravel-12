@@ -1409,16 +1409,16 @@ function isScrollView(t) {
             });
         });
 
-        $("body").on("click", ".coverflow-slider .coverflow-lightbox", function () {
+        $("body").on("click", ".coverflow-slider .coverflow-lightbox", function (e) {
             var p = $(this).closest(".flip-item");
             if ($(p).hasClass("flip-current")) {
+                e.preventDefault();
                 $.magnificPopup.open({
                     items: {
                         src: $(this).attr("href")
                     },
                     type: ($(this).hasClass("mfp-iframe")) ? 'iframe' : 'image'
                 });
-                e.preventDefault();
             }
         });
 

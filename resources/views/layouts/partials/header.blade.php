@@ -32,55 +32,61 @@ $columnRight = $allServices->skip($leftCount);
                                 class="fa fa-youtube"></i></a>
                     </div>
 
-                <ul class="nav">
-                    @auth
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                                <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" style="padding: 15px; min-width: 200px;">
-                                <li><a href="#"><i class="fa fa-pencil"></i> Edit Profile</a></li>
-                                <li class="divider"></li>
-                                <li>
-                                    <form class="form" role="form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-default btn-block">Sign Out</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                                <i class="fa fa-user" aria-hidden="true"></i> Login <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" style="padding: 15px; min-width: 250px;">
-                                <li>
-                                    <form class="form" role="form" id="nav-login-form" action="{{ route('login') }}" method="POST">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label class="sr-only" for="navLoginEmail">Email address</label>
-                                            <input type="email" name="email" class="form-control" id="navLoginEmail" placeholder="Email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="navLoginPassword">Password</label>
-                                            <input type="password" name="password" class="form-control" id="navLoginPassword" placeholder="Password" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-default btn-block">Sign In</button>
-                                        </div>
-                                        <div class="checkbox" style="margin-bottom: 0;">
-                                            <label style="font-weight: normal; font-size: 13px;">
-                                                <input type="checkbox" name="remember"> Remember me
-                                            </label>
-                                        </div>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endauth
-                </ul>
-            </div>
+                    <ul class="nav">
+                        @auth
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                    <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span
+                                        class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu"
+                                    style="padding: 15px; min-width: 200px; right: 0; left: auto; max-width: 95vw;">
+                                    <li><a href="#"><i class="fa fa-pencil"></i> Edit Profile</a></li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <form class="form" role="form" action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-default btn-block">Sign Out</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                    <i class="fa fa-user" aria-hidden="true"></i> Login <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu"
+                                    style="padding: 15px; width: 250px; max-width: 95vw; right: 0; left: auto;">
+                                    <li>
+                                        <form class="form" role="form" id="nav-login-form" action="{{ route('login') }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label class="sr-only" for="navLoginEmail">Email หรือ เบอร์โทรศัพท์</label>
+                                                <input type="text" name="login" class="form-control" id="navLoginEmail"
+                                                    placeholder="Email หรือ เบอร์โทรศัพท์" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="navLoginPassword">Password</label>
+                                                <input type="password" name="password" class="form-control"
+                                                    id="navLoginPassword" placeholder="Password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-default btn-block">Sign In</button>
+                                            </div>
+                                            <div class="checkbox" style="margin-bottom: 0;">
+                                                <label style="font-weight: normal; font-size: 13px;">
+                                                    <input type="checkbox" name="remember"> Remember me
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endauth
+                    </ul>
+                </div>
 
             </div>
         </div>
@@ -92,10 +98,8 @@ $columnRight = $allServices->skip($leftCount);
                     </button>
                     <a class="navbar-brand" href="{{ route('home') }}" style="height:110px">
                         <!-- <img class="logo-default" src="../images/logo.png" alt="logo" /> -->
-                        <img class="logo-default" src="{{ Storage::disk('s3')->url('images/tp-logo.svg') }}"
-                            alt="logo" />
-                        <img class="logo-retina" src="{{ Storage::disk('s3')->url('images/logo-retina.png') }}"
-                            alt="logo" />
+                        <img class="logo-default" src="{{ Storage::url('images/tp-logo.svg') }}" alt="logo" />
+                        <img class="logo-retina" src="{{ Storage::url('images/logo-retina.png') }}" alt="logo" />
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
@@ -133,13 +137,13 @@ $columnRight = $allServices->skip($leftCount);
 
                         </li>
                         <li class="dropdown">
-                            <a href="{{ route('gallery.index') }}" class="" data-toggle="dropdown"
-                                role="button">ภาพ & วิดีโอ
+                            <a href="{{ route('gallery.index') }}" class="" data-toggle="dropdown" role="button">ภาพ &
+                                วิดีโอ
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="{{ route('blog.index') }}" class="" data-toggle="dropdown"
-                                role="button">บทความ </a>
+                            <a href="{{ route('blog.index') }}" class="" data-toggle="dropdown" role="button">บทความ
+                            </a>
                         </li>
                         <li class="dropdown mega-dropdown mega-tabs">
                             <a class="" data-toggle="dropdown" href="{{ route('contact') }}">ติดต่อเรา</a>
@@ -149,12 +153,27 @@ $columnRight = $allServices->skip($leftCount);
                         </li>
                         @auth
                             <li class="dropdown mega-dropdown mega-tabs">
-                                <a class="" data-toggle="dropdown" href="{{ route('users.index') }}">งวดงาน</a>
+                                <!-- @php
+                                        // ดึงโปรเจกต์แรกที่ User คนนี้เป็นเจ้าของ
+                                        $myProject = auth()->user()->projects->first();
+                                    @endphp
+
+                                    @if($myProject)
+                                        {{-- 1. กรณีมีโปรเจกต์: ส่ง ID ของโปรเจกต์นั้นไปที่ Route --}}
+                                        <a href="{{ route('projects.user.index', $myProject->id) }}">งวดงาน</a>
+                                    @else
+                                        {{-- 2. กรณีไม่มีโปรเจกต์: แสดง Alert --}}
+                                        <a href="#"
+                                            onclick="alert('ระบบกำลังเตรียมข้อมูลโครงการให้คุณ กรุณาติดต่อแอดมินครับ'); return false;">งวดงาน</a>
+                                    @endif -->
+                                @auth
+                                    <a href="{{ route('projects.user.index') }}">งวดงาน</a>
+                                @endauth
                             </li>
                         @endauth
                     </ul>
 
-                    {{-- Admin  --}}
+                    {{-- Admin --}}
 
                     @if (request()->is('admin*'))
                         <div class="collapse navbar-collapse" id="admin-navbar">
@@ -183,7 +202,7 @@ $columnRight = $allServices->skip($leftCount);
 @push('scripts')
     <script>
         // Prevent dropdown from closing when clicking inside the form
-        $('.user-menu .dropdown-menu').on('click', function(e) {
+        $('.user-menu .dropdown-menu').on('click', function (e) {
             e.stopPropagation();
         });
     </script>

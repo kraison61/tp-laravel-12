@@ -48,12 +48,12 @@
                     @method('PUT')
                 @endif
 
-                @if ($errors->any())
-                    <div
-                        style="background-color: #fee2e2; color: #dc2626; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                @if (isset($errors) && (is_object($errors) ? $errors->any() : count($errors) > 0))
+                    <div style="background-color: #fee2e2; color: #dc2626; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                         <strong style="display:block; margin-bottom: 10px;">พบข้อผิดพลาด:</strong>
                         <ul style="margin: 0; padding-left: 20px;">
-                            @foreach ($errors->all() as $error)
+                            @php $errorList = is_object($errors) ? $errors->all() : $errors; @endphp
+                            @foreach ($errorList as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>

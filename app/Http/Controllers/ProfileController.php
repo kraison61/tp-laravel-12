@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Profile;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,35 @@ class ProfileController extends Controller
         // return view('profile.show', [
         //     'user' => $request->user(),
         // ]);
-        return view('users.index');
+
+//         $timelines = [
+//     [
+//         'year' => '1940',
+//         'label' => 'Company foundation',
+//         'title' => 'Company foundation',
+//         'subtitle' => null,
+//         'body' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+//     ],
+//     [
+//         'year' => '1948',
+//         'label' => 'Company acquisition',
+//         'title' => 'Company acquisition',
+//         'subtitle' => null,
+//         'body' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+//     ],
+//     [
+//         'year' => '2002',
+//         'label' => 'Become the leading',
+//         'title' => 'Become the leading',
+//         'subtitle' => 'The begin of a great adventure',
+//         'body' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+//     ],
+//     // เพิ่มข้อมูลอื่นๆ ตามต้องการ
+// ];
+        $timelines = Profile::findorfail();
+
+
+        return view('users.index',compact('timelines'));
     }
     /**
      * Update the user's profile information.

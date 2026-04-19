@@ -8,6 +8,7 @@ class ImageUpload extends Model
 {
     protected $fillable = [
         'service_id',
+        'phase_id',
         'img_url',
         'location',
     ];
@@ -15,7 +16,12 @@ class ImageUpload extends Model
     {
         return $this->belongsTo(ServiceCategory::class, 'service_id');
     }
-    public function service(){
+    public function service()
+    {
         return $this->belongsTo(Service::class);
+    }
+    public function getUrlAttribute()
+    {
+        return \Storage::url($this->img_url);
     }
 }
