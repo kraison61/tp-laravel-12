@@ -51,18 +51,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-    <div class="section-empty text-center section-doc">
-        <div class="container content">
-            <h4 class="text-normal">Documentation</h4>
-            <p>This template is built with HTWF and more variants<br /> are available, check the official documentation for
-                more details.</p>
-            <hr class="space xs" />
-            <a href="http://html.framework-y.com/containers/sliders/" target="_blank" class="circle-button btn btn-sm">Go to
-                documentation</a>
-        </div>
-    </div>
 @endsection

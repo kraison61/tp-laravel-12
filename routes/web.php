@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 use App\Http\Controllers\Front\PageController as FrontPageController;
@@ -28,7 +29,7 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\ProjectPhaseController as AdminProjectPhaseController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
-
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::redirect('/blog', '/blogs', 301);
 Route::redirect('/about', '/about-us', 301);
 Route::redirect('/portfolio', '/gallery', 301);

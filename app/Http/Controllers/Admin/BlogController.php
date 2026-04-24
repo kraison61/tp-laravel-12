@@ -18,16 +18,17 @@ class BlogController extends Controller
     public function index()
     {
         $columns = ['service_category_id', 'title', 'description', 'image', 'slug', 'content', 'id'];
-        $data = Blog::select($columns)->with('category')->orderBy('updated_at', 'desc')->get();
+        $data = Blog::select($columns)->with('category', 'prices')->orderBy('updated_at', 'desc')->get();
         $headers = [
             'service_category_id' => 'หมวดหมู่',
             'title' => 'Title',
             'description' => 'Description',
             'image' => 'รูปภาพ',
             'slug' => 'Slug-SEO',
+            // 'price_range' => 'ช่วงราคา',
         ];
 
-        // dd($data);
+        // dd($data->toArray());
 
         return view('admin.index', [
             'title' => 'Admin-Blog',

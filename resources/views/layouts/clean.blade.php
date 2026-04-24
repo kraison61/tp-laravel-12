@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('child-title', 'Default Title')</title>
+    <title>{{ trim($__env->yieldContent('child-title', 'Default Title')) }}</title>
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="description" content="{{ trim($__env->yieldContent('child-description', 'Service-Theeraphong')) }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,19 +17,23 @@
         $locales = ['th', 'en'];
         $currentPath = request()->path();
     @endphp
-    <meta property="og:type" content="@yield('og-type', 'article')">
-    <meta property="og:title" content="@yield('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')">
-    <meta property="og:description" content="@yield('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')">
+    <meta property="og:type" content="@yield('og-type', 'website')">
+    <meta property="og:title" content="{{ trim($__env->yieldContent('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')) }}">
+    <meta property="og:description"
+        content="{{ trim($__env->yieldContent('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')) }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Theeraphong Construction">
-    <meta property="og:image" content="@yield('child-image', Storage::url('images/img_landing_1.png'))">
+    <meta property="og:image"
+        content="{{ trim($__env->yieldContent('child-image', asset('images/default-share.jpg'))) }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')">
-    <meta name="twitter:description" content="@yield('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')">
-    <meta name="twitter:image" content="@yield('child-image', Storage::url('images/img_landing_1.png'))">
+    <meta name="twitter:title" content="{{ trim($__env->yieldContent('child-title', 'บริษัทธีรพงษ์เซอร์วิส จำกัด')) }}">
+    <meta name="twitter:description"
+        content="{{ trim($__env->yieldContent('child-description', 'บริการรับเหมาก่อสร้างมาตรฐานวิศวกรรม')) }}">
+    <meta name="twitter:image"
+        content="{{ trim($__env->yieldContent('child-image', asset('images/default-share.jpg'))) }}">
     <meta name="twitter:label1" content="ให้บริการโดย">
     <meta name="twitter:data1" content="ช่างรัก (ประสบการณ์ 15 ปี)">
 

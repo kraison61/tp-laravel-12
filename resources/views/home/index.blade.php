@@ -48,14 +48,9 @@
                                 </div>
                                 <div class="container">
                                     @if ($item->image)
-                                        {{-- <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
-                                            src="{{ asset('storage/images/' . $item->image) }}" alt="{{ $item->alt }}" /> --}}
                                         <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
                                             src="{{ Storage::disk('s3')->url($item->image) }}" alt="{{ $item->alt }}" />
                                     @else
-                                        <!-- ใช้ภาพ default -->
-                                        {{-- <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
-                                            src="{{ asset('storage/images/img_landing_1.png') }}" alt="No image available" /> --}}
                                         <img class="pos-slider pos-bottom pos-right anima anima-fade-bottom hidden-xs"
                                             src="{{ Storage::disk('s3')->url('img_landing_1.png') }}"
                                             alt="No image available" />
@@ -92,26 +87,30 @@
         </div>
     </div>
     <div class="section-empty">
-        <div class="container content">
-            <div class="flexslider carousel outer-navs"
-                data-options="minWidth:200,itemMargin:30,numItems:4,controlNav:false">
-                <ul class="slides">
-                    @foreach ($allServices as $item)
-                        <li>
-                            <a href="{{ route('service.show', $item->category->slug) }}" class="text-decoration-none">
-                                <div class="advs-box advs-box-top-icon boxed-inverse" data-anima="rotate-20"
-                                    data-trigger="hover">
-                                    <i class="fa fa-clone icon circle anima"></i>
-                                    <h3>{{ Str::limit($item->category->name, 12, '...') }}</h3>
-                                    <p>
-                                        {{ Str::limit($item->title, 30, '...') }}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+    <div class="container content">
+        <div class="flexslider carousel outer-navs" data-options="minWidth:200,itemMargin:30,numItems:4,controlNav:false">
+            <ul class="slides">
+                @foreach ($allServices as $item)
+                    <li>
+                        <a href="{{ route('service.show', $item->category->slug) }}" class="text-decoration-none">
+                            
+                            <div class="service-card-custom">
+                                <img src="{{ Storage::url($item->img_1) }}" 
+                                     class="circle-icon-top" 
+                                     alt="{{ $item->name }}">
+                                
+                                <h3>{{ Str::limit($item->category->name, 15, '...') }}</h3>
+                                <p>{{ Str::limit($item->title, 40, '...') }}</p>
+                            </div>
+
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" >
             <hr class="space" />
             <div class="row vefrtical-row">
                 <div class="col-md-4">

@@ -39,13 +39,13 @@
             @endphp
 
             {{-- ถ้าเป็นการแก้ไข ให้พิมพ์ @method('PUT') ออกมา --}}
-            @if($isEdit)
-                @method('PUT')
-            @endif
+
 
             <form action="{{ $actionUrl }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
+                @if(isset($blog) && $blog->id)
+                    @method('PUT')
+                @endif
                 @if ($errors->any())
                     <div
                         style="background-color: #fee2e2; color: #dc2626; padding: 15px; border-radius: 8px; margin-bottom: 20px;">

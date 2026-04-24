@@ -25,4 +25,10 @@ class Blog extends Model
     {
         return $this->belongsTo(ServiceCategory::class, 'service_category_id', 'id');
     }
+
+    public function prices()
+    {
+        // เชื่อมโยงไปที่ตาราง Price โดยใช้ service_id เป็นตัวเชื่อม
+        return $this->hasMany(Price::class, 'service_id', 'service_category_id');
+    }
 }

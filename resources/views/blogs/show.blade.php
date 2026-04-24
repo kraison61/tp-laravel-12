@@ -9,7 +9,7 @@
     $schemaData = [
         '@context' => 'https://schema.org',
         '@graph' => [
-            // [1] ข้อมูลองค์กร (ใช้เป็น Publisher ของบทความ)
+            // [1] ข้อมูลองค์กร
             [
                 '@type' => 'LocalBusiness',
                 '@id' => url('/') . '#organization',
@@ -20,6 +20,7 @@
                     'url' => Storage::disk('s3')->url('images/tp-logo.svg'),
                 ],
                 'telephone' => '+66627188847',
+                'priceRange' => isset($minPrice) ? '฿' . number_format($minPrice) . ' - ฿' . number_format($maxPrice) : 'ติดต่อสอบถามราคา',
                 'address' => [
                     '@type' => 'PostalAddress',
                     'streetAddress' => '14 ต.บางกร่าง อ.เมืองนนทบุรี',
@@ -27,16 +28,33 @@
                     'postalCode' => '11000',
                     'addressCountry' => 'TH',
                 ],
+                'image' => Storage::disk('s3')->url($blog->image),
             ],
-            // [2] ข้อมูลผู้เขียนบทความ (Author)
+
+            // [2] ข้อมูลบริการ (แยกก้อนออกมาให้ Google เห็นราคาชัดเจน)
+            [
+                '@type' => 'Service',
+                '@id' => $currentUrl . '#service',
+                'name' => 'บริการ' . $blog->title,
+                'provider' => ['@id' => url('/') . '#organization'],
+                'offers' => [
+                    '@type' => 'AggregateOffer',
+                    'priceCurrency' => 'THB',
+                    'lowPrice' => $minPrice ?? 0,
+                    'highPrice' => $maxPrice ?? 0,
+                ]
+            ],
+
+            // [3] ข้อมูลผู้เขียนบทความ (Author)
             [
                 '@type' => 'Person',
                 '@id' => $currentUrl . '#author',
                 'name' => 'ช่างรัก (Mr.Theeraphong Sarsuk)',
                 'jobTitle' => 'ผู้เชี่ยวชาญด้านงานก่อสร้าง',
-                'url' => url('/about-us'), // อาจจะใส่ลิงก์ไปหน้า About Us
+                'url' => url('/about-us'),
             ],
-            // [3] โครงสร้างหน้าเว็บ
+
+            // [4] โครงสร้างหน้าเว็บ
             [
                 '@type' => 'WebPage',
                 '@id' => $currentUrl . '#webpage',
@@ -44,20 +62,22 @@
                 'name' => $blog->title,
                 'inLanguage' => 'th',
             ],
-            // [4] ข้อมูลบทความ (หัวใจสำคัญของหน้านี้)
+
+            // [5] ข้อมูลบทความ
             [
-                '@type' => 'BlogPosting', // เปลี่ยนจาก Service เป็น BlogPosting
+                '@type' => 'BlogPosting',
                 '@id' => $currentUrl . '#article',
                 'mainEntityOfPage' => ['@id' => $currentUrl . '#webpage'],
                 'headline' => $blog->title,
                 'description' => $blog->description,
                 'image' => asset('storage/' . $blog->image),
-                'author' => ['@id' => $currentUrl . '#author'], // อ้างอิงไปยัง Person ด้านบน
-                'publisher' => ['@id' => url('/') . '#organization'], // อ้างอิงไปยัง Organization ด้านบน
-                'datePublished' => $blog->created_at->toIso8601String(), // วันที่เผยแพร่
-                'dateModified' => $blog->updated_at->toIso8601String(), // วันที่แก้ไขล่าสุด
+                'author' => ['@id' => $currentUrl . '#author'],
+                'publisher' => ['@id' => url('/') . '#organization'],
+                'datePublished' => $blog->created_at->toIso8601String(),
+                'dateModified' => $blog->updated_at->toIso8601String(),
             ],
-            // [5] Breadcrumb List Schema
+
+            // [6] Breadcrumb List
             [
                 '@type' => 'BreadcrumbList',
                 '@id' => $currentUrl . '#breadcrumb',
@@ -72,7 +92,7 @@
                         '@type' => 'ListItem',
                         'position' => 2,
                         'name' => __('Blogs'),
-                        'item' => url('/blogs'), // ลิงก์กลับไปหน้ารวมบทความ
+                        'item' => url('/blogs'),
                     ],
                     [
                         '@type' => 'ListItem',
@@ -88,12 +108,12 @@
 {{-- ส่งข้อมูลไปที่ Meta Tags ใน Layout --}}
 @section('title', $blog->title)
 @section('description', $blog->description)
-@section('image', asset('storage/' . $blog->image))
+@section('image', Storage::disk('s3')->url($blog->image))
 
 @push('seo-schema')
     <script type="application/ld+json">
-        {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-    </script>
+            {!! json_encode($schemaData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+        </script>
 @endpush
 
 @section('content')
@@ -118,7 +138,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <img src="{{ Storage::disk('s3')->url($blog->image) }}?width=800&format=webp"
-                        style="width: 50%; height: auto; display: block; margin: 0 auto; border-radius: 8px;" alt="{{ $blog->title }}">
+                        style="width: 50%; height: auto; display: block; margin: 0 auto; border-radius: 8px;"
+                        alt="{{ $blog->title }}">
 
                     <div class="blog-content">
                         <style>

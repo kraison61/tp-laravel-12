@@ -489,3 +489,43 @@ body {
         margin-bottom: 10px;
         color: #ccc;
     }
+
+    /* กล่องสี่เหลี่ยม (การ์ด) */
+.service-card-custom {
+    position: relative;
+    margin-top: 50px;      /* เว้นที่ด้านบนให้รูปที่ลอยขึ้นไป */
+    padding: 60px 20px 20px; /* padding ด้านบนต้องเยอะหน่อยเพื่อไม่ให้ข้อความทับรูป */
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* วงกลมที่ลอยอยู่ด้านบน */
+.circle-icon-top {
+    position: absolute;
+    top: 0;                /* ชิดขอบบน */
+    left: 50%;             /* ไปกึ่งกลางแนวนอน */
+    transform: translate(-50%, -50%); /* ดึงกลับมาให้กึ่งกลางเป๊ะทั้งบนและซ้าย */
+    
+    /* ขนาดและรูปทรง */
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    
+    /* ตกแต่งเพิ่มเติม */
+    border: 5px solid #ffffff; /* ขอบขาวตัดกับเส้นกล่อง */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    z-index: 10;
+}
+
+/* เอฟเฟกต์เวลาเอาเมาส์ชี้ (Optional) */
+.service-card-custom:hover {
+    border-color: #ff6b00; /* เปลี่ยนสีเส้นขอบตามสีแบรนด์ */
+    transform: translateY(5px);
+}
+
