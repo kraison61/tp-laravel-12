@@ -31,11 +31,24 @@
                 <div class="text-center">
                     <div class="row">
                         @foreach ($timelines as $item)
+                            @php
+                                // ดึง URL รูปภาพอย่างปลอดภัย ถ้าไม่มีรูปจะคืนค่า null ไม่พ่น Error 500
+                                $imageUrl = $item->phases->first()?->images->first()?->img_url;
+                            @endphp
+
                             <div class="col-md-3">
                                 <a class="img-box inner" href="{{ route('projects.user.show', $item->id) }}">
-                                    <span><img class="ratio-16-9"
-                                            src="{{ Storage::url($item->phases->first()->images->first()->img_url) }}"
-                                            alt="" /></span>
+                                    <span>
+                                        @if($imageUrl)
+                                            {{-- กรณีที่มีรูปภาพ --}}
+                                            <img class="ratio-16-9" src="{{ Storage::url($imageUrl) }}" alt="" />
+                                        @else
+                                            {{-- กรณีที่ไม่มีรูปภาพ (หาไฟล์ default-image.jpg มาใส่ไว้ในโฟลเดอร์ public/images/
+                                            หรือปรับ path ตามที่คุณมี) --}}
+                                            <img class="ratio-16-9" src="{{ asset('images/default-image.jpg') }}"
+                                                alt="No image available" style="background-color: #f3f4f6;" />
+                                        @endif
+                                    </span>
                                     <span class="caption-box">
                                         <span class="caption">
                                             {{ $item->description }}

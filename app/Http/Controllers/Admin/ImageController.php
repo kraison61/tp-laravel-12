@@ -44,7 +44,7 @@ class ImageController extends Controller
     {
         $image = new ImageUpload();
         $categories = \App\Models\ServiceCategory::all();
-        $phases = \App\Models\ProjectPhase::with('project')->get();
+        $phases = \App\Models\ProjectPhase::with('project')->orderByDesc('created_at')->get();
         return view('admin.images.create', compact('image', 'categories', 'phases'));
     }
 

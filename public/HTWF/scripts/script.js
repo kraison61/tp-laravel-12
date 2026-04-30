@@ -898,7 +898,7 @@ function isScrollView(t) {
             });
 
             $("body").on("mouseenter", ".nav > li", function () {
-                $(this).closest(".nav").find("li").removeClass("open");
+                $(this).closest(".nav").find("li").not(".keep-open").removeClass("open");
             });
         }
 

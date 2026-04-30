@@ -52,32 +52,46 @@ $columnRight = $allServices->skip($leftCount);
                                 </ul>
                             </li>
                         @else
-                            <li class="dropdown">
+                            <li class="dropdown keep-open">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                                     <i class="fa fa-user" aria-hidden="true"></i> Login <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu"
-                                    style="padding: 15px; width: 250px; max-width: 95vw; right: 0; left: auto;">
+                                <ul class="dropdown-menu nav-login-dropdown">
                                     <li>
                                         <form class="form" role="form" id="nav-login-form" action="{{ route('login') }}"
                                             method="POST">
                                             @csrf
+
+                                            {{-- แจ้งเตือนกรณีล็อกอินไม่ผ่านรวมๆ --}}
+                                            @if ($errors->has('login') || $errors->has('email'))
+                                                <div class="alert alert-danger"
+                                                    style="padding: 5px 10px; margin-bottom: 10px; font-size: 12px;">
+                                                    ข้อมูลการเข้าสู่ระบบไม่ถูกต้อง
+                                                </div>
+                                            @endif
+
                                             <div class="form-group">
                                                 <label class="sr-only" for="navLoginEmail">Email หรือ เบอร์โทรศัพท์</label>
                                                 <input type="text" name="login" class="form-control" id="navLoginEmail"
-                                                    placeholder="Email หรือ เบอร์โทรศัพท์" required>
+                                                    placeholder="Email หรือ เบอร์โทรศัพท์" value="{{ old('login') }}"
+                                                    required autofocus>
+                                                {{-- ดึงค่าเก่ากลับมาแสดงด้วย old('login') เผื่อกรอกผิด
+                                                จะได้ไม่ต้องพิมพ์ใหม่ --}}
                                             </div>
+
                                             <div class="form-group">
                                                 <label class="sr-only" for="navLoginPassword">Password</label>
                                                 <input type="password" name="password" class="form-control"
                                                     id="navLoginPassword" placeholder="Password" required>
                                             </div>
+
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-default btn-block">Sign In</button>
                                             </div>
+
                                             <div class="checkbox" style="margin-bottom: 0;">
                                                 <label style="font-weight: normal; font-size: 13px;">
-                                                    <input type="checkbox" name="remember"> Remember me
+                                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
                                                 </label>
                                             </div>
                                         </form>
@@ -153,19 +167,6 @@ $columnRight = $allServices->skip($leftCount);
                         </li>
                         @auth
                             <li class="dropdown mega-dropdown mega-tabs">
-                                <!-- @php
-                                        // ดึงโปรเจกต์แรกที่ User คนนี้เป็นเจ้าของ
-                                        $myProject = auth()->user()->projects->first();
-                                    @endphp
-
-                                    @if($myProject)
-                                        {{-- 1. กรณีมีโปรเจกต์: ส่ง ID ของโปรเจกต์นั้นไปที่ Route --}}
-                                        <a href="{{ route('projects.user.index', $myProject->id) }}">งวดงาน</a>
-                                    @else
-                                        {{-- 2. กรณีไม่มีโปรเจกต์: แสดง Alert --}}
-                                        <a href="#"
-                                            onclick="alert('ระบบกำลังเตรียมข้อมูลโครงการให้คุณ กรุณาติดต่อแอดมินครับ'); return false;">งวดงาน</a>
-                                    @endif -->
                                 @auth
                                     <a href="{{ route('projects.user.index') }}">งวดงาน</a>
                                 @endauth
@@ -202,8 +203,15 @@ $columnRight = $allServices->skip($leftCount);
 @push('scripts')
     <script>
         // Prevent dropdown from closing when clicking inside the form
-        $('.user-menu .dropdown-menu').on('click', function (e) {
+        $('#nav-login-form, .dropdown-menu form').on('click', function (e) {
             e.stopPropagation();
+        });
+
+        // Prevent dropdown from hiding randomly due to autocomplete or focus shifts
+        $('.keep-open').on('hide.bs.dropdown', function (e) {
+            if ($(this).find('input:focus, input:-webkit-autofill').length > 0) {
+                e.preventDefault();
+            }
         });
     </script>
 @endpush

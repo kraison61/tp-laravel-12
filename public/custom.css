@@ -529,3 +529,27 @@ body {
     transform: translateY(5px);
 }
 
+/* ====================================
+   LOGIN DROPDOWN - RESPONSIVE FIX
+======================================= */
+.nav-login-dropdown {
+    padding: 15px;
+    width: 250px;
+    max-width: 95vw;
+    right: 0;
+    left: auto;
+}
+
+@media (max-width: 767px) {
+    .navbar-mini .dropdown.keep-open {
+        position: static !important;
+    }
+    
+    .nav-login-dropdown {
+        left: 15px !important;
+        right: 15px !important;
+        margin-top: 10px;
+        width: auto !important;
+        max-width: none !important;
+    }
+}
