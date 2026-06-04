@@ -6,7 +6,7 @@
     $currentUrl = url()->current();
     $locale = app()->getLocale();
 
-    $pageTitle = $item?->title ?? $service->name ?? 'บริการของเรา';
+    $pageTitle = $item?->title ?? ($service->name ?? 'บริการของเรา');
 
     // จัดการ Description และใส่ Fallback ป้องกันค่าว่าง
     $pageDescription = strip_tags($item?->description ?? '');
@@ -24,11 +24,12 @@
             $offer = [
                 '@type' => 'Offer',
                 'name' => $p->name ?? $pageTitle,
-                'price' => $p->sale_price ?? $p->price ?? '0.00',
+                'price' => $p->sale_price ?? ($p->price ?? '0.00'),
                 'priceCurrency' => $p->currency ?? 'THB',
                 'url' => $p->url ? $p->url : $currentUrl,
-                'availability' => $p->availability == 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-                'itemCondition' => 'https://schema.org/NewCondition'
+                'availability' =>
+                    $p->availability == 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+                'itemCondition' => 'https://schema.org/NewCondition',
             ];
 
             if (!empty($p->price_valid_until)) {
@@ -43,7 +44,7 @@
             'price' => '0.00',
             'priceCurrency' => 'THB',
             'url' => $currentUrl,
-            'availability' => 'https://schema.org/InStock'
+            'availability' => 'https://schema.org/InStock',
         ];
     }
 
@@ -58,19 +59,18 @@
                 'name' => $faq->question,
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => strip_tags($faq->answer)
-                ]
+                    'text' => strip_tags($faq->answer),
+                ],
             ];
         }
     }
 
     // ---------------------------------------------------------
-    // 4. ประกอบร่าง JSON-LD Graph 
+    // 4. ประกอบร่าง JSON-LD Graph
     // ---------------------------------------------------------
     $schemaData = [
         '@context' => 'https://schema.org',
         '@graph' => [
-
             // --- 4.1 องค์กร (LocalBusiness) ---
             [
                 '@type' => 'LocalBusiness',
@@ -94,14 +94,14 @@
                 'geo' => [
                     '@type' => 'GeoCoordinates',
                     'latitude' => '13.836991091487384',
-                    'longitude' => '100.44377996643809'
+                    'longitude' => '100.44377996643809',
                 ],
                 'openingHoursSpecification' => [
                     '@type' => 'OpeningHoursSpecification',
-                    'dayOfWeek' => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                     'opens' => '08:00',
-                    'closes' => '19:00'
-                ]
+                    'closes' => '19:00',
+                ],
             ],
 
             // --- 4.2 ข้อมูลบริการหลัก (Service & Product รวมกัน) ---
@@ -114,7 +114,7 @@
                 ],
                 'brand' => [
                     '@type' => 'Brand',
-                    'name' => 'ธีรพงษ์เซอร์วิส'
+                    'name' => 'ธีรพงษ์เซอร์วิส',
                 ],
                 'sku' => $service->sku ?? 'TP-SRV-' . ($service->id ?? rand(100, 999)),
                 'image' => Storage::disk('s3')->url($item?->img_1 ?? 'images/about/194911_0.jpg'),
@@ -125,15 +125,15 @@
                     ['@type' => 'City', 'name' => 'Nonthaburi'],
                     ['@type' => 'City', 'name' => 'Pathum Thani'],
                     ['@type' => 'City', 'name' => 'Samut Prakan'],
-                    ['@type' => 'City', 'name' => 'Samut Sakhon']
+                    ['@type' => 'City', 'name' => 'Samut Sakhon'],
                 ],
                 'offers' => $schemaOffers,
-                // 🌟 เพิ่มดาวโชว์บน Google กลับเข้ามา 
+                // 🌟 เพิ่มดาวโชว์บน Google กลับเข้ามา
                 'aggregateRating' => [
                     '@type' => 'AggregateRating',
                     'ratingValue' => $service->services->first()->rating_value,
-                    'reviewCount' => $service->services->first()->review_count
-                ]
+                    'reviewCount' => $service->services->first()->review_count,
+                ],
             ],
 
             // ⚠️ (ส่วน 4.3 แผนสำรอง ถูกลบทิ้งไปแล้วเพราะรวมอยู่ใน 4.2 ด้านบนครบแล้ว)
@@ -146,30 +146,30 @@
                         '@type' => 'ListItem',
                         'position' => 1,
                         'name' => 'หน้าแรก',
-                        'item' => url('/')
+                        'item' => url('/'),
                     ],
                     [
                         '@type' => 'ListItem',
                         'position' => 2,
                         'name' => 'บริการของเรา',
-                        'item' => url('/services')
+                        'item' => url('/services'),
                     ],
                     [
                         '@type' => 'ListItem',
                         'position' => 3,
                         'name' => $pageTitle,
-                        'item' => $currentUrl
-                    ]
-                ]
-            ]
-        ]
+                        'item' => $currentUrl,
+                    ],
+                ],
+            ],
+        ],
     ];
 
     // --- 4.5 เช็คและใส่ FAQ ลงไปใน Graph ถ้ามีข้อมูล ---
     if (!empty($schemaFaqs)) {
         $schemaData['@graph'][] = [
             '@type' => 'FAQPage',
-            'mainEntity' => $schemaFaqs
+            'mainEntity' => $schemaFaqs,
         ];
     }
 @endphp
@@ -237,7 +237,7 @@
             </div>
         </div>
     </div>
-    @if($prices->count() > 0)
+    @if ($prices->count() > 0)
         <div class="section-empty section-item">
             <div class="container">
                 <div class="title-base text-left">
@@ -251,13 +251,15 @@
     @endif
 
     <div class="section-empty section-item">
-            <div class="container">
-        <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-        <x-ad-banner link="https://ลิงก์ของคุณ.com" />
-    </div>
-</div>
-</div>
+        <div class="container">
+            <div class="row vertical-row">
+                {{-- 💡 เติม col-sm-offset-3 และ col-md-offset-4 เข้าไปเพื่อดันช่องว่าง --}}
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+                    <x-ad-banner link="https://ลิงก์ของคุณ.com" />
+                </div>
+            </div>
+        </div>
+        <hr class="space s" />
     </div>
 
 
