@@ -249,5 +249,17 @@
             </div>
         </div>
     @endif
+
+    <div class="section-empty section-item">
+            <div class="container">
+        <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <x-ad-banner link="https://ลิงก์ของคุณ.com" />
+    </div>
+</div>
+</div>
+    </div>
+
+
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
 @endsection
