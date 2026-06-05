@@ -159,6 +159,32 @@
                 </div>
             </div>
         </div>
+<div class="section-empty section-item">
+        <div class="container">
+
+            {{-- 💡 เติม style="display: flex; flex-wrap: wrap;" ให้ row --}}
+            <div class="row vertical-row" style="display: flex; flex-wrap: wrap;">
+
+                @foreach(config('loans') as $loan)
+
+                    {{-- 💡 เติม style="display: flex;" ให้คอลัมน์ --}}
+                    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 24px; display: flex;">
+
+                        <x-ad-banner :link="$loan['link']" :headerTitle="$loan['headerTitle']" :headerDesc="$loan['headerDesc']"
+                            :image="$loan['image']" :statusText="$loan['statusText']" :brandName="$loan['brandName']"
+                            :headline1="$loan['headline1']" :headline2="$loan['headline2']" :desc="$loan['desc']"
+                            :btnText="$loan['btnText']" :disclaimer="$loan['disclaimer']" />
+
+                    </div>
+
+                @endforeach
+
+            </div>
+        </div>
+        <hr class="space s" />
+    </div>
+
     </div>
     <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
 @endsection
+

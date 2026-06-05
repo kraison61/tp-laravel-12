@@ -252,11 +252,24 @@
 
     <div class="section-empty section-item">
         <div class="container">
-            <div class="row vertical-row">
-                {{-- 💡 เติม col-sm-offset-3 และ col-md-offset-4 เข้าไปเพื่อดันช่องว่าง --}}
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-                    <x-ad-banner link="https://ลิงก์ของคุณ.com" />
-                </div>
+
+            {{-- 💡 เติม style="display: flex; flex-wrap: wrap;" ให้ row --}}
+            <div class="row vertical-row" style="display: flex; flex-wrap: wrap;">
+
+                @foreach(config('loans') as $loan)
+
+                    {{-- 💡 เติม style="display: flex;" ให้คอลัมน์ --}}
+                    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 24px; display: flex;">
+
+                        <x-ad-banner :link="$loan['link']" :headerTitle="$loan['headerTitle']" :headerDesc="$loan['headerDesc']"
+                            :image="$loan['image']" :statusText="$loan['statusText']" :brandName="$loan['brandName']"
+                            :headline1="$loan['headline1']" :headline2="$loan['headline2']" :desc="$loan['desc']"
+                            :btnText="$loan['btnText']" :disclaimer="$loan['disclaimer']" />
+
+                    </div>
+
+                @endforeach
+
             </div>
         </div>
         <hr class="space s" />
