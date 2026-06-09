@@ -254,23 +254,54 @@
         <div class="container">
 
             {{-- 💡 เติม style="display: flex; flex-wrap: wrap;" ให้ row --}}
-            <div class="row vertical-row" style="display: flex; flex-wrap: wrap;">
+            <div class="row vertical-row" style="display: flex; flex-wrap: wrap; justify-content: center;">
 
-                @foreach(config('loans') as $loan)
+    @foreach (config('loans') as $loan)
+        {{-- 💡 เติม flex-direction: column เข้าไปนิดนึงเพื่อให้แบบมือถือจัดกลางได้สวยขึ้น --}}
+        <div class="col-xs-12 col-sm-6 col-md-3" style="margin-bottom: 24px; display: flex; flex-direction: column; justify-content: center;">
 
-                    {{-- 💡 เติม style="display: flex;" ให้คอลัมน์ --}}
-                    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 24px; display: flex;">
-
-                        <x-ad-banner :link="$loan['link']" :headerTitle="$loan['headerTitle']" :headerDesc="$loan['headerDesc']"
-                            :image="$loan['image']" :statusText="$loan['statusText']" :brandName="$loan['brandName']"
-                            :headline1="$loan['headline1']" :headline2="$loan['headline2']" :desc="$loan['desc']"
-                            :btnText="$loan['btnText']" :disclaimer="$loan['disclaimer']" />
-
-                    </div>
-
-                @endforeach
-
+            {{-- 🖥️ 1. แบบ Medium (กล่องใหญ่): แสดงบนคอมและแท็บเล็ต / "ซ่อนบนมือถือ" (hidden-xs) --}}
+            <div class="hidden-xs" style="width: 100%; height: 100%;">
+                <x-ad-banner
+                    variant="medium"
+                    :link="$loan['link']"
+                    :headerTitle="$loan['headerTitle']"
+                    :headerDesc="$loan['headerDesc']"
+                    :image="$loan['image']"
+                    :statusText="$loan['statusText']"
+                    :brandName="$loan['brandName']"
+                    :headline1="$loan['headline1']"
+                    :headline2="$loan['headline2']"
+                    :desc="$loan['desc']"
+                    :btnText="$loan['btnText']"
+                    :disclaimer="$loan['disclaimer']"
+                    :logo="$loan['logo']"
+                />
             </div>
+
+            {{-- 📱 2. แบบ Mobile (แนวยาว): "แสดงเฉพาะมือถือ" (visible-xs-block) / ซ่อนบนจออื่นๆ --}}
+            <div class="visible-xs-block" style="width: 100%;">
+                <x-ad-banner
+                    variant="mobile"
+                    :link="$loan['link']"
+                    :headerTitle="$loan['headerTitle']"
+                    :headerDesc="$loan['headerDesc']"
+                    :image="$loan['image']"
+                    :statusText="$loan['statusText']"
+                    :brandName="$loan['brandName']"
+                    :headline1="$loan['headline1']"
+                    :headline2="$loan['headline2']"
+                    :desc="$loan['desc']"
+                    :btnText="$loan['btnText']"
+                    :disclaimer="$loan['disclaimer']"
+                    :logo="$loan['logo']"
+                />
+            </div>
+
+        </div>
+    @endforeach
+
+</div>
         </div>
         <hr class="space s" />
     </div>
